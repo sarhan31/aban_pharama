@@ -952,3 +952,22 @@ a[href^="tel:"]:hover {
     visibility: visible;
     transform: translateY(0);
 }
+/* --- ICON FIX --- */
+i {
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Ensure Font Awesome icons render properly */
+.fa, .fas, .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
+    font-weight: 900;
+}
+
+/* Icon alignment fix */
+.btn-icon i,
+.float-btn i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
