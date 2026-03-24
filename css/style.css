@@ -403,6 +403,16 @@ ul {
     font-size: 20px;
     box-shadow: 0 8px 20px rgba(15, 92, 92, 0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    line-height: 1;
+    text-align: center;
+}
+
+.btn-icon i {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-icon:hover {
@@ -903,6 +913,15 @@ a[href^="tel:"]:hover {
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    line-height: 1;
+}
+
+.float-btn i {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .float-btn:hover {
