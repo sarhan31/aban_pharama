@@ -130,14 +130,21 @@ ul {
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    gap: 40px;
-    animation: fadeIn 0.3s ease;
+    gap: 30px; /* Slightly tighter gap */
+    animation: fadeIn 0.4s ease forwards;
 }
 
 .nav-links.mobile-active li {
     opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.4s ease forwards;
+    transform: translateY(30px);
+    animation: slideUp 0.5s ease forwards;
+}
+
+.nav-links.mobile-active a {
+    color: var(--primary) !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    padding: 10px 0;
 }
 
 .nav-links.mobile-active li:nth-child(1) { animation-delay: 0.1s; }
