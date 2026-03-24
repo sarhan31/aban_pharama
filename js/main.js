@@ -82,8 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = mobileHeader.querySelector('.mobile-close');
 
     const toggleMenu = () => {
+        const navbar = document.getElementById('navbar');
         navLinks.classList.toggle('mobile-active');
         navOverlay.classList.toggle('active');
+        navbar.classList.toggle('menu-open');
         document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : 'auto';
     };
 
