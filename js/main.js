@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.getElementById('nav-overlay');
     
     // Create mobile menu header (logo + text + close)
     const mobileHeader = document.createElement('div');
@@ -80,14 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeBtn = mobileHeader.querySelector('.mobile-close');
 
-    mobileToggle.addEventListener('click', () => {
-        navLinks.classList.add('mobile-active');
-        document.body.style.overflow = 'hidden'; // Prevent scroll when menu is open
-    });
+    const toggleMenu = () => {
+        navLinks.classList.toggle('mobile-active');
+        navOverlay.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : 'auto';
+    };
 
-    closeBtn.addEventListener('click', () => {
-        navLinks.classList.remove('mobile-active');
-        document.body.style.overflow = 'auto';
+    mobileToggle.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('mobile-active')) {
+                toggleMenu();
+            }
+        });
     });
 
     // 6. Smooth Scroll for Anchor Links
