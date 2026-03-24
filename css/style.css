@@ -208,6 +208,7 @@ ul {
     color: var(--accent);
     background: linear-gradient(90deg, var(--accent), #ffb347);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 10px 20px rgba(247, 147, 30, 0.1);
 }
