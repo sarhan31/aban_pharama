@@ -92,7 +92,7 @@ ul {
 }
 
 .logo img {
-    height: 65px; /* Bolder presence */
+    height: 55px; /* Balanced for square logo */
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08)); /* High-end subtle shadow */
@@ -177,7 +177,7 @@ ul {
 }
 
 .mobile-logo-container img {
-    height: 42px; /* Increased for the new logo clarity */
+    height: 38px; /* Optimized for the square logo shape */
     width: auto;
     object-fit: contain;
 }
