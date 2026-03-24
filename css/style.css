@@ -493,7 +493,7 @@ ul {
     padding-top: 180px;
     padding-bottom: 120px;
     min-height: 100vh;
-    background: linear-gradient(135deg, rgba(15, 92, 92, 0.92), rgba(15, 92, 92, 0.75)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background: linear-gradient(135deg, rgba(15, 92, 92, 0.92), rgba(15, 92, 92, 0.75)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=format&cs=tinysrgb&w=1600');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

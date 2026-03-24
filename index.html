@@ -6,10 +6,13 @@
     <title>ABAN PHARMA | Trusted Pharmaceutical Partner Since 1981</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="assets/images/Logo_page-0001.jpg" as="image">
+    <link rel="preload" href="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=format&cs=tinysrgb&w=1600" as="image">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/style.css">
@@ -37,7 +40,7 @@
     <nav id="navbar">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <img src="assets/images/Logo_page-0001.jpg" alt="ABAN PHARMA"> ABAN <span>PHARMA</span>
+                <img src="assets/images/Logo_page-0001.jpg" alt="ABAN PHARMA" loading="lazy"> ABAN <span>PHARMA</span>
             </a>
             
             <ul class="nav-links">
@@ -75,7 +78,7 @@
             <div class="about-grid">
                 <div class="reveal">
                     <div class="about-img-container">
-                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="About ABAN Pharma" class="about-img">
+                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=format&cs=tinysrgb&w=1000" alt="About ABAN Pharma" class="about-img" loading="lazy">
                         <div class="about-badge">
                             <h3>40+</h3>
                             <p>Years of<br>Excellence</p>
@@ -448,17 +451,17 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                 <div class="card reveal">
-                    <img src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Manufacturing" class="equal-img">
+                    <img src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=format&cs=tinysrgb&w=800" alt="Manufacturing" class="equal-img" loading="lazy">
                     <h3 style="margin-bottom: 10px;">Modern Manufacturing Unit</h3>
                     <p style="color: var(--light-text); font-size: 14px;">State-of-the-art production lines following WHO-GMP guidelines for maximum safety and efficacy.</p>
                 </div>
                 <div class="card reveal">
-                    <img src="https://images.pexels.com/photos/5412270/pexels-photo-5412270.jpeg?auto=compress&cs=tinysrgb&w=800" alt="QC" class="equal-img">
+                    <img src="https://images.pexels.com/photos/5412270/pexels-photo-5412270.jpeg?auto=format&cs=tinysrgb&w=800" alt="QC" class="equal-img" loading="lazy">
                     <h3 style="margin-bottom: 10px;">Quality Control Systems</h3>
                     <p style="color: var(--light-text); font-size: 14px;">Advanced laboratory equipment for rigorous testing of raw materials and finished products.</p>
                 </div>
                 <div class="card reveal">
-                    <img src="https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Distribution" class="equal-img">
+                    <img src="https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=format&cs=tinysrgb&w=800" alt="Distribution" class="equal-img" loading="lazy">
                     <h3 style="margin-bottom: 10px;">Packaging & Distribution</h3>
                     <p style="color: var(--light-text); font-size: 14px;">Automated packaging systems and a robust logistics network for timely global delivery.</p>
                 </div>
@@ -562,12 +565,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-            <!-- MAP -->
-            <div class="reveal" style="margin-top: 60px; height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--secondary);">
+    <!-- MAP -->
+    <section id="location" style="padding: 60px 0 100px 0;">
+        <div class="container">
+            <div class="reveal" style="height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--secondary); position: relative; group;">
                 <iframe src="https://www.google.com/maps?q=Aban%20Pharmaceuticals%20Plot%20No.%201018,%20Kerala%20GIDC,%20Bavla,%20Ahmedabad&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <a href="https://maps.app.goo.gl/j8nkmpCen5P5hktp7" target="_blank" style="position: absolute; top: 20px; right: 20px; background: white; padding: 12px 20px; border-radius: 12px; color: var(--primary); font-weight: 800; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; font-size: 14px; transition: 0.3s; z-index: 10;">
+                    <i class="fas fa-location-dot"></i> Open in Google Maps
+                </a>
             </div>
         </div>
     </section>
