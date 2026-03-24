@@ -49,11 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    // Create and add close button
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'mobile-close';
-    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-    navLinks.appendChild(closeBtn);
+    // Create mobile menu header (logo + text + close)
+    const mobileHeader = document.createElement('div');
+    mobileHeader.className = 'mobile-menu-header';
+    mobileHeader.innerHTML = `
+        <div class="mobile-logo-container">
+            <img src="assets/images/logo.png" alt="Aban Pharma">
+            <div class="mobile-logo-text">ABAN <span>PHARMA</span></div>
+        </div>
+        <div class="mobile-close"><i class="fas fa-times"></i></div>
+    `;
+    navLinks.prepend(mobileHeader);
+
+    const closeBtn = mobileHeader.querySelector('.mobile-close');
 
     mobileToggle.addEventListener('click', () => {
         navLinks.classList.add('mobile-active');
