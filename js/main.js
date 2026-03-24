@@ -65,14 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const navOverlay = document.getElementById('nav-overlay');
     
     // Create mobile menu header (logo + text + close)
     const mobileHeader = document.createElement('div');
     mobileHeader.className = 'mobile-menu-header';
     mobileHeader.innerHTML = `
         <div class="mobile-logo-container">
-            <img src="assets/images/Logo_page-0001.jpg" alt="Aban Pharma" loading="lazy">
+            <img src="assets/images/Logo_page-0001.jpg" alt="Aban Pharma">
             <div class="mobile-logo-text">ABAN <span>PHARMA</span></div>
         </div>
         <div class="mobile-close"><i class="fas fa-times"></i></div>
@@ -81,25 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeBtn = mobileHeader.querySelector('.mobile-close');
 
-    const toggleMenu = () => {
-        const navbar = document.getElementById('navbar');
-        navLinks.classList.toggle('mobile-active');
-        navOverlay.classList.toggle('active');
-        navbar.classList.toggle('menu-open');
-        document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : 'auto';
-    };
+    mobileToggle.addEventListener('click', () => {
+        navLinks.classList.add('mobile-active');
+        document.body.style.overflow = 'hidden'; // Prevent scroll when menu is open
+    });
 
-    mobileToggle.addEventListener('click', toggleMenu);
-    closeBtn.addEventListener('click', toggleMenu);
-    navOverlay.addEventListener('click', toggleMenu);
-
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('mobile-active')) {
-                toggleMenu();
-            }
-        });
+    closeBtn.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-active');
+        document.body.style.overflow = 'auto';
     });
 
     // 6. Smooth Scroll for Anchor Links
