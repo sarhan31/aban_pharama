@@ -77,10 +77,10 @@
     }
 
     .hero {
-        text-align: center; /* Senior UX: Center hero on mobile for better focus */
-        padding: 140px 20px 80px 20px;
+        text-align: center;
+        padding: 140px 24px 80px 24px; /* Mobile-critical padding */
         min-height: auto;
-        background: linear-gradient(135deg, rgba(15, 92, 92, 0.98), rgba(15, 92, 92, 0.85)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600'); /* Stronger overlay for readability */
+        background: linear-gradient(135deg, rgba(15, 92, 92, 0.98), rgba(15, 92, 92, 0.85)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
         background-size: cover;
         background-position: center;
     }
@@ -114,18 +114,15 @@
 
     .hero-btns {
         flex-direction: column;
-        gap: 12px; /* Balanced spacing */
+        gap: 16px; /* Added spacing */
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
         margin: 0 auto;
     }
 
     .btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px 24px; /* Reduced button size */
-        font-size: 14px; /* Reduced font size */
-        border-radius: 12px; /* Modern border radius */
+        width: 100%; /* Full-width buttons */
+        padding: 14px 24px;
     }
 
     section {

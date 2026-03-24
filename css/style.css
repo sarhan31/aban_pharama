@@ -165,18 +165,18 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 70px;
 }
 
 .logo {
-    font-size: 26px; /* Slightly larger */
-    font-weight: 900; /* Extra bold */
+    font-size: 26px;
+    font-weight: 900;
     letter-spacing: -0.5px;
     color: var(--primary);
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 15px; /* Fixed spacing */
     position: relative;
-    padding-left: 0;
 }
 
 .logo::before {
@@ -342,9 +342,11 @@ ul {
 
 .mobile-toggle {
     display: none;
-    font-size: 24px;
+    font-size: 26px; /* Increased size */
     color: var(--primary);
     cursor: pointer;
+    padding: 10px; /* Increased padding */
+    margin-right: -10px;
 }
 
 /* --- BUTTONS --- */
@@ -376,17 +378,17 @@ ul {
     box-shadow: 0 10px 25px rgba(247, 147, 30, 0.3);
 }
 
-.btn-outline {
+.btn-secondary {
     background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
+    border: 2px solid var(--white);
+    color: var(--white);
 }
 
-.btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--primary);
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(15, 92, 92, 0.2);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
 }
 
 .btn-icon {
@@ -413,22 +415,27 @@ ul {
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
 }
 
-.btn-whatsapp:hover {
-    background: #128C7E;
-    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.3);
+.contact-card p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-/* --- HERO --- */
+.contact-card .btn-icon {
+    flex-shrink: 0;
+}
+
+/* --- HERO SECTION --- */
 .hero {
+    padding-top: 180px;
+    padding-bottom: 120px;
     min-height: 100vh;
-    background: linear-gradient(135deg, rgba(15, 92, 92, 0.95), rgba(15, 92, 92, 0.6)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background: linear-gradient(135deg, rgba(15, 92, 92, 0.92), rgba(15, 92, 92, 0.75)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+    color: var(--white);
     display: flex;
     align-items: center;
-    color: var(--white);
-    padding-top: 100px; /* Slightly more space for the bolder navbar */
-    text-align: left;
     position: relative;
     overflow: hidden;
 }
@@ -446,37 +453,35 @@ ul {
 }
 
 .hero-content {
-    max-width: 800px; /* Wider for the bigger font */
-    margin-left: 0;
-    text-align: left;
+    max-width: 850px;
     position: relative;
     z-index: 2;
 }
 
 .hero h1 {
-    font-size: 72px; /* Even bolder */
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 30px;
+    font-size: clamp(32px, 5vw, 72px);
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 25px;
     letter-spacing: -2px;
 }
 
 .hero h1 span {
     color: var(--accent);
-    display: block; /* Force 'Since 1981' to its own line for impact */
-    margin-top: 10px;
+    display: block;
 }
 
 .hero p {
-    font-size: 18px;
-    margin-bottom: 40px;
-    opacity: 0.9;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.7;
+    margin-bottom: 45px;
+    max-width: 650px;
+    opacity: 0.95;
 }
 
 .hero-btns {
     display: flex;
-    gap: 20px;
-    justify-content: flex-start; /* Aligned buttons to the left */
+    gap: 16px;
 }
 
 .why-grid .reveal > div > div {
@@ -698,9 +703,9 @@ ul {
 
 /* --- FOOTER --- */
 footer {
-    background: var(--dark-text);
-    color: var(--white);
-    padding: 80px 0 30px 0;
+    background: #083333;
+    color: rgba(255, 255, 255, 0.85); /* Increased contrast */
+    padding: 100px 0 40px;
 }
 
 .footer-grid {
@@ -718,12 +723,17 @@ footer {
 .footer-info p {
     color: #999;
     font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
 
 .footer-col h4 {
+    color: var(--white);
     font-size: 18px;
-    margin-bottom: 25px;
+    font-weight: 700;
+    margin-bottom: 30px;
     position: relative;
+    padding-bottom: 12px;
 }
 
 .footer-col h4::after {
@@ -869,46 +879,49 @@ a[href^="tel:"]:hover {
     transform: scale(1.02);
 }
 
-/* --- FLOATING --- */
+/* --- FLOATING BUTTONS --- */
 .floating-btns {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 24px;
+    right: 16px; /* Moved slightly inward */
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
+    gap: 16px; /* Added spacing between buttons */
 }
 
 .float-btn {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    color: var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
-    font-size: 24px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-size: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.float-btn:hover {
+    transform: translateY(-5px) scale(1.1);
 }
 
 .whatsapp-btn {
-    background-color: #25d366;
+    background: #25D366;
+    color: var(--white);
 }
 
 .back-to-top {
-    background-color: var(--primary);
     opacity: 0;
     visibility: hidden;
+    transform: translateY(20px);
 }
 
 .back-to-top.visible {
     opacity: 1;
     visibility: visible;
-}
-
-.float-btn:hover {
-    transform: scale(1.1);
+    transform: translateY(0);
 }
