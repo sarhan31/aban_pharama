@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Splash Screen Logic
+    const splashScreen = document.getElementById('splash-screen');
+    if (splashScreen) {
+        // Prevent scrolling while splash is active
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
+            document.body.style.overflow = 'auto';
+            
+            // Optional: Remove from DOM after transition
+            setTimeout(() => {
+                splashScreen.remove();
+            }, 800);
+        }, 2500); // Show splash for 2.5 seconds
+    }
+
     // 1. Navbar Scrolled Effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {

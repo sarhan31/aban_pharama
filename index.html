@@ -18,6 +18,18 @@
 </head>
 <body>
 
+    <!-- WELCOME SPLASH SCREEN -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="assets/images/Logo_page-0001.jpg" alt="ABAN PHARMA">
+            </div>
+            <h1 class="splash-name">ABAN <span>PHARMA</span></h1>
+            <p class="splash-tagline">Trusted Pharmaceutical Partner Since 1981</p>
+            <div class="splash-loader"></div>
+        </div>
+    </div>
+
     <!-- NAVBAR -->
     <nav id="navbar">
         <div class="container nav-content">
@@ -508,106 +520,41 @@
             </div>
 
             <div class="contact-grid">
-                <!-- Primary Contacts -->
-                <div class="space-y-6 reveal">
-                    <div class="card" style="border-left: 5px solid var(--primary); background: white;">
+                <!-- Primary Contact -->
+                <div class="reveal">
+                    <div class="card contact-card" style="border-left: 5px solid var(--primary); background: white; height: 100%; display: flex; flex-direction: column; justify-content: center;">
                         <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
-                            <i class="fas fa-headset mr-2"></i> Sales & Purchase
+                            <i class="fas fa-user-tie mr-2"></i> Managing Director
                         </h4>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
-                                <p style="font-weight: 800; font-size: 18px; margin-bottom: 4px;">REHMAN BHAI</p>
-                                <p style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 17px;">+91 90330 03339</p>
+                                <p style="font-weight: 800; font-size: 22px; margin-bottom: 8px;">HASIL NAVLIWALA</p>
+                                <p style="color: var(--primary); font-weight: 700; font-family: 'Inter', sans-serif; font-size: 20px;">+91 97272 57765</p>
                             </div>
-                            <a href="tel:+919033003339" style="width: 45px; height: 45px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(15, 92, 92, 0.2);"><i class="fas fa-phone"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card" style="border-left: 5px solid var(--primary); background: white;">
-                        <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
-                            <i class="fas fa-calculator mr-2"></i> Accounts
-                        </h4>
-                        <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--secondary); display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <p style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">SAMAD BHAI</p>
-                                <p style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 16px;">+91 98987 66667</p>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="tel:+919727257765" class="btn-icon" title="Call Now">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                                <a href="https://wa.me/919727257765" class="btn-icon btn-whatsapp" title="WhatsApp Us">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
                             </div>
-                            <a href="tel:+919898766667" style="width: 40px; height: 40px; background: var(--secondary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fas fa-phone"></i></a>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <p style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">ASFAQ BHAI</p>
-                                <p style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 16px;">+91 98791 75767</p>
-                            </div>
-                            <a href="tel:+919879175767" style="width: 40px; height: 40px; background: var(--secondary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fas fa-phone"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card" style="border-left: 5px solid var(--primary); background: white;">
-                        <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
-                            <i class="fas fa-wallet mr-2"></i> Payment Query
-                        </h4>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <p style="font-weight: 800; font-size: 16px; margin-bottom: 4px;">SAFVAN BHAI</p>
-                                <p style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 16px;">+91 99981 01115</p>
-                            </div>
-                            <a href="tel:+919998101115" style="width: 40px; height: 40px; background: var(--secondary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fas fa-phone"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Dispatch Info -->
-                <div class="card reveal" style="background: white; border-top: 5px solid var(--accent);">
-                    <h3 style="margin-bottom: 40px; display: flex; align-items: center; gap: 15px; font-size: 24px;"><i class="fas fa-truck-fast text-accent"></i> Dispatch Information</h3>
-                    <div class="dispatch-grid">
-                        <div>
-                            <h5 style="color: var(--accent); text-transform: uppercase; margin-bottom: 20px; font-size: 13px; letter-spacing: 1px; font-weight: 800; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">Packing Department</h5>
-                            <div style="margin-bottom: 15px;">
-                                <p style="font-weight: 800; font-size: 15px; margin-bottom: 2px;">ASFAKBHAI</p>
-                                <a href="tel:+919879175767" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 98791 75767</a>
-                            </div>
-                            <div>
-                                <p style="font-weight: 800; font-size: 15px; margin-bottom: 2px;">SHAHID BHAI</p>
-                                <a href="tel:+919924066709" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 99240 66709</a>
-                            </div>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--accent); text-transform: uppercase; margin-bottom: 20px; font-size: 13px; letter-spacing: 1px; font-weight: 800; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">Tablet Department</h5>
-                            <div style="margin-bottom: 15px;">
-                                <p style="font-weight: 800; font-size: 15px; margin-bottom: 2px;">HASIL</p>
-                                <a href="tel:+919727257765" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 97272 57765</a>
-                            </div>
-                            <div>
-                                <p style="font-weight: 800; font-size: 15px; margin-bottom: 2px;">MUNIRBHAI</p>
-                                <a href="tel:+919898803510" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 98988 03510</a>
-                            </div>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--accent); text-transform: uppercase; margin-bottom: 20px; font-size: 13px; letter-spacing: 1px; font-weight: 800; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">Liquid & Capsules</h5>
-                            <div style="margin-bottom: 15px;">
-                                <p style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--light-text);">LIQUID: <span style="color: var(--dark-text); font-size: 15px;">RAHIL</span></p>
-                                <a href="tel:+919624323786" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 96243 23786</a>
-                            </div>
-                            <div>
-                                <p style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--light-text);">CAPSULES: <span style="color: var(--dark-text); font-size: 15px;">SHAHID BHAI</span></p>
-                                <a href="tel:+919924066709" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 99240 66709</a>
-                            </div>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--accent); text-transform: uppercase; margin-bottom: 20px; font-size: 13px; letter-spacing: 1px; font-weight: 800; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">Nutra & Loose</h5>
-                            <div style="margin-bottom: 10px;">
-                                <p style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--light-text);">NUTRA: <span style="color: var(--dark-text); font-size: 15px;">ASFAKBHAI</span></p>
-                                <a href="tel:+919879175767" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 98791 75767</a>
-                            </div>
-                            <div style="margin-bottom: 10px;">
-                                <p style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--light-text);">NUTRA: <span style="color: var(--dark-text); font-size: 15px;">SALMANBHAI</span></p>
-                                <a href="tel:+918141753679" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 81417 53679</a>
-                            </div>
-                            <div>
-                                <p style="font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--light-text);">LOOSE: <span style="color: var(--dark-text); font-size: 15px;">UJEEFBHAI</span></p>
-                                <a href="tel:+919904373009" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 15px;">+91 99043 73009</a>
-                            </div>
+                <!-- Address & Legal -->
+                <div class="reveal">
+                    <div class="card address-card" style="height: 100%; background: white;">
+                        <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
+                            <i class="fas fa-location-dot mr-2"></i> Factory Address
+                        </h4>
+                        <p style="font-weight: 600; font-size: 17px; line-height: 1.6; margin-bottom: 25px;">
+                            Plot No. 1018, Kerala, G.I.D.C., Bavla,<br>Dist. Ahmedabad-382220, Gujarat, India.
+                        </p>
+                        <div style="padding-top: 20px; border-top: 1px solid var(--secondary);">
+                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 10px;">Email Support</h5>
+                            <a href="mailto:abanph786@gmail.com" style="font-weight: 700; color: var(--accent); font-size: 18px;">abanph786@gmail.com</a>
                         </div>
                     </div>
                 </div>
@@ -615,48 +562,8 @@
         </div>
     </section>
 
-    <!-- ADDRESS & LEGAL -->
-    <section style="padding: 100px 0;">
-        <div class="container">
-            <div class="address-grid">
-                <div class="reveal">
-                    <div class="card" style="height: 100%;">
-                        <h3 style="margin-bottom: 30px;"><i class="fas fa-location-dot text-primary"></i> Locations</h3>
-                        <div style="margin-bottom: 30px;">
-                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 10px;">Factory Address</h5>
-                            <p style="font-weight: 600;">Plot No. 1018, Kerala, G.I.D.C., Bavla, Dist. Ahmedabad-382220</p>
-                        </div>
-                        <div style="margin-bottom: 30px;">
-                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 10px;">Office Address</h5>
-                            <p style="font-weight: 600;">26, New Good Luck Market, Opp. Chandola Lake, Opp. P.W.D, Narol Road, Ahmedabad-380028</p>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 10px;">Email Support</h5>
-                            <a href="mailto:abanph786@gmail.com" style="font-weight: 700; color: var(--accent);">abanph786@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal">
-                    <div class="card" style="height: 100%; background: var(--primary); color: white;">
-                        <h3 style="margin-bottom: 30px;"><i class="fas fa-file-contract text-accent"></i> Legal & Compliance</h3>
-                        <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                            <span style="font-size: 12px; opacity: 0.7; text-transform: uppercase;">GST Registration</span>
-                            <p style="font-size: 24px; font-weight: 800; font-family: monospace;">24AASFA2916R</p>
-                        </div>
-                        <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                            <span style="font-size: 12px; opacity: 0.7; text-transform: uppercase;">Drug License Numbers</span>
-                            <p style="font-size: 18px; font-weight: 700;">G/25/1931 & G/28/1380</p>
-                        </div>
-                        <div>
-                            <span style="font-size: 12px; opacity: 0.7; text-transform: uppercase;">Banking Partner</span>
-                            <p style="font-weight: 700;">HDFC Bank Ltd.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- MAP -->
-            <div class="reveal" style="margin-top: 40px; height: 450px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-hover);">
+            <div class="reveal" style="margin-top: 60px; height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--secondary);">
                 <iframe src="https://www.google.com/maps?q=Aban%20Pharmaceuticals%20Plot%20No.%201018,%20Kerala%20GIDC,%20Bavla,%20Ahmedabad&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -704,7 +611,7 @@
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
                         <li><i class="fas fa-location-dot"></i> Bavla GIDC, Ahmedabad</li>
-                        <li><i class="fas fa-phone"></i> +91 90330 03339</li>
+                        <li><i class="fas fa-phone"></i> +91 97272 57765</li>
                         <li><i class="fas fa-envelope"></i> abanph786@gmail.com</li>
                     </ul>
                 </div>
@@ -718,10 +625,10 @@
 
     <!-- FLOATING BUTTONS -->
     <div class="floating-btns">
-        <a href="https://wa.me/919033003339" target="_blank" class="float-btn whatsapp-btn">
+        <a href="https://wa.me/919727257765" target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <div class="float-btn back-to-top" id="back-to-top">
+        <div class="float-btn back-to-top" id="back-to-top" title="Scroll to Top">
             <i class="fas fa-arrow-up"></i>
         </div>
     </div>
