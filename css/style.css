@@ -397,24 +397,26 @@ ul {
     background: var(--primary);
     color: white;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-size: 20px;
     box-shadow: 0 8px 20px rgba(15, 92, 92, 0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 0;
-    margin: 0;
-    border: none;
-    line-height: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    overflow: hidden;
 }
 
 .btn-icon i {
     margin: 0 !important;
     padding: 0 !important;
-    display: block !important;
-    width: auto !important;
-    height: auto !important;
-    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .btn-icon:hover {
@@ -908,22 +910,26 @@ a[href^="tel:"]:hover {
     background: var(--white);
     color: var(--primary);
     border-radius: 50%;
-    display: grid;
-    place-items: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-size: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 0;
-    margin: 0;
-    line-height: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
 }
 
 .float-btn i {
     margin: 0 !important;
     padding: 0 !important;
-    display: block !important;
-    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .float-btn:hover {
