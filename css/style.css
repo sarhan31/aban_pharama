@@ -1410,3 +1410,45 @@ img {
     height: auto;
     display: block;
 }
+
+/* ============================= */
+/* 🔥 FOOTER LOGO  */
+/* ============================= */
+
+.footer-logo {
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: lowercase;
+}
+
+/* ICON SAME AS NAVBAR */
+.footer-logo i {
+    font-size: 24px;
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+/* TEXT COLORS */
+.footer-logo span {
+    color: var(--accent);
+}
+
+/* REMOVE NAVBAR LEFT LINE EFFECT */
+.footer-logo::before {
+    display: none;
+}
+
+/* HOVER EFFECT (PREMIUM TOUCH) */
+.footer-logo:hover i {
+    background: var(--accent);
+    color: white;
+    transform: rotate(-5deg) scale(1.1);
+}
