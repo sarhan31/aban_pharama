@@ -133,7 +133,7 @@
         padding: 14px 24px;
     }
 
-    section {
+    section:not(.hero) {
         padding: 40px 0 !important; /* Standard section spacing */
     }
 
