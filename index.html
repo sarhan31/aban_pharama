@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABAN PHARMA | Trusted Pharmaceutical Partner Since 1981</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- ✅ FIXED: Font Awesome (IMPORTANT) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Preload Images -->
+    <link rel="preload" href="assets/images/Logo_page-0001.jpg" as="image">
+    <link rel="preload" href="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=format&cs=tinysrgb&w=1600" as="image">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- WELCOME SPLASH SCREEN -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="assets/images/Logo_page-0001.jpg" alt="ABAN PHARMA">
+            </div>
+            <h1 class="splash-name">ABAN <span>PHARMA</span></h1>
+            <p class="splash-tagline">Trusted Pharmaceutical Partner Since 1981</p>
+            <div class="splash-loader"></div>
+        </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="assets/images/Logo_page-0001.jpg" alt="ABAN PHARMA" loading="lazy"> ABAN <span>PHARMA</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#facilities">Facilities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content animate-up">
+                <span style="color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 4px; display: block; margin-bottom: 15px; font-size: 14px;">ESTABLISHED SINCE 1981</span>
+                <h1>Trusted Pharmaceutical <span>Partner Since 1981</span></h1>
+                <p style="font-size: 19px; line-height: 1.8; margin-bottom: 45px; max-width: 650px; opacity: 0.95;">Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity.</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn btn-primary">Explore Products</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about" style="padding: 100px 0 140px 0;">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal">
+                    <div class="about-img-container">
+                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=format&cs=tinysrgb&w=1000" alt="About ABAN Pharma" class="about-img" loading="lazy">
+                        <div class="about-badge">
+                            <h3>40+</h3>
+                            <p>Years of<br>Excellence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                        <span>About ABAN Pharmaceuticals</span>
+                        <h2>Dedicated to Advancing Healthcare Through Quality & Innovation</h2>
+                    </div>
+                    <p style="color: var(--light-text); margin-bottom: 25px; font-size: 17px;">
+                        ABAN Pharmaceuticals is a trusted name in the pharmaceutical industry, committed to delivering high-quality healthcare products. With decades of experience since 1981, we specialize in manufacturing and supplying a wide range of pharmaceutical formulations.
+                    </p>
+                    <p style="color: var(--light-text); margin-bottom: 30px; font-size: 17px;">
+                        Our expertise includes tablets, capsules, syrups, and nutraceutical products. We maintain the highest standards of quality control to ensure that every product meets international safety and efficacy guidelines.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); font-size: 24px;"></i>
+                            <span style="font-weight: 700;">Quality First</span>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <i class="fas fa-globe" style="color: var(--primary); font-size: 24px;"></i>
+                            <span style="font-weight: 700;">Global Reach</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATEGORIES -->
+    <section id="products" style="padding: 100px 0; background-color: var(--secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span>Our Expertise</span>
+                <h2>Product Categories</h2>
+            </div>
+            
+            <div class="category-grid">
+                <div class="card cat-card reveal">
+                    <i class="fas fa-pills"></i>
+                    <h3>Analgesic</h3>
+                    <p>Effective pain relief solutions for various conditions.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-bacteria"></i>
+                    <h3>Antibiotic</h3>
+                    <p>Advanced formulations to combat bacterial infections.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-head-side-mask"></i>
+                    <h3>Anti Cold</h3>
+                    <p>Fast-acting relief for cold and allergic symptoms.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-stomach"></i>
+                    <h3>Antacid</h3>
+                    <p>Specialized care for digestive and gastric health.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-microbe"></i>
+                    <h3>Anti Fungal</h3>
+                    <p>Targeted treatments for various fungal infections.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-medkit"></i>
+                    <h3>General Range</h3>
+                    <p>Comprehensive health solutions for daily wellness.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-prescription-bottle"></i>
+                    <h3>Liquid Syrups</h3>
+                    <p>High-quality liquid formulations for all ages.</p>
+                </div>
+                <div class="card cat-card reveal">
+                    <i class="fas fa-apple-whole"></i>
+                    <h3>Nutraceuticals</h3>
+                    <p>Advanced nutritional supplements for a healthy life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED PRODUCT RANGE (WITH SEARCH) -->
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span>Detailed Inventory</span>
+                <h2>Detailed Product Range</h2>
+            </div>
+
+            <!-- SEARCH BAR -->
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="product-search" placeholder="Search medicines (e.g. Paracetamol, Cefixime)...">
+            </div>
+
+            <div class="accordion-container reveal" id="accordion-container">
+                <!-- ANALGESIC -->
+                <div class="accordion-item" data-category="Analgesic">
+                    <div class="accordion-header">
+                        <span>Analgesic Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac + Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac, Paracetamol & Chlorzoxazone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac & Thiocolchicoside Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac, Serratiopeptidase & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Nimesulide 100 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Nimesulide & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Sodium Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Potassium Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Sodium & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Sodium, Paracetamol & Chlorzoxazone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Potassium, Serratiopeptidase & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Drotaverine Hydrochloride & Mefenamic Acid Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Mefenamic Acid & Dicyclomine Hcl Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Mefenamic Acid & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol with Lornoxicam Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ibuprofen & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dicyclomine & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol, Phenylepherine Hcl, & Cetirizine Hcl Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol, Phenylepherine Hcl, & Chlorpheniramine Maleate Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol & Domperidone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Etoricoxib Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Piroxicam Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac + Paracetamol + Thiocolsicoside Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Etoricoxib with Thiocolsicoside Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Etoricoxib with Paracetamol Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANTACID -->
+                <div class="accordion-item" data-category="Antacid">
+                    <div class="accordion-header">
+                        <span>Antacid Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Rabiprazole & Domperidone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Rabiprazole & Domperidone Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Pantaprazole & Domperidone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Pantaprazole & Domperidone Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Pantaprazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Domperidone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Rabeprazole & Levosulpiride Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Omeprazole Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Omeprazole & Domperidone Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ondansetron Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Esomeprazole & Domperidone Capsules</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANTI COLD -->
+                <div class="accordion-item" data-category="Anti Cold">
+                    <div class="accordion-header">
+                        <span>Anti Cold & Anti Allergic</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Levocetirizine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Levocetirizine & Montelukast Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol, Phenylephrine, Ambroxol, Levocetirizine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 650 mg. & Caffeine 50 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Nimesulide, Levocetirizine & Phenylephrine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 325 mg., Phenyephrine 5 mg., Cetirizine 5 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 325 mg., Phenylephrine 5 mg., CPM 2 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 325 mg., Phenylephrine 5 mg., CPM 2 mg., Caffeine 30 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 250 mg., Caffeine 30 mg., Diphenhydramine 12 mg. Phenylephrine 2.5 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cetirizine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg., Phenyephrine 5 mg., CPM 2 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 325 mg., Phenyephrine 5 mg., Cetirizine 5 mg., Caffeine 30 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg., Phenylephrine 5 mg., Cetirizine 5 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg., Phenyephrine 5 mg., CPM 2 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg., Phenylephrine 5 mg., Cetirizine 5 mg., Caffeine 30 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg., Phenyephrine 10 mg., CPM 4 mg., Caffeine 30 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan, Phenylephrine & CPM Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 500 mg. Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol 650 mg. Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANTI-BIOTIC -->
+                <div class="accordion-item" data-category="Antibiotic">
+                    <div class="accordion-header">
+                        <span>Anti-Biotic Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefixime 100 / 200 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefpodoxime Proxetil 100 / 200 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefuroxime 250 / 500 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Amoxycillin 250 / 500 Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cephalexin 250 / 500 Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefadroxil 250 / 500 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Amoxycillin, Dicloxacillin with Lactic Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefadroxil 500 Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cefixime & Ofloxacin Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Linezolid 600 mg.</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Azithromycin 250 / 500 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Roxythromycin Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Clarithromycin 250 / 500 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Linezolid Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Levofloxacin 250 / 500 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Levofloxacin & Ornidazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ofloxacin 200 / 400 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ofloxacin & Ornidazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Sparfloxacin Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ciprofloxacin 250 / 500 Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANTI FUNGAL -->
+                <div class="accordion-item" data-category="Anti Fungal">
+                    <div class="accordion-header">
+                        <span>Anti Fungal Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Fluconazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Grisofulvin Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Itraconazole 100 / 200 Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Clotrimazole 1% Powder</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GENERAL -->
+                <div class="accordion-item" data-category="General Range">
+                    <div class="accordion-header">
+                        <span>General Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Deflazacort Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Methylcobalamin, Alpha Lipoic Acid, Folic Acid, Pyridoxine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Doxylamine Succinate & Pyridoxine Hydrochloride Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Prednisolone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Methylprednisolone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Methylcobalamin & Pregabaline Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Flunarizine Dihydrochloride Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Betamethasone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Calcium with Vitamin D3 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Metronidazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Metronidazole, Furazolidone & Dicyclomine Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOOSE PACKING -->
+                <div class="accordion-item" data-category="Loose Packing">
+                    <div class="accordion-header">
+                        <span>Loose Packing Products</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Femotidine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Nimesulide Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Potassium & Sodium Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ibuprofen Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Oxytetracycline Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Doxycycline Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Amoxycillin Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Omeprazole Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Omeprazole & Domperidone Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diphenhydramine HCl. Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Para-250+Caffeine-30+Diphenhydramine-12 + Phenylephrine 2.5 Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Prochlorperazine Maleate Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Chlorpheniramine maleate Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Nimesulide & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Diclofenac Sodium & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aceclofenac & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dicyclomine & Paracetamol Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Prednisolone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Methylprednisolone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Folic Acid Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cetirizine Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Metronidazole Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dexamethasone Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Loperamide Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan + Phenylephrine + CP Maleate Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Phenylbutazone Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NUTRACEUTICALS -->
+                <div class="accordion-item" data-category="Nutraceuticals">
+                    <div class="accordion-header">
+                        <span>Nutraceuticals</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Protein Powder</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Energy Drinks</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Anti-Oxidant Tablets / Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ferrous Ascorbate Tablets</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Iron Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Multivitamin Capsules</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> B-Complex with L-Lysine Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Lycopene Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Enzyme Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Folic Acid Tablets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIQUID -->
+                <div class="accordion-item" data-category="Liquid Range">
+                    <div class="accordion-header">
+                        <span>Liquid Range</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="product-list">
+                            <div class="product-item"><i class="fas fa-circle"></i> Ambroxol Hydrochloride, Terbutaline Sulphate, Guaiphenesin & Menthol Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan Hydrobromide, Chlorpheniramine Maleate & Phenylephrine Hydrochloride Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol, Chlorpheniramine Maleate & Phenylephrine Hcl Suspension</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ambroxol Hydrochloride, Levosalbutamol Sulphate, Guaiphenesin & Menthol Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Liquid Paraffin, Milk of Magnesia & Sodium Picosulphate Suspension</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ibuprofen & Paracetamol Suspension</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Mefenamic with Paracetamol Suspension</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan, Ambroxol, Cetirizine & Menthol Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Bromhexine, Ambroxol, Salbutamol, Guaiphenesin Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan, Ambroxol, Cetirizine, Phenylephrine & Menthol Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Lactulose Solution</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Paracetamol, Phenylepherine Hydrochloride, & Cetirizine Suspension</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Pepsin with Diastase Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Cyproheptadine & Tricholine Citrate Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Bromhexine Hyddochloride, Terbutaline Sulphate, Guaiphenesin Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Levocetrizine with Montelukast Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan with CPM Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Ambroxol with Salbutamol Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Dextromethorphan, Ambroxol, Cetirizine, Phenylephrine, Guaiphenesin & Sodium Citrate Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Disodium Hydrogen Citrate Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Aluminium Hydroxide, Magnesium Hydroxide & Simethicone Syrup</div>
+                            <div class="product-item"><i class="fas fa-circle"></i> Sucralfate with Oxetacaine Syrup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FACILITIES SECTION -->
+    <section id="facilities" style="padding: 100px 0; background-color: var(--secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span>Infrastructure</span>
+                <h2>World-Class Facilities</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="card reveal">
+                    <img src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=format&cs=tinysrgb&w=800" alt="Manufacturing" class="equal-img" loading="lazy">
+                    <h3 style="margin-bottom: 10px;">Modern Manufacturing Unit</h3>
+                    <p style="color: var(--light-text); font-size: 14px;">State-of-the-art production lines following WHO-GMP guidelines for maximum safety and efficacy.</p>
+                </div>
+                <div class="card reveal">
+                    <img src="https://images.pexels.com/photos/5412270/pexels-photo-5412270.jpeg?auto=format&cs=tinysrgb&w=800" alt="QC" class="equal-img" loading="lazy">
+                    <h3 style="margin-bottom: 10px;">Quality Control Systems</h3>
+                    <p style="color: var(--light-text); font-size: 14px;">Advanced laboratory equipment for rigorous testing of raw materials and finished products.</p>
+                </div>
+                <div class="card reveal">
+                    <img src="https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=format&cs=tinysrgb&w=800" alt="Distribution" class="equal-img" loading="lazy">
+                    <h3 style="margin-bottom: 10px;">Packaging & Distribution</h3>
+                    <p style="color: var(--light-text); font-size: 14px;">Automated packaging systems and a robust logistics network for timely global delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="why-grid">
+                <div class="reveal">
+                    <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                        <span>Why Choose ABAN</span>
+                        <h2>Committed to Quality, Driven by Integrity</h2>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+                        <div style="display: flex; gap: 20px;">
+                            <div style="width: 60px; height: 60px; background: var(--secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); flex-shrink: 0;"><i class="fas fa-shield-halved"></i></div>
+                            <div>
+                                <h4 style="margin-bottom: 5px;">Quality Assurance</h4>
+                                <p style="color: var(--light-text); font-size: 14px;">Rigorous quality checks at every stage of the manufacturing process to ensure patient safety.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="width: 60px; height: 60px; background: var(--secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); flex-shrink: 0;"><i class="fas fa-award"></i></div>
+                            <div>
+                                <h4 style="margin-bottom: 5px;">Trusted Since 1981</h4>
+                                <p style="color: var(--light-text); font-size: 14px;">Over four decades of heritage and trust in the global pharmaceutical market.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="width: 60px; height: 60px; background: var(--secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); flex-shrink: 0;"><i class="fas fa-boxes-stacked"></i></div>
+                            <div>
+                                <h4 style="margin-bottom: 5px;">Wide Product Range</h4>
+                                <p style="color: var(--light-text); font-size: 14px;">Extensive portfolio covering multiple therapeutic segments and dosage forms.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="width: 60px; height: 60px; background: var(--secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); flex-shrink: 0;"><i class="fas fa-user-doctor"></i></div>
+                            <div>
+                                <h4 style="margin-bottom: 5px;">Professional Team</h4>
+                                <p style="color: var(--light-text); font-size: 14px;">A dedicated team of experts driven by innovation and pharmaceutical excellence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <img src="https://images.pexels.com/photos/3184433/pexels-photo-3184433.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Team" class="team-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & DISPATCH SECTION -->
+    <section id="contact" style="padding: 100px 0; background-color: var(--secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span>Get In Touch</span>
+                <h2>Contact & Dispatch Hub</h2>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Primary Contact -->
+                <div class="reveal">
+                    <div class="card contact-card" style="border-left: 5px solid var(--primary); background: white; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
+                            <i class="fas fa-user-tie mr-2"></i> Managing Director
+                        </h4>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="font-weight: 800; font-size: 22px; margin-bottom: 8px;">HASIL NAVLIWALA</p>
+                                <p style="color: var(--primary); font-weight: 700; font-family: 'Inter', sans-serif; font-size: 20px;">+91 97272 57765</p>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="tel:+919727257765" class="btn-icon" title="Call Now">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                                <a href="https://wa.me/919727257765" class="btn-icon btn-whatsapp" title="WhatsApp Us">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address & Legal -->
+                <div class="reveal">
+                    <div class="card address-card" style="height: 100%; background: white;">
+                        <h4 style="color: var(--primary); margin-bottom: 25px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; font-weight: 800;">
+                            <i class="fas fa-location-dot mr-2"></i> Factory Address
+                        </h4>
+                        <p style="font-weight: 600; font-size: 17px; line-height: 1.6; margin-bottom: 25px;">
+                            Plot No. 1018, Kerala, G.I.D.C., Bavla,<br>Dist. Ahmedabad-382220, Gujarat, India.
+                        </p>
+                        <div style="padding-top: 20px; border-top: 1px solid var(--secondary);">
+                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 10px;">Email Support</h5>
+                            <a href="mailto:abanph786@gmail.com" style="font-weight: 700; color: var(--accent); font-size: 18px;">abanph786@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- MAP -->
+    <section id="location" style="padding: 60px 0 100px 0;">
+        <div class="container">
+            <div class="reveal" style="height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--secondary); position: relative; ">
+                <iframe src="https://www.google.com/maps?q=Aban%20Pharmaceuticals%20Plot%20No.%201018,%20Kerala%20GIDC,%20Bavla,%20Ahmedabad&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <a href="https://maps.app.goo.gl/j8nkmpCen5P5hktp7" target="_blank" style="position: absolute; top: 20px; right: 20px; background: white; padding: 12px 20px; border-radius: 12px; color: var(--primary); font-weight: 800; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; font-size: 14px; transition: 0.3s; z-index: 10;">
+                    <i class="fas fa-location-dot"></i> Open in Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-info">
+                    <a href="#" class="logo footer-logo" style="color: white;">
+                        <i class="fas fa-flask"></i> ABAN <span style="color: var(--accent)">PHARMA</span>
+                    </a>
+                    <p>Dedicated to Advance Care in Healthcare Since 1981. A trusted name in pharmaceutical manufacturing and global distribution.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 25px;">
+                        <a href="#" style="width: 35px; height: 35px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="width: 35px; height: 35px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="width: 35px; height: 35px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#products">Analgesics</a></li>
+                        <li><a href="#products">Antibiotics</a></li>
+                        <li><a href="#products">Antacids</a></li>
+                        <li><a href="#products">Nutraceuticals</a></li>
+                        <li><a href="#products">Liquid Range</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-location-dot"></i> Bavla GIDC, Ahmedabad</li>
+                        <li><i class="fas fa-phone"></i> +91 97272 57765</li>
+                        <li><i class="fas fa-envelope"></i> abanph786@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 ABAN Pharmaceuticals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="floating-btns">
+        <a href="https://wa.me/919727257765" target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="float-btn back-to-top" id="back-to-top" title="Scroll to Top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <!-- JS Files -->
+    <script src="js/main.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
