@@ -1675,89 +1675,84 @@ img {
         justify-content: flex-start;
     }
 }
-/* ABOUT SECTION */
-.about {
-    padding: 80px 20px;
-    background: #f9fbfb;
-}
 
-/* LAYOUT */
+/* LAYOUT FIX */
 .about-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 60px;
+    justify-content: center;
+    gap: 50px;
 }
 
 /* IMAGE */
 .about-image {
     flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .about-image img {
     width: 100%;
-    max-width: 550px;
-    height: 400px;
-    object-fit: cover;
+    max-width: 450px;
+    /* 🔥 reduced */
+    height: auto;
     border-radius: 20px;
     box-shadow: var(--shadow);
+}
+
+/* 🔥 EXPERIENCE BADGE */
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    background: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.experience-badge h3 {
+    color: var(--primary);
+    font-size: 20px;
+    margin: 0;
+}
+
+.experience-badge p {
+    font-size: 12px;
+    color: var(--light-text);
 }
 
 /* CONTENT */
 .about-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 500px;
+    /* 🔥 reduced for balance */
 }
 
-.about-content h2 {
-    font-size: 32px;
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-
-.about-content p {
-    font-size: 16px;
-    color: var(--light-text);
-    margin-bottom: 20px;
-    line-height: 1.7;
-}
-
-/* 🔥 STATS SECTION */
-.about-stats {
+/* 🔥 SMALL FEATURE CARDS */
+.about-features {
     display: flex;
-    gap: 30px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
 }
 
-.stat {
-    background: #ffffff;
-    padding: 20px 25px;
-    border-radius: 12px;
-    text-align: center;
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 10px 14px;
+    /* 🔥 smaller */
+    border-radius: 8px;
     box-shadow: var(--shadow);
-    min-width: 120px;
-    transition: 0.3s;
-}
-
-.stat:hover {
-    transform: translateY(-5px);
-}
-
-.stat i {
-    font-size: 24px;
-    color: var(--primary);
-    margin-bottom: 10px;
-}
-
-.stat h3 {
-    font-size: 22px;
-    margin-bottom: 5px;
-}
-
-.stat p {
     font-size: 14px;
-    color: var(--light-text);
+}
+
+.feature-card i {
+    color: var(--primary);
+    font-size: 16px;
 }
 
 /* 📱 RESPONSIVE */
@@ -1767,15 +1762,12 @@ img {
         text-align: center;
     }
 
-    .about-content {
-        max-width: 100%;
-    }
-
-    .about-image img {
-        height: auto;
-    }
-
-    .about-stats {
+    .about-features {
         justify-content: center;
+    }
+
+    .experience-badge {
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
