@@ -1057,7 +1057,7 @@ body {
 }
 
 .premium-footer {
-    background: #0f172a;
+    background: #0f3d3e;
     color: #e5e7eb;
     width: 100%;
     margin: 0;
@@ -1084,8 +1084,21 @@ body {
     color: #ffffff;
     font-size: 18px;
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 35px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
 }
 
 .premium-logo {
@@ -1117,7 +1130,7 @@ body {
 }
 
 .brand-desc {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     line-height: 1.8;
     margin-bottom: 24px;
@@ -1133,22 +1146,20 @@ body {
 .social-icons a {
     width: 42px;
     height: 42px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #94a3b8;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
     background: var(--accent);
     color: #ffffff;
-    border-color: var(--accent);
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
 }
 
 .footer-links {
@@ -1162,7 +1173,7 @@ body {
 }
 
 .footer-links a {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 14px;
     transition: all 0.3s ease;
@@ -1187,12 +1198,12 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
 }
 
 .footer-contact i {
-    color: #14b8a6;
+    color: #34d399; /* Soft green */
     font-size: 18px;
     width: 24px;
     text-align: center;
@@ -1200,7 +1211,7 @@ body {
 }
 
 .footer-contact a {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -1211,9 +1222,9 @@ body {
 
 /* Bottom Bar */
 .premium-footer-bottom {
-    background: #090e1a;
+    background: transparent;
     padding: 24px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bottom-flex {
@@ -1225,7 +1236,7 @@ body {
 }
 
 .premium-footer-bottom p {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     margin: 0;
 }
@@ -1264,6 +1275,11 @@ body {
         grid-template-columns: 1fr;
         gap: 45px;
         text-align: center;
+    }
+
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .brand-desc {
@@ -1446,23 +1462,28 @@ img {
 
 .footer-logo {
     color: white;
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 26px;
+    font-weight: 900;
     letter-spacing: -0.5px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    text-transform: lowercase;
+    gap: 12px;
+    text-transform: uppercase;
 }
 
-/* ICON SAME AS NAVBAR */
+/* BRAND ACCENT LINE */
+.footer-logo::before {
+    content: '';
+    width: 4px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+/* ICON STYLING */
 .footer-logo i {
-    font-size: 24px;
-    color: var(--primary);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px;
-    border-radius: 10px;
-    transition: 0.3s ease;
+    display: none; /* Hide flask icon per instructions */
 }
 
 /* TEXT COLORS */
@@ -1470,16 +1491,9 @@ img {
     color: var(--accent);
 }
 
-/* REMOVE NAVBAR LEFT LINE EFFECT */
-.footer-logo::before {
-    display: none;
-}
-
-/* HOVER EFFECT (PREMIUM TOUCH) */
-.footer-logo:hover i {
-    background: var(--accent);
-    color: white;
-    transform: rotate(-5deg) scale(1.1);
+/* NO EXTRA ICON HOVER EFFECT */
+.footer-logo:hover {
+    opacity: 0.95;
 }
 
 /* ============================= */
