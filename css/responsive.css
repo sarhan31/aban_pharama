@@ -97,6 +97,14 @@
         letter-spacing: -1px;
     }
 
+    .hero-badge {
+        font-size: 11px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 10px !important;
+        white-space: normal;
+        line-height: 1.4;
+    }
+
     .hero p {
         font-size: 16px;
         line-height: 1.6;
@@ -126,7 +134,7 @@
     }
 
     section {
-        padding: 60px 0 !important; /* Standard section spacing */
+        padding: 40px 0 !important; /* Standard section spacing */
     }
 
     .section-header {
