@@ -55,7 +55,7 @@
 /* Small Tablets & Mobile (768px and down) */
 @media (max-width: 768px) {
     .container {
-        padding: 0 20px; /* Standardized edge padding */
+        padding: 0 16px; /* Standardized edge padding */
     }
 
     .nav-links {
@@ -78,9 +78,9 @@
 
     .hero {
         text-align: center;
-        padding: 140px 24px 80px 24px; /* Mobile-critical padding */
+        padding: 160px 16px 80px 16px; /* Mobile-critical padding */
         min-height: auto;
-        background: linear-gradient(135deg, rgba(15, 92, 92, 0.98), rgba(15, 92, 92, 0.85)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
+        background: linear-gradient(135deg, rgba(15, 118, 110, 0.98), rgba(15, 118, 110, 0.85)), url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600');
         background-size: cover;
         background-position: center;
     }
@@ -275,11 +275,11 @@
     }
 
     .logo img {
-        height: 38px;
+        height: 36px;
     }
 
     .logo {
-        font-size: 17px;
+        font-size: 19px;
     }
 
     .accordion-header {
