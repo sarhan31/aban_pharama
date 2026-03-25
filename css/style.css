@@ -1452,6 +1452,7 @@ img {
     color: white;
     transform: rotate(-5deg) scale(1.1);
 }
+
 /* ============================= */
 /* 🔥 ABOUT SECTION CLEAN STYLE */
 /* ============================= */
@@ -1473,7 +1474,8 @@ img {
 
 .about-image img {
     width: 100%;
-    max-width: 850px;   /* 🔥 controls laptop size */
+    max-width: 850px;
+    /* 🔥 controls laptop size */
     height: auto;
     border-radius: 20px;
     object-fit: cover;
@@ -1561,6 +1563,47 @@ img {
 
 @media (min-width: 1200px) {
     .about-image img {
-        max-width: 700px; /* 🔥 perfect laptop size */
+        max-width: 700px;
+        /* 🔥 perfect laptop size */
     }
+}
+
+/* ============================= */
+/* 🔥 FIX WEIRD SPACING */
+/* ============================= */
+
+.about {
+    padding: 60px 20px;
+}
+
+/* IMAGE CONTROL */
+.about-image img {
+    max-width: 600px;
+    /* reduce height impact */
+}
+
+/* CONTENT WIDTH */
+.about-content {
+    max-width: 650px;
+}
+
+/* REDUCE GAP */
+.about-image {
+    margin-bottom: 20px;
+    /* was too big before */
+}
+
+/* TEXT SIZE TUNING */
+.section-header h2 {
+    font-size: 28px;
+}
+
+.about-content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* FEATURES COMPACT */
+.about-features {
+    gap: 20px;
 }
