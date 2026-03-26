@@ -231,9 +231,15 @@
     }
 
     .footer-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr 1fr !important; /* 2 columns for middle items */
         gap: 25px !important;
-        text-align: center !important; /* Reverting to center layout */
+        text-align: left !important; /* Left align for professional look */
+    }
+
+    /* Make Brand and Contact sections span full width */
+    .footer-column:nth-child(1),
+    .footer-column:nth-child(4) {
+        grid-column: 1 / -1;
     }
 
     .footer-column h4 {
@@ -242,8 +248,8 @@
     }
 
     .footer-column h4::after {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
     }
 
     /* Reduce list font sizes slightly */
