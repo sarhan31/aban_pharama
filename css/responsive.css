@@ -197,7 +197,7 @@
     }
 
     /* Grid Fixes */
-    .about-grid, .why-grid, .contact-grid, .address-grid, .category-grid, .footer-grid, .dispatch-grid {
+    .about-grid, .why-grid, .contact-grid, .address-grid, .category-grid, .dispatch-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important; /* Reduced from 30px for tighter layout */
     }
