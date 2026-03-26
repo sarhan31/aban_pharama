@@ -185,28 +185,22 @@ ul {
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(20px, 2.5vw, 24px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--primary); /* Teal color to stay visible on white navbar instead of invisible #ffffff */
     display: flex;
     align-items: center;
     gap: 10px;
     position: relative;
     white-space: nowrap;
     text-transform: lowercase;
+    transition: transform 0.3s ease;
 }
 
-.logo::before {
-    content: '';
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 30px;
-    background: var(--accent);
-    border-radius: 2px;
+.logo:hover {
+    transform: scale(1.03);
 }
 
 .logo img {
@@ -216,13 +210,12 @@ ul {
     transition: all 0.3s ease;
 }
 
-.logo:hover img {
-    transform: scale(1.05) rotate(-2deg);
-}
-
 .logo span {
-    color: var(--accent);
-    font-weight: 800;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 /* --- NAV LINKS & INTERACTIONS --- */
