@@ -231,19 +231,33 @@
     }
 
     .footer-grid {
-        grid-template-columns: 1fr !important;
-        gap: 30px !important;
-        text-align: center;
+        grid-template-columns: 1fr 1fr !important; /* 2 columns for middle items */
+        gap: 25px !important;
+        text-align: left !important; /* Left align for professional look */
     }
 
-    .footer-col h4 {
-        font-size: 16px !important;
-        margin-bottom: 20px !important;
+    /* Make Brand and Contact sections span full width */
+    .footer-column:nth-child(1),
+    .footer-column:nth-child(4) {
+        grid-column: 1 / -1;
     }
 
-    .footer-col h4::after {
-        left: 50%;
-        transform: translateX(-50%);
+    .footer-column h4 {
+        font-size: 15px !important; /* Reduced for mobile */
+        margin-bottom: 15px !important;
+    }
+
+    .footer-column h4::after {
+        left: 0;
+        transform: none;
+    }
+
+    /* Reduce list font sizes slightly */
+    .footer-column ul li a, 
+    .footer-column p, 
+    .footer-contact li {
+        font-size: 13px !important;
+        line-height: 1.5;
     }
 
     .float-btn {
