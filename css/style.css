@@ -131,10 +131,6 @@ html {
     overflow-wrap: break-word;
 }
 
-html {
-    background-color: #083333;
-}
-
 body {
     background-color: var(--white);
     color: var(--dark-text);
