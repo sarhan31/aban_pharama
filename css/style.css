@@ -189,13 +189,12 @@ ul {
     font-size: clamp(20px, 2.5vw, 24px);
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: var(--primary); /* Teal color to stay visible on white navbar instead of invisible #ffffff */
+    color: var(--primary);
     display: flex;
     align-items: center;
     gap: 10px;
     position: relative;
     white-space: nowrap;
-    text-transform: lowercase;
     transition: transform 0.3s ease;
 }
 
