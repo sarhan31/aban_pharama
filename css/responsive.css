@@ -273,6 +273,27 @@
         bottom: 15px !important;
         right: 15px !important;
     }
+
+    /* Force 100% full width and remove all unwanted spacing */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    footer {
+        width: 100% !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 40px 15px 20px 15px !important; /* Kept readability padding, stripped outer spacing */
+        box-sizing: border-box !important;
+    }
+
+    footer .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
 }
 
 /* Very Small Devices (480px and down) */
