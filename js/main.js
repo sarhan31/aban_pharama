@@ -47,28 +47,42 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const observerOptions = {
         threshold: 0,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         
         if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card.reveal');
+            const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
-                    card.classList.add('active');
+                    // Check if parent is still active before adding
+                    if (el.classList.contains('active')) {
+                        card.classList.add('active');
+                    }
                 }, index * 400);
             });
         }
         el.classList.add('active');
     };
 
+    const deactivateElement = (el) => {
+        if (!el.classList.contains('active')) return;
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach(card => card.classList.remove('active'));
+        }
+        el.classList.remove('active');
+    };
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
-                observer.unobserve(entry.target);
+            } else {
+                deactivateElement(entry.target);
             }
         });
     }, observerOptions);
@@ -79,22 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fallback for immediate visibility check or if IO fails
     const runFallback = () => {
-        revealElements.forEach(el => {
+        [...revealElements, catGrid].filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom > 0) {
                 activateElement(el);
+            } else {
+                deactivateElement(el);
             }
         });
-        if (catGrid) {
-            const gRect = catGrid.getBoundingClientRect();
-            if (gRect.top < window.innerHeight && gRect.bottom > 0) {
-                activateElement(catGrid);
-            }
-        }
     };
 
     window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 500); // Run once after load
+    setTimeout(runFallback, 500); 
 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
