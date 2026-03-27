@@ -1942,3 +1942,121 @@ img {
     opacity: 1;
     visibility: visible;
 }
+
+/* --- PREMIUM DESKTOP HERO ENHANCEMENTS (min-width: 992px) --- */
+@media (min-width: 992px) {
+    .hero {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        min-height: 100vh !important;
+        padding-top: 100px !important;
+        padding-bottom: 100px !important;
+        /* Premium Teal/Green Gradient Overlay: Stronger on the left for text contrast */
+        background: linear-gradient(90deg, 
+            rgba(15, 118, 110, 0.98) 0%, 
+            rgba(15, 118, 110, 0.85) 45%, 
+            rgba(15, 118, 110, 0.4) 100%), 
+            url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+    }
+
+    .hero .container {
+        margin: 0 !important;
+        padding: 0 8% !important; /* Increased padding for wide screens */
+        max-width: 100% !important;
+    }
+
+    .hero-content {
+        max-width: 650px !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        text-align: left !important;
+        position: relative;
+        z-index: 10;
+    }
+
+    .hero-badge {
+        display: inline-block !important;
+        text-align: left !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 25px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: var(--accent) !important;
+        padding: 8px 20px !important;
+        border-radius: 50px !important;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero h1 {
+        font-size: 64px !important;
+        font-weight: 800 !important;
+        line-height: 1.2 !important;
+        letter-spacing: -1.5px !important;
+        text-align: left !important;
+        margin-bottom: 35px !important;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        color: var(--white) !important;
+    }
+
+    .hero h1 span {
+        display: block !important;
+        color: var(--accent) !important;
+        margin-top: 5px;
+    }
+
+    .hero p {
+        font-size: 20px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 50px !important;
+        max-width: 600px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        opacity: 0.95 !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .hero-btns {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        gap: 20px !important;
+    }
+
+    .hero-btns .btn {
+        margin: 0 !important;
+        min-width: 190px !important;
+        padding: 18px 36px !important;
+        font-size: 14px !important;
+        border-radius: 14px !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    .hero-btns .btn-primary {
+        background: var(--accent) !important;
+        box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3) !important;
+    }
+
+    .hero-btns .btn-secondary {
+        border: 2px solid rgba(255, 255, 255, 0.8) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(5px);
+    }
+
+    .hero-btns .btn:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .hero-btns .btn-secondary:hover {
+        background: var(--white) !important;
+        color: var(--primary) !important;
+    }
+}
