@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileHeader.className = 'mobile-menu-header';
     mobileHeader.innerHTML = `
         <div class="mobile-logo-container">
-            <img src="assets/images/Logo_page-0001.jpg" alt="Aban Pharma">
-            <div class="mobile-logo-text">ABAN <span>PHARMA</span></div>
+            <img src="assets/images/Logo_page-0001.jpg" alt="Aban Pharmaceuticals">
+            <div class="mobile-logo-text">Aban <span>Pharmaceuticals</span></div>
         </div>
         <div class="mobile-close"><i class="fas fa-times"></i></div>
     `;

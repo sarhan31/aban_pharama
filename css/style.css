@@ -186,9 +186,9 @@ ul {
 
 .logo {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(20px, 2.5vw, 24px);
+    font-size: clamp(16px, 2vw, 22px);
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: -0.5px;
     color: var(--primary);
     display: flex;
     align-items: center;
@@ -311,10 +311,11 @@ ul {
 }
 
 .mobile-logo-text {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 800;
     color: var(--primary);
     letter-spacing: -0.5px;
+    line-height: 1.1;
 }
 
 .mobile-logo-text span {
