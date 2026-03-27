@@ -364,52 +364,130 @@
 /* HERO BUTTON FIX - MOBILE  */
 /* ========================= */
 
+/* ========================= */
+/* Small Tablets & Mobile */
+/* ========================= */
 @media (max-width: 768px) {
 
-  /* Fix hero side spacing */
-  .hero {
-    padding: 120px 10px 100px;
-  }
+    .container {
+        padding: 0 16px;
+    }
 
-  /* Button container */
-  .hero-btns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 0 10px;
-  }
+    .nav-links {
+        display: none;
+    }
 
-  /* Main button fix */
-  .hero-btns .btn {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    display: block;
-    box-sizing: border-box;
-  }
+    .nav-links.mobile-active {
+        display: flex !important;
+    }
 
-  /* Fix outline button cut issue */
-  .btn-outline {
-    box-sizing: border-box;
-    padding: 14px 20px;
-    border: 2px solid #fff;
-  }
+    .mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        margin-right: -10px;
+    }
 
-  /* Prevent overflow */
-  html, body {
-    overflow-x: hidden;
-  }
+    /* ================= HERO FIX ================= */
 
-  /* Extra safety */
-  .hero-content {
-    width: 100%;
-    padding: 0 5px;
-  }
+    .hero {
+        text-align: center;
+        padding: 120px 10px 100px; /* FIXED */
+        min-height: auto;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 5px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* ================= BUTTON FIX ================= */
+
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        max-width: 280px; /* REDUCED */
+        margin: 0 auto;
+        display: block;
+        box-sizing: border-box;
+    }
+
+    .btn-outline {
+        box-sizing: border-box;
+        padding: 14px 18px;
+        border: 2px solid #fff;
+    }
+
+    /* ================= GRID FIX ================= */
+
+    .about-grid,
+    .why-grid,
+    .contact-grid,
+    .address-grid,
+    .category-grid,
+    .dispatch-grid,
+    .md-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* ================= FOOTER FIX ================= */
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        text-align: center !important;
+    }
+
+    .footer-column ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+
+    /* ================= GLOBAL FIX ================= */
+
+    html, body {
+        overflow-x: hidden !important;
+    }
+
+    .hero-content {
+        overflow: hidden;
+    }
+
+    footer {
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+        padding: 40px 0 20px 0 !important;
+    }
+
+    footer .container {
+        padding: 0 20px !important;
+    }
 }
-}
-
 /* Very Small Devices (480px and down) */
 @media (max-width: 480px) {
     .hero h1 {
