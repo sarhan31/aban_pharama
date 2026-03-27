@@ -53,6 +53,42 @@
     animation-name: fadeInUpDramatic !important;
 }
 
+/* --- HERO SECTION ENTRANCE (ONE-TIME) --- */
+.hero-content .hero-badge,
+.hero-content h1,
+.hero-content p,
+.hero-content .hero-btns {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Stagger when parent gets the class */
+.hero-content.hero-revealed .hero-badge {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.1s;
+}
+
+.hero-content.hero-revealed h1 {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.3s;
+}
+
+.hero-content.hero-revealed p {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.5s;
+}
+
+.hero-content.hero-revealed .hero-btns {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.7s;
+}
+
 
 
 

@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('fade-out');
             document.body.style.overflow = 'auto';
             
+            // Trigger hero animation once splash begins to fade
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                setTimeout(() => {
+                    heroContent.classList.add('hero-revealed');
+                }, 200);
+            }
+            
             // Optional: Remove from DOM after transition
             setTimeout(() => {
                 splashScreen.remove();
