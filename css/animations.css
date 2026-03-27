@@ -113,17 +113,17 @@
 
 /* Paragraph: JS Typing Reveal (Default transition disabled) */
 .hero-content p {
-    opacity: 0;
-    visibility: hidden;
-    filter: blur(4px);
-    transform: translateY(10px);
-    transition: filter 1s ease, transform 1s ease; /* Only keep blur/transform for initial fade */
-}
-
-.hero-content.hero-revealed p {
-    /* Opacity and visibility handled by JS typeWriter */
+    opacity: 0.95;
+    visibility: visible;
     filter: blur(0);
     transform: translateY(0);
+    transition: filter 1s ease, transform 1s ease;
+}
+
+/* Temporary state for JS typing setup */
+.hero-content p.typing-idle {
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
 
 /* Buttons: Bloom (Scale-Up) */

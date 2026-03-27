@@ -18,24 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger cinematic hero reveal
     const triggerHeroReveal = () => {
-        const hero = document.querySelector('.hero');
-        const heroContent = document.querySelector('.hero-content');
-        
-        if (hero) hero.classList.add('hero-revealed');
-        if (heroContent) {
-            setTimeout(() => {
-                heroContent.classList.add('hero-revealed');
-                
-                // Trigger typing animation for paragraph
-                const heroP = document.getElementById('typing-para');
-                if (heroP) {
-                    const textToType = heroP.getAttribute('data-type-text') || heroP.innerText;
-                    heroP.innerText = ''; // Clear for typing
-                    setTimeout(() => {
-                        typeWriter(heroP, textToType, 20); // Slightly faster for long paragraph
-                    }, 500); // Breathe after heading reveal
-                }
-            }, 400); 
+        try {
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            if (hero) hero.classList.add('hero-revealed');
+            if (heroContent) {
+                setTimeout(() => {
+                    heroContent.classList.add('hero-revealed');
+                    
+                    // Trigger typing animation for paragraph
+                    const heroP = document.getElementById('typing-para');
+                    if (heroP) {
+                        const textToType = heroP.getAttribute('data-type-text') || heroP.innerText.trim();
+                        if (textToType) {
+                            heroP.classList.add('typing-idle'); // Hide briefly for setup
+                            heroP.innerText = ''; 
+                            setTimeout(() => {
+                                typeWriter(heroP, textToType, 20);
+                                heroP.classList.remove('typing-idle');
+                            }, 500);
+                        } else {
+                            // Fallback: If no text, just show it
+                            heroP.style.opacity = '1';
+                            heroP.style.visibility = 'visible';
+                        }
+                    }
+                }, 400); 
+            }
+        } catch (err) {
+            console.error('Hero Reveal Error:', err);
+            // Emergency fallback: Show paragraph if it exists
+            const fallbackP = document.getElementById('typing-para');
+            if (fallbackP) {
+                fallbackP.style.opacity = '1';
+                fallbackP.style.visibility = 'visible';
+            }
         }
     };
 
