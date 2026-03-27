@@ -80,15 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeBtn = mobileHeader.querySelector('.mobile-close');
 
+    const navOverlay = document.getElementById('nav-overlay');
+
     mobileToggle.addEventListener('click', () => {
         navLinks.classList.add('mobile-active');
+        if (navOverlay) navOverlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent scroll when menu is open
     });
 
-    closeBtn.addEventListener('click', () => {
+    const closeMenu = () => {
         navLinks.classList.remove('mobile-active');
+        if (navOverlay) navOverlay.classList.remove('active');
         document.body.style.overflow = 'auto';
-    });
+    };
+
+    closeBtn.addEventListener('click', closeMenu);
+    if (navOverlay) navOverlay.addEventListener('click', closeMenu);
 
     // 6. Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -105,8 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Close mobile menu if open
                 if (navLinks.classList.contains('mobile-active')) {
-                    navLinks.classList.remove('mobile-active');
-                    document.body.style.overflow = 'auto';
+                    closeMenu();
                 }
             }
         });
