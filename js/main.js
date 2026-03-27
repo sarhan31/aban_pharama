@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Typing Animation Utility ---
+    const typeWriter = (element, text, speed = 30) => {
+        let i = 0;
+        element.innerHTML = '';
+        element.style.opacity = '1';
+        element.style.visibility = 'visible';
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    };
+
     // 0. Splash Screen Logic
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
@@ -12,11 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
             // Trigger cinematic hero reveal
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
+            
             if (hero) hero.classList.add('hero-revealed');
             if (heroContent) {
                 setTimeout(() => {
                     heroContent.classList.add('hero-revealed');
-                }, 400); // Wait for background zoom to start
+                    
+                    // Trigger typing animation for paragraph
+                    const heroP = heroContent.querySelector('p');
+                    if (heroP) {
+                        const originalText = heroP.innerText;
+                        heroP.innerText = ''; // Clear immediately
+                        setTimeout(() => {
+                            typeWriter(heroP, originalText, 25);
+                        }, 800); // Wait for heading reveal to breathe
+                    }
+                }, 400); 
             }
             
             // Optional: Remove from DOM after transition

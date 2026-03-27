@@ -111,25 +111,19 @@
     transition-delay: 0.25s;
 }
 
-/* Paragraph: Tracking (Letter-spacing) Reveal */
+/* Paragraph: JS Typing Reveal (Default transition disabled) */
 .hero-content p {
     opacity: 0;
-    letter-spacing: 3px;
+    visibility: hidden;
     filter: blur(4px);
-    transform: translateY(15px);
-    transition: opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1), 
-                transform 1.6s cubic-bezier(0.22, 1, 0.36, 1), 
-                filter 1.6s cubic-bezier(0.22, 1, 0.36, 1), 
-                letter-spacing 1.6s cubic-bezier(0.22, 1, 0.36, 1);
-    visibility: visible;
+    transform: translateY(10px);
+    transition: filter 1s ease, transform 1s ease; /* Only keep blur/transform for initial fade */
 }
 
 .hero-content.hero-revealed p {
-    opacity: 1;
-    letter-spacing: normal;
+    /* Opacity and visibility handled by JS typeWriter */
     filter: blur(0);
     transform: translateY(0);
-    transition-delay: 0.45s;
 }
 
 /* Buttons: Bloom (Scale-Up) */
