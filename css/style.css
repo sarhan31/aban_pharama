@@ -473,6 +473,50 @@ ul {
     flex-shrink: 0;
 }
 
+/* --- MANAGING DIRECTOR SECTION --- */
+.md-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    align-items: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    border: 1px solid var(--secondary);
+}
+
+.md-image-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.md-photo {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.md-content-col p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--light-text);
+    margin-bottom: 20px;
+}
+
+.md-content-col p:last-child {
+    margin-bottom: 0;
+}
+
+.md-content-col strong {
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
 /* --- HERO SECTION --- */
 .hero {
     padding-top: 180px;
