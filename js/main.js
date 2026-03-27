@@ -32,9 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             backToTop.classList.remove('visible');
         }
-
-        // Scroll Reveal Check
-        revealOnScroll();
     });
 
     // 3. Back to Top Click
@@ -45,22 +42,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Scroll Reveal Logic
-    const revealOnScroll = () => {
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(reveal => {
-            const windowHeight = window.innerHeight;
-            const revealTop = reveal.getBoundingClientRect().top;
-            const revealPoint = 150;
-            
-            if (revealTop < windowHeight - revealPoint) {
-                reveal.classList.add('active');
-            }
-        });
+    // 4. Premium Intersection Observer for Scroll Reveal
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    // Run on load
-    revealOnScroll();
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                
+                // Add staggered delay for product cards
+                if (element.classList.contains('cat-card')) {
+                    const parent = element.parentElement;
+                    const index = Array.from(parent.children).indexOf(element);
+                    element.style.transitionDelay = `${index * 0.15}s`;
+                }
+
+                element.classList.add('active');
+                observer.unobserve(element); // Run only once
+            }
+        });
+    }, revealOptions);
+
+    // Initialize Observer
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
