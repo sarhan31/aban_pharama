@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             heroP.classList.add('typing-idle'); // Hide briefly for setup
                             heroP.innerText = ''; 
                             setTimeout(() => {
-                                typeWriter(heroP, textToType, 20);
+                                typeWriter(heroP, textToType, 35);
                                 heroP.classList.remove('typing-idle');
                             }, 500);
                         } else {
