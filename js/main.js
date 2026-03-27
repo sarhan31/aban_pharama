@@ -9,12 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('fade-out');
             document.body.style.overflow = 'auto';
             
-            // Trigger hero animation once splash begins to fade
+            // Trigger cinematic hero reveal
+            const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
+            if (hero) hero.classList.add('hero-revealed');
             if (heroContent) {
                 setTimeout(() => {
                     heroContent.classList.add('hero-revealed');
-                }, 200);
+                }, 400); // Wait for background zoom to start
             }
             
             // Optional: Remove from DOM after transition
