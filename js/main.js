@@ -16,6 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     };
 
+    // Trigger cinematic hero reveal
+    const triggerHeroReveal = () => {
+        const hero = document.querySelector('.hero');
+        const heroContent = document.querySelector('.hero-content');
+        
+        if (hero) hero.classList.add('hero-revealed');
+        if (heroContent) {
+            setTimeout(() => {
+                heroContent.classList.add('hero-revealed');
+                
+                // Trigger typing animation for paragraph
+                const heroP = document.getElementById('typing-para');
+                if (heroP) {
+                    const textToType = heroP.getAttribute('data-type-text') || heroP.innerText;
+                    heroP.innerText = ''; // Clear for typing
+                    setTimeout(() => {
+                        typeWriter(heroP, textToType, 20); // Slightly faster for long paragraph
+                    }, 500); // Breathe after heading reveal
+                }
+            }, 400); 
+        }
+    };
+
     // 0. Splash Screen Logic
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
@@ -26,32 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('fade-out');
             document.body.style.overflow = 'auto';
             
-            // Trigger cinematic hero reveal
-            const hero = document.querySelector('.hero');
-            const heroContent = document.querySelector('.hero-content');
-            
-            if (hero) hero.classList.add('hero-revealed');
-            if (heroContent) {
-                setTimeout(() => {
-                    heroContent.classList.add('hero-revealed');
-                    
-                    // Trigger typing animation for paragraph
-                    const heroP = heroContent.querySelector('p');
-                    if (heroP) {
-                        const originalText = heroP.innerText;
-                        heroP.innerText = ''; // Clear immediately
-                        setTimeout(() => {
-                            typeWriter(heroP, originalText, 25);
-                        }, 800); // Wait for heading reveal to breathe
-                    }
-                }, 400); 
-            }
+            triggerHeroReveal();
             
             // Optional: Remove from DOM after transition
             setTimeout(() => {
                 splashScreen.remove();
             }, 800);
         }, 2500); // Show splash for 2.5 seconds
+    } else {
+        // Fallback: If no splash, trigger immediately
+        triggerHeroReveal();
     }
 
     // 1. Navbar Scrolled Effect
