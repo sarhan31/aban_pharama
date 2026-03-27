@@ -584,7 +584,14 @@ ul {
 
 .hero-btns {
     display: flex;
-    gap: 16px;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-btns .btn {
+    min-width: 200px;
+    justify-content: center;
 }
 
 .why-grid .reveal>div>div {
