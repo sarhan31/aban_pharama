@@ -80,6 +80,48 @@
         margin-right: -10px;
     }
 
+    /* --- SPLASH SCREEN MOBILE --- */
+    .splash-screen {
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .splash-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .splash-logo {
+        width: 100px !important;
+        height: 100px !important;
+        margin-bottom: 25px !important;
+        padding: 12px !important;
+    }
+
+    .splash-name {
+        font-size: 28px !important; 
+        line-height: 1.2 !important;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        margin-bottom: 8px !important;
+    }
+
+    .splash-name span {
+        display: block; /* Broken into two lines for better UI on small screens */
+    }
+
+    .splash-tagline {
+        font-size: 13px !important;
+        max-width: 280px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    .splash-loader {
+        margin-top: 30px !important;
+    }
+
     /* --- HERO SECTION --- */
     .hero {
         text-align: center;
