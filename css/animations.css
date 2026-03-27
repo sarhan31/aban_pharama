@@ -120,6 +120,12 @@
     transition: filter 1s ease, transform 1s ease;
 }
 
+/* ⚡️ ANTI-FLICKER: Hide instantly if JS is detected */
+html.js .hero-content p {
+    opacity: 0;
+    visibility: hidden;
+}
+
 /* Temporary state for JS typing setup */
 .hero-content p.typing-idle {
     opacity: 0 !important;
