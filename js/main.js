@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (element.classList.contains('cat-card')) {
                     const parent = element.parentElement;
                     const index = Array.from(parent.children).indexOf(element);
-                    element.style.transitionDelay = `${index * 0.15}s`;
+                    element.style.transitionDelay = `${index * 0.1}s`;
                 }
 
                 element.classList.add('active');

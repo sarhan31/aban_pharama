@@ -3,17 +3,18 @@
     will-change: transform, opacity;
 }
 
-/* Premium Directional Reveals */
-.reveal-tr { transform: translate(40px, -40px); }
-.reveal-br { transform: translate(40px, 40px); }
-.reveal-tl { transform: translate(-40px, -40px); }
-.reveal-bl { transform: translate(-40px, 40px); }
+/* Premium Dramatic Directional Reveals */
+.reveal-tr { transform: translate(120vw, -120vh) scale(0.9); }
+.reveal-br { transform: translate(120vw, 120vh) scale(0.9); }
+.reveal-tl { transform: translate(-120vw, -120vh) scale(0.9); }
+.reveal-bl { transform: translate(-120vw, 120vh) scale(0.9); }
 
 .reveal.active {
     opacity: 1;
-    transform: translate(0, 0) !important;
-    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(0, 0) scale(1) !important;
+    transition: all 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 
 
 /* Hover Effects */
