@@ -25,10 +25,11 @@
 
 .reveal.active {
     opacity: 1 !important;
-    animation-duration: 1.2s !important;
+    animation-duration: 1.8s !important;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
     animation-fill-mode: forwards !important;
 }
+
 
 .reveal-tr.active { animation-name: dramatic-tr !important; }
 .reveal-br.active { animation-name: dramatic-br !important; }

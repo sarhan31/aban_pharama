@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     card.classList.add('active');
-                }, index * 100);
+                }, index * 200);
             });
         }
         el.classList.add('active');
