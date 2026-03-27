@@ -43,38 +43,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Premium Intersection Observer for Scroll Reveal
-    const revealElements = document.querySelectorAll('.reveal');
+    // We observe general reveal elements individually, but the category grid handles its cards as a unit.
+    const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const catGrid = document.querySelector('.category-grid');
     
     const observerOptions = {
-        threshold: 0,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.1, // Trigger when 10% is visible
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
+        el.classList.add('active');
         
         if (el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
-                    // Check if parent is still active before adding
                     if (el.classList.contains('active')) {
                         card.classList.add('active');
                     }
-                }, index * 400);
+                }, index * 250); // Slightly faster stagger (0.25s) for better flow
             });
         }
-        el.classList.add('active');
     };
 
     const deactivateElement = (el) => {
         if (!el.classList.contains('active')) return;
+        el.classList.remove('active');
         
         if (el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach(card => card.classList.remove('active'));
         }
-        el.classList.remove('active');
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -82,20 +83,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
             } else {
-                deactivateElement(entry.target);
+                // Only deactivate if really scrolling away (to avoid mini-flashes)
+                const rect = entry.target.getBoundingClientRect();
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    deactivateElement(entry.target);
+                }
             }
         });
     }, observerOptions);
 
     revealElements.forEach(el => observer.observe(el));
-    const catGrid = document.querySelector('.category-grid');
     if (catGrid) observer.observe(catGrid);
 
-    // Fallback for immediate visibility check or if IO fails
+    // Fallback/Initial check
     const runFallback = () => {
         [...revealElements, catGrid].filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
+            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                 activateElement(el);
             } else {
                 deactivateElement(el);
@@ -104,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 500); 
+    setTimeout(runFallback, 300); 
 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
