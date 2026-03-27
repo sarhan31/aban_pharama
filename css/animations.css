@@ -113,17 +113,8 @@
 
 /* Paragraph: JS Typing Reveal (Default transition disabled) */
 .hero-content p {
-    opacity: 0.95;
-    visibility: visible;
-    filter: blur(0);
-    transform: translateY(0);
+    /* Transitions only for font-size/blur if needed, but opacity handled by JS */
     transition: filter 1s ease, transform 1s ease;
-}
-
-/* ⚡️ ANTI-FLICKER: Hide instantly if JS is detected */
-html.js .hero-content p {
-    opacity: 0;
-    visibility: hidden;
 }
 
 /* Temporary state for JS typing setup */
