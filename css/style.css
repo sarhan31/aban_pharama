@@ -646,10 +646,11 @@ ul {
     height: 100%;
 }
 
-/* --- SECTION HEADERS --- */
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
+/* --- PRODUCT CATEGORIES --- */
+#products {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
 
 .section-header span {

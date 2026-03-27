@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Premium Intersection Observer for Scroll Reveal
     const revealOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.01,
+        rootMargin: '0px 0px -20% 0px'
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -53,21 +53,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 
-                // Add staggered delay for product cards
-                if (element.classList.contains('cat-card')) {
-                    const parent = element.parentElement;
-                    const index = Array.from(parent.children).indexOf(element);
-                    element.style.transitionDelay = `${index * 0.1}s`;
+                // If it's the product grid, trigger all its children
+                if (element.classList.contains('category-grid')) {
+                    const cards = element.querySelectorAll('.cat-card.reveal');
+                    cards.forEach((card, index) => {
+                        card.style.transitionDelay = `${index * 0.1}s`;
+                        card.classList.add('active');
+                    });
+                    observer.unobserve(element);
+                } else {
+                    // Standard reveal for other elements
+                    element.classList.add('active');
+                    observer.unobserve(element);
                 }
-
-                element.classList.add('active');
-                observer.unobserve(element); // Run only once
             }
         });
     }, revealOptions);
 
-    // Initialize Observer
-    document.querySelectorAll('.reveal').forEach(el => {
+    // Observe category grid specifically for staggered entrance
+    const productGrid = document.querySelector('.category-grid');
+    if (productGrid) {
+        revealObserver.observe(productGrid);
+    }
+
+    // Observe other reveal elements (excluding those inside product grid to avoid double triggering)
+    document.querySelectorAll('.reveal:not(.cat-card)').forEach(el => {
         revealObserver.observe(el);
     });
 
