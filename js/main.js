@@ -43,43 +43,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Premium Intersection Observer for Scroll Reveal
-    const revealOptions = {
-        threshold: 0.01,
-        rootMargin: '0px 0px -20% 0px'
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const observerOptions = {
+        threshold: 0,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const activateElement = (el) => {
+        if (el.classList.contains('active')) return;
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card.reveal');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('active');
+                }, index * 100);
+            });
+        }
+        el.classList.add('active');
+    };
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const element = entry.target;
-                
-                // If it's the product grid, trigger all its children
-                if (element.classList.contains('category-grid')) {
-                    const cards = element.querySelectorAll('.cat-card.reveal');
-                    cards.forEach((card, index) => {
-                        card.style.transitionDelay = `${index * 0.1}s`;
-                        card.classList.add('active');
-                    });
-                    observer.unobserve(element);
-                } else {
-                    // Standard reveal for other elements
-                    element.classList.add('active');
-                    observer.unobserve(element);
-                }
+                activateElement(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, revealOptions);
+    }, observerOptions);
 
-    // Observe category grid specifically for staggered entrance
-    const productGrid = document.querySelector('.category-grid');
-    if (productGrid) {
-        revealObserver.observe(productGrid);
-    }
+    revealElements.forEach(el => observer.observe(el));
+    const catGrid = document.querySelector('.category-grid');
+    if (catGrid) observer.observe(catGrid);
 
-    // Observe other reveal elements (excluding those inside product grid to avoid double triggering)
-    document.querySelectorAll('.reveal:not(.cat-card)').forEach(el => {
-        revealObserver.observe(el);
-    });
+    // Fallback for immediate visibility check or if IO fails
+    const runFallback = () => {
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                activateElement(el);
+            }
+        });
+        if (catGrid) {
+            const gRect = catGrid.getBoundingClientRect();
+            if (gRect.top < window.innerHeight && gRect.bottom > 0) {
+                activateElement(catGrid);
+            }
+        }
+    };
+
+    window.addEventListener('scroll', runFallback);
+    setTimeout(runFallback, 500); // Run once after load
 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');

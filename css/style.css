@@ -648,10 +648,11 @@ ul {
 
 /* --- PRODUCT CATEGORIES --- */
 #products {
-    overflow: hidden;
+    overflow: clip; /* clip is safer than hidden for some browsers */
     position: relative;
     width: 100%;
 }
+
 
 .section-header span {
     color: var(--accent);
