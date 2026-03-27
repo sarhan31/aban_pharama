@@ -360,6 +360,54 @@
         /* Inner padding for readability */
         box-sizing: border-box !important;
     }
+    /* ========================= */
+/* HERO BUTTON FIX - MOBILE  */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  /* Fix hero side spacing */
+  .hero {
+    padding: 120px 10px 100px;
+  }
+
+  /* Button container */
+  .hero-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  /* Main button fix */
+  .hero-btns .btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  /* Fix outline button cut issue */
+  .btn-outline {
+    box-sizing: border-box;
+    padding: 14px 20px;
+    border: 2px solid #fff;
+  }
+
+  /* Prevent overflow */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Extra safety */
+  .hero-content {
+    width: 100%;
+    padding: 0 5px;
+  }
+}
 }
 
 /* Very Small Devices (480px and down) */
