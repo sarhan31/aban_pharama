@@ -648,9 +648,19 @@ ul {
 
 /* --- PRODUCT CATEGORIES --- */
 #products {
-    overflow: clip; /* clip is safer than hidden for some browsers */
+    overflow: clip;
     position: relative;
     width: 100%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center !important;
 }
 
 
