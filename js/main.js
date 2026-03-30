@@ -113,57 +113,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const productCards = document.querySelectorAll('.cat-card');
     
-    // Prep: Direct style hiding for off-screen cards (Ensures 100% visibility for on-screen)
-    const prepareCurtain = () => {
-        productCards.forEach((card, i) => {
+    // Hide ONLY off-screen cards to prepare for reveal
+    const initCards = () => {
+        productCards.forEach(card => {
             const rect = card.getBoundingClientRect();
             if (rect.top > window.innerHeight) {
-                const isRight = [0, 1, 4, 5].includes(i); // Pattern: 1,2 (R), 3,4 (L), 5,6 (R), 7,8 (L)
                 card.style.opacity = '0';
-                card.style.transform = isRight ? 'translateX(30px)' : 'translateX(-30px)';
-                card.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
+                card.style.clipPath = 'inset(0 0 0 100%)';
             }
         });
     };
 
-    let revealQueue = [];
-    let isProcessing = false;
+    let queue = [];
+    let processing = false;
 
-    const processQueue = () => {
-        if (revealQueue.length === 0) { isProcessing = false; return; }
-        isProcessing = true;
-        const el = revealQueue.shift();
+    const runQueue = () => {
+        if (queue.length === 0) { processing = false; return; }
+        processing = true;
+        const el = queue.shift();
         if (el) {
+            // FORCE REFLOW: Essential for REPEATABILITY
+            el.classList.remove('active');
+            void el.offsetWidth; 
             el.style.opacity = '1';
-            el.style.transform = 'translateX(0)';
             el.style.clipPath = 'inset(0 0 0 0)';
             el.classList.add('active');
         }
-        setTimeout(processQueue, isMobile ? 600 : 250);
+        setTimeout(runQueue, isMobile ? 600 : 250);
     };
 
     const mainObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
-            const idx = Array.from(productCards).indexOf(el);
-
             if (entry.isIntersecting) {
                 if (el.classList.contains('cat-card')) {
                     if (el.classList.contains('active')) return;
-                    revealQueue.push(el);
-                    if (!isProcessing) processQueue();
+                    queue.push(el);
+                    if (!processing) runQueue();
                 } else {
                     el.classList.add('active');
                 }
             } else {
-                // SENSITIVE REPLAY: Reset immediately on exit
+                // RESET ON EXIT
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
                     if (el.classList.contains('cat-card')) {
-                        const isRight = [0, 1, 4, 5].includes(idx);
                         el.style.opacity = '0';
-                        el.style.transform = isRight ? 'translateX(30px)' : 'translateX(-30px)';
+                        // Re-apply hidden curtain based on position
+                        const idx = Array.from(productCards).indexOf(el);
+                        const isRight = [0, 1, 4, 5].includes(idx);
                         el.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
                     }
                 }
@@ -171,19 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    // Start
-    prepareCurtain();
+    initCards();
     revealElements.forEach(el => mainObserver.observe(el));
-    productCards.forEach(card => mainObserver.observe(card));
+    productCards.forEach(el => mainObserver.observe(el));
 
-    // Global fail-safe
+    // Fail-safe
     setTimeout(() => {
-        productCards.forEach(card => {
-            card.style.opacity = '1';
-            card.style.clipPath = 'inset(0 0 0 0)';
-            card.style.transform = 'translateX(0)';
-        });
-    }, 4000);
+        productCards.forEach(c => { c.style.opacity = '1'; c.style.clipPath = 'inset(0 0 0 0)'; });
+    }, 3000);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');

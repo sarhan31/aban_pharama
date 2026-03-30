@@ -212,14 +212,25 @@
     /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
         transform: none !important;
-        /* Absolute Fail-Safe: Visible by default ALWAYS */
+        /* Absolute Fail-Safe: Visible by default */
         opacity: 1 !important;
         visibility: visible !important;
         clip-path: none !important;
-        /* Transition for the curtain effect reveal */
-        transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                    opacity 0.6s ease-in-out,
-                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        animation-duration: 1.2s !important;
+        animation-fill-mode: forwards !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    /* Secret: Hide ONLY via JS style override for smooth reveal */
+    /* Directions: Triggered by .active class */
+    .cat-card:nth-child(1).active, .cat-card:nth-child(2).active,
+    .cat-card:nth-child(5).active, .cat-card:nth-child(6).active {
+        animation-name: mobile-slide-in-right !important;
+    }
+
+    .cat-card:nth-child(3).active, .cat-card:nth-child(4).active,
+    .cat-card:nth-child(7).active, .cat-card:nth-child(8).active {
+        animation-name: mobile-slide-in-left !important;
     }
 
     .card {
