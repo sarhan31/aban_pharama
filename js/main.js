@@ -108,41 +108,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add JS indicator for safe CSS reveals
     document.body.classList.add('js-active');
 
-    // 4. Premium Intersection Observer for Scroll Reveal (Mobile-Optimized)
+    // 4. Premium Intersection Observer for Scroll Reveal
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const productCards = document.querySelectorAll('.cat-card');
+    const catGrid = document.querySelector('.category-grid');
     
     document.body.classList.add('js-active');
 
-    // INDIVIDUAL REPEATABLE OBSERVER FOR CARDS (As requested for Mobile)
-    const cardObserver = new IntersectionObserver((entries) => {
+    const activateElement = (el) => {
+        if (el.classList.contains('active')) return;
+        el.classList.add('active');
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('active');
+                }, index * (isMobile ? 600 : 250));
+            });
+        }
+    };
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add classes when card enters viewport
-                entry.target.classList.add('active', 'show');
-            } else if (isMobile) {
-                // REPEAT logic for mobile: Reset classes when card leaves viewport
-                const rect = entry.target.getBoundingClientRect();
-                if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    entry.target.classList.remove('active', 'show');
-                }
-            }
-        });
-    }, { threshold: isMobile ? 0.2 : 0.1 });
-
-    productCards.forEach(card => cardObserver.observe(card));
-
-    // Standard observer for other elements (one-time reveal)
-    const standardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                activateElement(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
-    revealElements.forEach(el => standardObserver.observe(el));
+    revealElements.forEach(el => observer.observe(el));
+    if (catGrid) observer.observe(catGrid);
 
     // Fail-safe
     window.addEventListener('load', () => {
