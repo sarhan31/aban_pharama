@@ -111,65 +111,83 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Premium Intersection Observer for Scroll Reveal
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const productCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
     
     document.body.classList.add('js-active'); // Enable safe CSS reveals
 
-    const activateElement = (el) => {
-        if (el.classList.contains('active')) return;
-        el.classList.add('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    if (el.classList.contains('active')) {
-                        card.classList.add('active');
-                    }
-                }, index * (isMobile ? 600 : 250)); // Sequential Wave (0.6s on mobile)
-            });
+    // Queue-based stagger for mobile (Handles multiple cards entry at once)
+    let revealQueue = [];
+    let isProcessingQueue = false;
+
+    const processQueue = () => {
+        if (revealQueue.length === 0) {
+            isProcessingQueue = false;
+            return;
         }
+        isProcessingQueue = true;
+        const el = revealQueue.shift();
+        if (el) el.classList.add('active');
+        
+        // Wait 600ms on mobile for premium sequence
+        setTimeout(processQueue, isMobile ? 600 : 250);
     };
 
-    const deactivateElement = (el) => {
-        if (!el.classList.contains('active')) return;
-        el.classList.remove('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach(card => card.classList.remove('active'));
-        }
+    const addToQueue = (el) => {
+        if (el.classList.contains('active') || revealQueue.includes(el)) return;
+        revealQueue.push(el);
+        if (!isProcessingQueue) processQueue();
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const el = entry.target;
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                // If it's the grid, trigger staggered cards
+                if (el.classList.contains('category-grid')) {
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach(card => addToQueue(card));
+                    el.classList.add('active');
+                } else if (el.classList.contains('cat-card')) {
+                    addToQueue(el);
+                } else {
+                    el.classList.add('active');
+                }
             } else {
-                const rect = entry.target.getBoundingClientRect();
-                // Sensitive Reset: If scrolled past or above, allow repeat
+                // Sensitive exit: Remove immediately to allow REPLAY
+                const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    deactivateElement(entry.target);
+                    el.classList.remove('active');
+                    // Remove from queue if it exited before revealing
+                    revealQueue = revealQueue.filter(qEl => qEl !== el);
+                    
+                    if (el.classList.contains('category-grid')) {
+                        const cards = el.querySelectorAll('.cat-card');
+                        cards.forEach(c => c.classList.remove('active'));
+                    }
                 }
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    // Start Observation
+    revealElements.forEach(el => cardObserver.observe(el));
+    if (isMobile) {
+        productCards.forEach(card => cardObserver.observe(card));
+    } else if (catGrid) {
+        cardObserver.observe(catGrid);
+    }
 
-    // Fail-safe initial check
-    const runFallback = () => {
-        const checkList = [...revealElements, catGrid].filter(Boolean);
+    // Fail-safe initial reveal 
+    setTimeout(() => {
+        const checkList = [...revealElements, ...productCards];
         checkList.forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                activateElement(el);
+                el.classList.add('active');
             }
         });
-    };
-    window.addEventListener('load', runFallback);
-    setTimeout(runFallback, 500);
+    }, 1000);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
