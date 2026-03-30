@@ -113,14 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const productCards = document.querySelectorAll('.cat-card');
     
-    // THE GUARANTEE: Hide cards ONLY if they are below the fold (Safe to reveal later)
-    const hideOffscreenCards = () => {
-        productCards.forEach(card => {
+    // Prep: Direct style hiding for off-screen cards (Ensures 100% visibility for on-screen)
+    const prepareCurtain = () => {
+        productCards.forEach((card, i) => {
             const rect = card.getBoundingClientRect();
             if (rect.top > window.innerHeight) {
+                const isRight = [0, 1, 4, 5].includes(i); // Pattern: 1,2 (R), 3,4 (L), 5,6 (R), 7,8 (L)
                 card.style.opacity = '0';
-                card.style.visibility = 'hidden';
-                card.style.clipPath = 'inset(0 0 0 100%)';
+                card.style.transform = isRight ? 'translateX(30px)' : 'translateX(-30px)';
+                card.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
             }
         });
     };
@@ -134,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = revealQueue.shift();
         if (el) {
             el.style.opacity = '1';
-            el.style.visibility = 'visible';
+            el.style.transform = 'translateX(0)';
             el.style.clipPath = 'inset(0 0 0 0)';
             el.classList.add('active');
         }
@@ -144,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
+            const idx = Array.from(productCards).indexOf(el);
+
             if (entry.isIntersecting) {
                 if (el.classList.contains('cat-card')) {
                     if (el.classList.contains('active')) return;
@@ -153,33 +156,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.classList.add('active');
                 }
             } else {
-                // REPEATABLE: Reset when scrolled away
+                // SENSITIVE REPLAY: Reset immediately on exit
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
                     if (el.classList.contains('cat-card')) {
+                        const isRight = [0, 1, 4, 5].includes(idx);
                         el.style.opacity = '0';
-                        el.style.visibility = 'hidden';
-                        el.style.clipPath = 'inset(0 0 0 100%)';
+                        el.style.transform = isRight ? 'translateX(30px)' : 'translateX(-30px)';
+                        el.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
                     }
                 }
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
-    // Activate
-    hideOffscreenCards();
+    // Start
+    prepareCurtain();
     revealElements.forEach(el => mainObserver.observe(el));
     productCards.forEach(card => mainObserver.observe(card));
 
-    // Global Fail-Safe: Show everything after 3s if stuck
+    // Global fail-safe
     setTimeout(() => {
         productCards.forEach(card => {
             card.style.opacity = '1';
-            card.style.visibility = 'visible';
             card.style.clipPath = 'inset(0 0 0 0)';
+            card.style.transform = 'translateX(0)';
         });
-    }, 3000);
+    }, 4000);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
