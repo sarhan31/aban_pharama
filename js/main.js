@@ -108,37 +108,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add JS indicator for safe CSS reveals
     document.body.classList.add('js-active');
 
-    // 4. Premium Intersection Observer for Scroll Reveal
+    // 4. Universal Repeatable Reveal System
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const catGrid = document.querySelector('.category-grid');
+    const productCards = document.querySelectorAll('.cat-card');
     
-    document.body.classList.add('js-active');
-
-    const activateElement = (el) => {
-        if (el.classList.contains('active')) return;
-        el.classList.add('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('active');
-                }, index * (isMobile ? 600 : 250));
-            });
-        }
+    // Hide ONLY off-screen cards to prepare for curtain reveal
+    const initCards = () => {
+        productCards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top > window.innerHeight) {
+                const isRight = [0, 1, 4, 5].includes(i);
+                card.style.opacity = '0';
+                card.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
+            }
+        });
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    let queue = [];
+    let isProcessing = false;
+
+    const processQueue = () => {
+        if (queue.length === 0) { isProcessing = false; return; }
+        isProcessing = true;
+        const el = queue.shift();
+        if (el) {
+            // FORCE REFLOW: Essential for repeatable CSS animations
+            el.classList.remove('active');
+            void el.offsetWidth; 
+            el.style.opacity = '1';
+            el.style.clipPath = 'inset(0 0 0 0)';
+            el.classList.add('active');
+        }
+        setTimeout(processQueue, isMobile ? 600 : 250);
+    };
+
+    const universalObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const el = entry.target;
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                if (el.classList.contains('cat-card')) {
+                    if (el.classList.contains('active')) return;
+                    queue.push(el);
+                    if (!isProcessing) processQueue();
+                } else {
+                    el.classList.add('active');
+                }
+            } else {
+                // RESET ON EXIT: Re-apply curtain for REPLAY
+                const rect = el.getBoundingClientRect();
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    el.classList.remove('active');
+                    if (el.classList.contains('cat-card')) {
+                        const idx = Array.from(productCards).indexOf(el);
+                        const isRight = [0, 1, 4, 5].includes(idx);
+                        el.style.opacity = '0';
+                        el.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
+                    }
+                }
             }
         });
     }, { threshold: 0.1 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    initCards();
+    revealElements.forEach(el => universalObserver.observe(el));
+    productCards.forEach(el => universalObserver.observe(el));
+
+    // Global fail-safe
+    setTimeout(() => {
+        productCards.forEach(c => { c.style.opacity = '1'; c.style.clipPath = 'inset(0 0 0 0)'; });
+    }, 4000);
 
     // Fail-safe
     window.addEventListener('load', () => {
