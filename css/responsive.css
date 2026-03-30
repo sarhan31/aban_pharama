@@ -331,4 +331,6 @@ body {
 #main-content {
     flex: 1 0 auto; /* Expands to fill available space and push footer down */
     width: 100%;
+    position: relative;
+    z-index: 5; /* Place above hidden overlays but below nav (1000) */
 }

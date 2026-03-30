@@ -1949,12 +1949,14 @@ img {
     z-index: 999; /* Lower than #navbar (1000) so sidebar stays on top */
     opacity: 0;
     visibility: hidden;
+    pointer-events: none; /* Crucial: Prevent click interception while hidden */
     transition: all 0.4s ease;
 }
 
 .nav-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 /* --- PREMIUM DESKTOP HERO ENHANCEMENTS (min-width: 992px) --- */
