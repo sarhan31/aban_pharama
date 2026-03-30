@@ -109,68 +109,81 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('js-active');
 
     // 4. Premium Intersection Observer for Scroll Reveal
+    const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const productCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
     
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const activateElement = (el) => {
-        if (el.classList.contains('active')) return;
-        el.classList.add('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const gridCards = el.querySelectorAll('.cat-card');
-            if (gridCards.length > 0) {
-                gridCards.forEach((card, index) => {
-                    setTimeout(() => {
-                        if (el.classList.contains('active')) {
-                            card.classList.add('active');
-                            card.classList.add('show');
-                        }
-                    }, index * 650); // Premium deliberate stagger (0.65s)
-                });
-            }
-        }
-    };
-
-    const deactivateElement = (el) => {
-        if (!el.classList.contains('active')) return;
-        el.classList.remove('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const gridCards = el.querySelectorAll('.cat-card');
-            gridCards.forEach(card => {
-                card.classList.remove('active');
-                card.classList.remove('show');
-            });
-        }
-    };
-
-    const observer = new IntersectionObserver((entries) => {
+    // General Reveal Observer (Non-Product Cards)
+    const genericObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const el = entry.target;
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                if (el.classList.contains('active')) return;
+                el.classList.add('active');
+                el.classList.add('show');
+                
+                // Desktop Stagger Logic
+                if (!isMobile && el.classList.contains('category-grid')) {
+                    const gridCards = el.querySelectorAll('.cat-card');
+                    gridCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            if (el.classList.contains('active')) {
+                                card.classList.add('active');
+                                card.classList.add('show');
+                            }
+                        }, index * 450);
+                    });
+                }
             } else {
-                const rect = entry.target.getBoundingClientRect();
+                const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    deactivateElement(entry.target);
+                    el.classList.remove('active');
+                    el.classList.remove('show');
+                    // Reset grid cards on desktop
+                    if (!isMobile && el.classList.contains('category-grid')) {
+                        const gridCards = el.querySelectorAll('.cat-card');
+                        gridCards.forEach(card => {
+                            card.classList.remove('active');
+                            card.classList.remove('show');
+                        });
+                    }
                 }
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    // MOBILE-ONLY: Independent Card Observer for Repeatable Sequential Reveal
+    const mobileCardObserver = isMobile ? new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                entry.target.classList.add('show');
+            } else {
+                // Remove class on exit for REPLAY
+                entry.target.classList.remove('active');
+                entry.target.classList.remove('show');
+            }
+        });
+    }, { threshold: 0.2 }) : null;
 
-    // Initial check (Runs only once on load)
+    // Observe everything
+    revealElements.forEach(el => genericObserver.observe(el));
+    
+    if (isMobile) {
+        productCards.forEach(card => mobileCardObserver.observe(card));
+    } else if (catGrid) {
+        genericObserver.observe(catGrid);
+    }
+
+    // Fail-safe Initial Check
     const runInitialCheck = () => {
-        [...revealElements, catGrid].filter(Boolean).forEach(el => {
+        const checkList = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
+        checkList.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                activateElement(el);
+                el.classList.add('active');
+                el.classList.add('show');
             }
         });
     };

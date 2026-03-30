@@ -215,18 +215,17 @@
         animation-duration: 1.2s !important;
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
         clip-path: inset(0 0 0 0);
-        /* Smooth base state for opacity shifts */
         transition: opacity 0.8s ease, visibility 0.8s ease !important;
     }
 
-    /* Secret Sauce: Hide cards only when JS is confirmed active */
+    /* Keep hidden only if JS is active for the reveal effect */
     body.js-active .cat-card {
         opacity: 0;
         visibility: hidden;
     }
 
-    /* Balanced Reveal: Fade in smoothly alongside the curtain animation */
-    body.js-active .cat-card.active {
+    /* Repeatable state trigger */
+    body.js-active .cat-card.show {
         opacity: 1;
         visibility: visible;
     }
