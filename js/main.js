@@ -111,15 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Premium Intersection Observer for Scroll Reveal
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const productCards = document.querySelectorAll('.cat-card');
+    const cards = document.querySelectorAll('.cat-card');
     
-    // Hide ONLY off-screen cards to prepare for reveal
+    // Preparation: Pre-hide only if off-screen (Safe)
     const initCards = () => {
-        productCards.forEach(card => {
+        cards.forEach(card => {
             const rect = card.getBoundingClientRect();
             if (rect.top > window.innerHeight) {
-                card.style.opacity = '0';
-                card.style.clipPath = 'inset(0 0 0 100%)';
+                card.classList.add('waiting');
             }
         });
     };
@@ -132,11 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
         processing = true;
         const el = queue.shift();
         if (el) {
-            // FORCE REFLOW: Essential for REPEATABILITY
+            el.classList.remove('waiting');
+            // Force reset for replay
             el.classList.remove('active');
             void el.offsetWidth; 
-            el.style.opacity = '1';
-            el.style.clipPath = 'inset(0 0 0 0)';
             el.classList.add('active');
         }
         setTimeout(runQueue, isMobile ? 600 : 250);
@@ -146,24 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             const el = entry.target;
             if (entry.isIntersecting) {
+                if (el.classList.contains('active')) return;
+                
                 if (el.classList.contains('cat-card')) {
-                    if (el.classList.contains('active')) return;
                     queue.push(el);
                     if (!processing) runQueue();
                 } else {
                     el.classList.add('active');
                 }
             } else {
-                // RESET ON EXIT
+                // REPEATABLE logic
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
                     if (el.classList.contains('cat-card')) {
-                        el.style.opacity = '0';
-                        // Re-apply hidden curtain based on position
-                        const idx = Array.from(productCards).indexOf(el);
-                        const isRight = [0, 1, 4, 5].includes(idx);
-                        el.style.clipPath = isRight ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
+                        el.classList.add('waiting');
                     }
                 }
             }
@@ -172,12 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initCards();
     revealElements.forEach(el => mainObserver.observe(el));
-    productCards.forEach(el => mainObserver.observe(el));
+    cards.forEach(el => mainObserver.observe(el));
 
-    // Fail-safe
+    // Global fail-safe
     setTimeout(() => {
-        productCards.forEach(c => { c.style.opacity = '1'; c.style.clipPath = 'inset(0 0 0 0)'; });
-    }, 3000);
+        cards.forEach(c => { c.classList.remove('waiting'); c.classList.add('active'); });
+    }, 4000);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
