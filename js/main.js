@@ -106,27 +106,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Premium Intersection Observer for Scroll Reveal
-    // We observe general reveal elements individually, but the category grid handles its cards as a unit.
+    const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const catCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
-    
-    const observerOptions = {
-        threshold: 0.1, // Trigger when 10% is visible
-        rootMargin: '0px 0px -50px 0px'
-    };
 
+    // Desktop/General Reveal Logic
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
+        el.classList.add('show');
         
-        if (el.classList.contains('category-grid')) {
+        if (!isMobile && el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     if (el.classList.contains('active')) {
                         card.classList.add('active');
+                        card.classList.add('show');
                     }
-                }, index * 250); // Slightly faster stagger (0.25s) for better flow
+                }, index * 250);
             });
         }
     };
@@ -134,44 +133,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const deactivateElement = (el) => {
         if (!el.classList.contains('active')) return;
         el.classList.remove('active');
+        el.classList.remove('show');
         
-        if (el.classList.contains('category-grid')) {
+        if (!isMobile && el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
-            cards.forEach(card => card.classList.remove('active'));
+            cards.forEach(card => {
+                card.classList.remove('active');
+                card.classList.remove('show');
+            });
         }
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    // Generic Observer for Non-Card Elements
+    const genericObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
             } else {
-                // Only deactivate if really scrolling away (to avoid mini-flashes)
                 const rect = entry.target.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     deactivateElement(entry.target);
                 }
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    // MOBILE-ONLY: Independent Card Observer
+    const mobileCardObserver = isMobile ? new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                entry.target.classList.add('show');
+            } else {
+                // Remove instantly on exit to allow REPLAY
+                entry.target.classList.remove('active');
+                entry.target.classList.remove('show');
+            }
+        });
+    }, { threshold: 0.2 }) : null;
 
-    // Fallback/Initial check
-    const runFallback = () => {
-        [...revealElements, catGrid].filter(Boolean).forEach(el => {
+    // Observe Elements
+    revealElements.forEach(el => genericObserver.observe(el));
+    
+    if (isMobile) {
+        catCards.forEach(card => mobileCardObserver.observe(card));
+    } else if (catGrid) {
+        genericObserver.observe(catGrid);
+    }
+
+    // Initial check (load-time reveal for above-the-fold content)
+    const runInitialCheck = () => {
+        const checkList = isMobile ? [...revealElements, ...catCards] : [...revealElements, catGrid];
+        checkList.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                activateElement(el);
-            } else {
-                deactivateElement(el);
+                el.classList.add('active');
+                el.classList.add('show');
             }
         });
     };
 
-    window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 300); 
+    window.addEventListener('load', runInitialCheck);
+    setTimeout(runInitialCheck, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');

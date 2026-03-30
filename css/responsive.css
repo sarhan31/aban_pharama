@@ -209,12 +209,22 @@
         gap: 25px !important;
     }
 
-    /* --- MOBILE CATEGORY ANIMATIONS (2-Right, 2-Left pattern) --- */
+    /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
-        transform: none !important; /* Reset desktop transforms */
-        animation-duration: 2s !important; /* Significantly slower for curtain effect */
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-        clip-path: inset(0 0 0 0); /* Ensure cards are visible after animation */
+        transform: none !important;
+        animation-duration: 1.5s !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+        /* Base Hidden State */
+        opacity: 0 !important;
+        visibility: hidden !important;
+        clip-path: inset(0 0 0 100%) !important;
+    }
+
+    .cat-card.active,
+    .cat-card.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip-path: inset(0 0 0 0) !important;
     }
 
     /* Cards 1, 2, 5, 6: Slide from Right */
