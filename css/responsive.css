@@ -209,25 +209,26 @@
         gap: 25px !important;
     }
 
-    /* --- MOBILE CATEGORY ANIMATIONS (2-Right, 2-Left pattern) --- */
     /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
         transform: none !important;
         animation-duration: 1.2s !important;
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
         clip-path: inset(0 0 0 0);
+        /* Smooth base state for opacity shifts */
+        transition: opacity 0.8s ease, visibility 0.8s ease !important;
     }
 
-    /* Secret Sauce: Only hide cards if JS is confirmed active */
+    /* Secret Sauce: Hide cards only when JS is confirmed active */
     body.js-active .cat-card {
-        opacity: 0 !important;
-        visibility: hidden !important;
+        opacity: 0;
+        visibility: hidden;
     }
 
-    /* Force reveal when active */
+    /* Balanced Reveal: Fade in smoothly alongside the curtain animation */
     body.js-active .cat-card.active {
-        opacity: 1 !important;
-        visibility: visible !important;
+        opacity: 1;
+        visibility: visible;
     }
 
     /* Cards 1, 2, 5, 6: Slide from Right */
