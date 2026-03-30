@@ -129,10 +129,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const deactivateElement = (el) => {
+        if (!el.classList.contains('active')) return;
+        el.classList.remove('active');
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach(card => card.classList.remove('active'));
+        }
+    };
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
+            } else {
+                const rect = entry.target.getBoundingClientRect();
+                // REPEAT logic: Reset classes when element is truly off-screen
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    deactivateElement(entry.target);
+                }
             }
         });
     }, { threshold: 0.1 });
