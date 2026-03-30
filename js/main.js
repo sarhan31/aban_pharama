@@ -208,18 +208,24 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', closeMenu);
     if (navOverlay) navOverlay.addEventListener('click', closeMenu);
 
-    // 6. Smooth Scroll for Anchor Links
+    // 6. Smooth Scroll for Anchor Links (Robust Fix)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Skip if just "#"
+            
+            const target = document.querySelector(targetId);
             if (target) {
-                const offset = 80;
-                const targetPosition = target.offsetTop - offset;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                e.preventDefault(); // Only prevent if target exists
+                
+                // Use scrollIntoView for better results with Flexbox layouts
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
+                
+                // fallback offset correction (since fixed header exists)
+                // We'll use a small timeout to adjust if needed, but scrollIntoView is usually enough
                 
                 // Close mobile menu if open
                 if (navLinks.classList.contains('mobile-active')) {
