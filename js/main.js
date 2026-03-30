@@ -105,67 +105,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Unified Intersection Observer for Scroll Reveal
-    const allRevealElements = document.querySelectorAll('.reveal, .cat-card');
-    const isMobile = window.innerWidth < 768;
+    // 4. Premium Intersection Observer for Scroll Reveal
+    // We observe general reveal elements individually, but the category grid handles its cards as a unit.
+    const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const catGrid = document.querySelector('.category-grid');
     
-    // Observer Options
     const observerOptions = {
-        threshold: 0.1, // Trigger when 10% is visible for better reliability
-        rootMargin: '0px 0px -20px 0px'
+        threshold: 0.1, // Trigger when 10% is visible
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
-        
-        // Handle Mobile Product Cards (Individual)
-        if (isMobile && el.classList.contains('cat-card')) {
-            el.classList.add('active');
-            el.classList.add('show');
-            return;
-        }
-
-        // Handle Desktop/General Reveal
         el.classList.add('active');
-        el.classList.add('show');
-
-        // Handle Desktop Category Grid Staggering
-        if (!isMobile && el.classList.contains('category-grid')) {
+        
+        if (el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     if (el.classList.contains('active')) {
                         card.classList.add('active');
-                        card.classList.add('show');
                     }
-                }, index * 200);
+                }, index * 250); // Slightly faster stagger (0.25s) for better flow
             });
         }
     };
 
     const deactivateElement = (el) => {
-        // We only deactivate if it's NOT a card on desktop (keep desktop revealed)
-        // or if it's mobile (replay allowed)
-        if (isMobile || !el.classList.contains('cat-card')) {
-            el.classList.remove('active');
-            el.classList.remove('show');
-            
-            if (el.classList.contains('category-grid')) {
-                const cards = el.querySelectorAll('.cat-card');
-                cards.forEach(card => {
-                    card.classList.remove('active');
-                    card.classList.remove('show');
-                });
-            }
+        if (!el.classList.contains('active')) return;
+        el.classList.remove('active');
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach(card => card.classList.remove('active'));
         }
     };
 
-    const universalObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
             } else {
-                // Remove class when scrolling away (allows REPLAY)
+                // Only deactivate if really scrolling away (to avoid mini-flashes)
                 const rect = entry.target.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     deactivateElement(entry.target);
@@ -174,25 +155,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    allRevealElements.forEach(el => {
-        // On desktop, we observe the grid as a unit. On mobile, we observe cards individually.
-        if (!isMobile && el.classList.contains('cat-card')) return; 
-        universalObserver.observe(el);
-    });
+    revealElements.forEach(el => observer.observe(el));
+    if (catGrid) observer.observe(catGrid);
 
-    // Fallback/Initial check (Instant Reveal for elements already in view)
-    const runInitialCheck = () => {
-        allRevealElements.forEach(el => {
-            if (!isMobile && el.classList.contains('cat-card')) return;
+    // Fallback/Initial check
+    const runFallback = () => {
+        [...revealElements, catGrid].filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                 activateElement(el);
+            } else {
+                deactivateElement(el);
             }
         });
     };
 
-    window.addEventListener('load', runInitialCheck);
-    setTimeout(runInitialCheck, 500); // Secondary backup check
+    window.addEventListener('scroll', runFallback);
+    setTimeout(runFallback, 300); 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
