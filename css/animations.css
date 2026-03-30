@@ -23,6 +23,17 @@
     to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
 }
 
+/* --- MOBILE SPECIFIC CATEGORY ANIMATIONS --- */
+@keyframes mobile-slide-in-right {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes mobile-slide-in-left {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
 .reveal.active {
     opacity: 1 !important;
     visibility: visible !important;

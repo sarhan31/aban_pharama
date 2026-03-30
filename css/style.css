@@ -581,6 +581,7 @@ ul {
     margin-bottom: 45px;
     max-width: 650px;
     opacity: 0.95;
+    min-height: 120px; /* Reserves space for typing animation to prevent background shrink/flicker */
 }
 
 .hero-btns {
