@@ -215,19 +215,14 @@
         animation-duration: 1.2s !important;
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
         clip-path: inset(0 0 0 0);
-        transition: opacity 0.8s ease, visibility 0.8s ease !important;
+        /* Fail-safe: Always visible by default */
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    /* Keep hidden only if JS is active for the reveal effect */
-    body.js-active .cat-card {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    /* Repeatable state trigger */
-    body.js-active .cat-card.show {
-        opacity: 1;
-        visibility: visible;
+    /* Animation reveal: Triggered by individual observers in main.js */
+    .cat-card.active {
+        animation-fill-mode: forwards;
     }
 
     /* Cards 1, 2, 5, 6: Slide from Right */

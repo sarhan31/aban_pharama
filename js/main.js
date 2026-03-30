@@ -114,23 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const productCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
     
-    // General Reveal Observer (Non-Product Cards)
+    // Shared Observer logic for non-card reveals
     const genericObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
             if (entry.isIntersecting) {
                 if (el.classList.contains('active')) return;
                 el.classList.add('active');
-                el.classList.add('show');
                 
-                // Desktop Stagger Logic
+                // Desktop Stagger
                 if (!isMobile && el.classList.contains('category-grid')) {
                     const gridCards = el.querySelectorAll('.cat-card');
                     gridCards.forEach((card, index) => {
                         setTimeout(() => {
                             if (el.classList.contains('active')) {
                                 card.classList.add('active');
-                                card.classList.add('show');
                             }
                         }, index * 450);
                     });
@@ -139,55 +137,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
-                    el.classList.remove('show');
-                    // Reset grid cards on desktop
+                    // Reset grid on desktop
                     if (!isMobile && el.classList.contains('category-grid')) {
                         const gridCards = el.querySelectorAll('.cat-card');
-                        gridCards.forEach(card => {
-                            card.classList.remove('active');
-                            card.classList.remove('show');
-                        });
+                        gridCards.forEach(card => card.classList.remove('active'));
                     }
                 }
             }
         });
     }, { threshold: 0.15 });
 
-    // MOBILE-ONLY: Independent Card Observer for Repeatable Sequential Reveal
-    const mobileCardObserver = isMobile ? new IntersectionObserver((entries) => {
+    // MOBILE-ONLY: Individual Observers for Repeatable Reveal
+    const mobileObserver = isMobile ? new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                entry.target.classList.add('show');
             } else {
-                // Remove class on exit for REPLAY
-                entry.target.classList.remove('active');
-                entry.target.classList.remove('show');
+                // Remove on exit for REPLAY
+                const rect = entry.target.getBoundingClientRect();
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    entry.target.classList.remove('active');
+                }
             }
         });
-    }, { threshold: 0.2 }) : null;
+    }, { threshold: 0.25 }) : null;
 
-    // Observe everything
+    // Start Observation
     revealElements.forEach(el => genericObserver.observe(el));
-    
     if (isMobile) {
-        productCards.forEach(card => mobileCardObserver.observe(card));
+        productCards.forEach(card => mobileObserver.observe(card));
     } else if (catGrid) {
         genericObserver.observe(catGrid);
     }
 
-    // Fail-safe Initial Check
+    // Fail-safe initial reveal 
     const runInitialCheck = () => {
         const checkList = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
         checkList.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                 el.classList.add('active');
-                el.classList.add('show');
             }
         });
     };
-
     window.addEventListener('load', runInitialCheck);
     setTimeout(runInitialCheck, 500);
     // 5. Mobile Menu Toggle
