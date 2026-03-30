@@ -209,42 +209,37 @@
         gap: 25px !important;
     }
 
-    /* --- MOBILE CATEGORY ANIMATIONS (2-Right, 2-Left pattern) --- */
-    .cat-card {
-        transform: none !important; /* Reset desktop transforms */
-        animation-duration: 1.5s !important; /* Slightly faster for snappier replay */
+    /* --- MOBILE CATEGORY ANIMATIONS --- */
+    /* Higher specificity to guarantee visibility */
+    .category-grid .cat-card {
+        transform: none !important; 
+        animation-duration: 1.2s !important; 
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        clip-path: inset(0 0 0 100%); /* Start hidden (will be overridden by nth-child direction if needed, but safe base) */
+        clip-path: inset(0 0 0 100%); 
         opacity: 0;
         visibility: hidden;
+        display: block !important;
+        position: relative !important;
     }
 
-    /* Cards 1, 2, 5, 6: Slide from Right */
-    .cat-card:nth-child(1).active,
-    .cat-card:nth-child(1).show,
-    .cat-card:nth-child(2).active,
-    .cat-card:nth-child(2).show,
-    .cat-card:nth-child(5).active,
-    .cat-card:nth-child(5).show,
-    .cat-card:nth-child(6).active,
-    .cat-card:nth-child(6).show {
+    /* Forced visibility when active/show */
+    .category-grid .cat-card.active,
+    .category-grid .cat-card.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip-path: inset(0 0 0 0) !important;
+        transition: opacity 0.5s ease, visibility 0.5s ease !important;
+    }
+
+    /* Animation Assignment */
+    .category-grid .cat-card:nth-child(1).active, .category-grid .cat-card:nth-child(2).active,
+    .category-grid .cat-card:nth-child(5).active, .category-grid .cat-card:nth-child(6).active {
         animation-name: mobile-slide-in-right !important;
-        opacity: 1 !important;
-        visibility: visible !important;
     }
 
-    /* Cards 3, 4, 7, 8: Slide from Left */
-    .cat-card:nth-child(3).active,
-    .cat-card:nth-child(3).show,
-    .cat-card:nth-child(4).active,
-    .cat-card:nth-child(4).show,
-    .cat-card:nth-child(7).active,
-    .cat-card:nth-child(7).show,
-    .cat-card:nth-child(8).active,
-    .cat-card:nth-child(8).show {
+    .category-grid .cat-card:nth-child(3).active, .category-grid .cat-card:nth-child(4).active,
+    .category-grid .cat-card:nth-child(7).active, .category-grid .cat-card:nth-child(8).active {
         animation-name: mobile-slide-in-left !important;
-        opacity: 1 !important;
-        visibility: visible !important;
     }
 
     .card {

@@ -105,116 +105,94 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Premium Intersection Observer for Scroll Reveal
-    // MOBILE-ONLY: Product cards trigger independently as they enter the viewport
-    if (window.innerWidth < 768) {
-        const mobileObserverOptions = {
-            threshold: 0.2 // Trigger when 20% is visible
-        };
+    // 4. Unified Intersection Observer for Scroll Reveal
+    const allRevealElements = document.querySelectorAll('.reveal, .cat-card');
+    const isMobile = window.innerWidth < 768;
+    
+    // Observer Options
+    const observerOptions = {
+        threshold: 0.1, // Trigger when 10% is visible for better reliability
+        rootMargin: '0px 0px -20px 0px'
+    };
 
-        const mobileObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // entry.isIntersecting → add "active" and "show" class
-                    entry.target.classList.add('active');
-                    entry.target.classList.add('show');
-                } else {
-                    // else → remove "active" and "show" class (enables replay on scroll-back)
-                    entry.target.classList.remove('active');
-                    entry.target.classList.remove('show');
-                }
-            });
-        }, mobileObserverOptions);
-
-        const mobileCards = document.querySelectorAll('.cat-card');
-        mobileCards.forEach(card => mobileObserver.observe(card));
-
-        // General reveal elements (non-cards) still follow basic observer
-        const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-        const observerOptions = { threshold: 0.1 };
+    const activateElement = (el) => {
+        if (el.classList.contains('active')) return;
         
-        const generalObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                } else {
-                    const rect = entry.target.getBoundingClientRect();
-                    if (rect.top > window.innerHeight || rect.bottom < 0) {
-                        entry.target.classList.remove('active');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        revealElements.forEach(el => generalObserver.observe(el));
-
-    } else {
-        // DESKTOP: Traditional grid-staggering logic
-        const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-        const catGrid = document.querySelector('.category-grid');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const activateElement = (el) => {
-            if (el.classList.contains('active')) return;
+        // Handle Mobile Product Cards (Individual)
+        if (isMobile && el.classList.contains('cat-card')) {
             el.classList.add('active');
+            el.classList.add('show');
+            return;
+        }
+
+        // Handle Desktop/General Reveal
+        el.classList.add('active');
+        el.classList.add('show');
+
+        // Handle Desktop Category Grid Staggering
+        if (!isMobile && el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    if (el.classList.contains('active')) {
+                        card.classList.add('active');
+                        card.classList.add('show');
+                    }
+                }, index * 200);
+            });
+        }
+    };
+
+    const deactivateElement = (el) => {
+        // We only deactivate if it's NOT a card on desktop (keep desktop revealed)
+        // or if it's mobile (replay allowed)
+        if (isMobile || !el.classList.contains('cat-card')) {
+            el.classList.remove('active');
+            el.classList.remove('show');
             
             if (el.classList.contains('category-grid')) {
                 const cards = el.querySelectorAll('.cat-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        if (el.classList.contains('active')) {
-                            card.classList.add('active');
-                        }
-                    }, index * 250);
+                cards.forEach(card => {
+                    card.classList.remove('active');
+                    card.classList.remove('show');
                 });
             }
-        };
+        }
+    };
 
-        const deactivateElement = (el) => {
-            if (!el.classList.contains('active')) return;
-            el.classList.remove('active');
-            
-            if (el.classList.contains('category-grid')) {
-                const cards = el.querySelectorAll('.cat-card');
-                cards.forEach(card => card.classList.remove('active'));
+    const universalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                activateElement(entry.target);
+            } else {
+                // Remove class when scrolling away (allows REPLAY)
+                const rect = entry.target.getBoundingClientRect();
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    deactivateElement(entry.target);
+                }
             }
-        };
+        });
+    }, observerOptions);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    activateElement(entry.target);
-                } else {
-                    const rect = entry.target.getBoundingClientRect();
-                    if (rect.top > window.innerHeight || rect.bottom < 0) {
-                        deactivateElement(entry.target);
-                    }
-                }
-            });
-        }, observerOptions);
+    allRevealElements.forEach(el => {
+        // On desktop, we observe the grid as a unit. On mobile, we observe cards individually.
+        if (!isMobile && el.classList.contains('cat-card')) return; 
+        universalObserver.observe(el);
+    });
 
-        revealElements.forEach(el => observer.observe(el));
-        if (catGrid) observer.observe(catGrid);
+    // Fallback/Initial check (Instant Reveal for elements already in view)
+    const runInitialCheck = () => {
+        allRevealElements.forEach(el => {
+            if (!isMobile && el.classList.contains('cat-card')) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
+                activateElement(el);
+            }
+        });
+    };
 
-        // Fallback/Initial check
-        const runFallback = () => {
-            [...revealElements, catGrid].filter(Boolean).forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                    activateElement(el);
-                } else {
-                    deactivateElement(el);
-                }
-            });
-        };
-
-        window.addEventListener('scroll', runFallback);
-        setTimeout(runFallback, 300); 
-    }
+    window.addEventListener('load', runInitialCheck);
+    setTimeout(runInitialCheck, 500); // Secondary backup check
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
