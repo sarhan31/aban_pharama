@@ -120,13 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('active');
         
         if (el.classList.contains('category-grid')) {
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    if (el.classList.contains('active')) {
-                        card.classList.add('active');
-                    }
-                }, index * 600); // Increased stagger (0.6s) for a premium one-by-one flow
-            });
+            const gridCards = el.querySelectorAll('.cat-card');
+            if (gridCards.length > 0) {
+                gridCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        if (el.classList.contains('active')) {
+                            card.classList.add('active');
+                            card.classList.add('show');
+                        }
+                    }, index * 600);
+                });
+            }
         }
     };
 

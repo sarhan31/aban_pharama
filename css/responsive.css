@@ -212,9 +212,12 @@
     /* --- MOBILE CATEGORY ANIMATIONS (2-Right, 2-Left pattern) --- */
     .cat-card {
         transform: none !important; /* Reset desktop transforms */
-        animation-duration: 1.2s !important; /* Optimized for 0.6s stagger flow */
+        animation-duration: 1.2s !important; 
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        clip-path: inset(0 0 0 0); /* Ensure cards are visible after animation */
+        /* Fail-safe: Always visible unless animation is explicitly running */
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip-path: inset(0 0 0 0); 
     }
 
     /* Cards 1, 2, 5, 6: Slide from Right */
