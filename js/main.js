@@ -129,35 +129,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Unified Observer for General Reveals & Mobile Cards
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (isMobile && entry.target.classList.contains('cat-card')) {
+            const el = entry.target;
+            
+            if (isMobile && el.classList.contains('cat-card')) {
                 // MOBILE: Independent Repeatable Trigger
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                    entry.target.classList.add('active');
+                    el.classList.add('show');
+                    el.classList.add('active');
                 } else {
-                    entry.target.classList.remove('show');
-                    entry.target.classList.remove('active');
+                    // Fully reset when leaving viewport to enable REPLAY
+                    el.classList.remove('show');
+                    el.classList.remove('active');
                 }
             } else if (entry.isIntersecting) {
                 // DESKTOP GRID OR GENERAL REVEAL
-                if (entry.target.classList.contains('category-grid')) {
-                    activateDesktopGrid(entry.target);
+                if (el.classList.contains('category-grid')) {
+                    activateDesktopGrid(el);
                 } else {
-                    entry.target.classList.add('active');
-                    entry.target.classList.add('show');
+                    el.classList.add('active');
+                    el.classList.add('show');
                 }
             } else {
-                // Deactivate general reveals (if not a desktop card)
-                if (!entry.target.classList.contains('cat-card')) {
-                    const rect = entry.target.getBoundingClientRect();
+                // Deactivate general reveals ONLY (keeps desktop revealed unless scrolled away)
+                if (!el.classList.contains('cat-card')) {
+                    const rect = el.getBoundingClientRect();
                     if (rect.top > window.innerHeight || rect.bottom < 0) {
-                        entry.target.classList.remove('active');
-                        entry.target.classList.remove('show');
+                        el.classList.remove('active');
+                        el.classList.remove('show');
                     }
                 }
             }
         });
-    }, { threshold: isMobile ? 0.2 : 0.1 });
+    }, { 
+        threshold: isMobile ? 0.2 : 0.1,
+        rootMargin: '0px 0px -20px 0px'
+    });
 
     revealElements.forEach(el => observer.observe(el));
     if (isMobile) {
@@ -166,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(catGrid);
     }
 
-    // Fallback/Initial check
-    const runFallback = () => {
+    // Fallback/Initial check (Runs only once on load/timeout to catch above-the-fold elements)
+    const runInitialCheck = () => {
         const elementsToCheck = isMobile ? [...revealElements, ...catCards] : [...revealElements, catGrid];
         elementsToCheck.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
@@ -179,13 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     activateDesktopGrid(el);
                 } else {
                     el.classList.add('active');
+                    el.classList.add('show');
                 }
             }
         });
     };
 
-    window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 300); 
+    window.addEventListener('load', runInitialCheck);
+    setTimeout(runInitialCheck, 500); // Safety backup check for dynamic content
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
