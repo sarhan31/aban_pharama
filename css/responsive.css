@@ -212,22 +212,15 @@
     /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
         transform: none !important;
-        animation-duration: 1.5s !important;
+        animation-duration: 1.2s !important;
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        animation-fill-mode: forwards !important;
-        clip-path: inset(0 0 0 0); /* Visible by default */
+        /* Absolute Fail-Safe: Visible by default ALWAYS */
         opacity: 1 !important;
         visibility: visible !important;
+        clip-path: inset(0 0 0 0) !important;
     }
 
-    /* Surgical reveal logic */
-    body.js-active .cat-card:not(.active) {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        clip-path: inset(0 0 0 100%) !important;
-    }
-
-    /* Alternating Animation Pattern (Restored) */
+    /* Animation directions: Only trigger when .active is present */
     .cat-card:nth-child(odd).active {
         animation-name: mobile-slide-in-right !important;
     }
@@ -235,7 +228,7 @@
         animation-name: mobile-slide-in-left !important;
     }
 
-    /* Specific overrides for 2x2 grid feeling if needed */
+    /* Row-based direction overrides for premium 2-by-2 feel */
     .cat-card:nth-child(1).active, .cat-card:nth-child(2).active,
     .cat-card:nth-child(5).active, .cat-card:nth-child(6).active {
         animation-name: mobile-slide-in-right !important;

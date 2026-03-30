@@ -112,82 +112,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const productCards = document.querySelectorAll('.cat-card');
-    const catGrid = document.querySelector('.category-grid');
     
-    document.body.classList.add('js-active'); // Enable safe CSS reveals
+    // THE GUARANTEE: Hide cards ONLY if they are below the fold (Safe to reveal later)
+    const hideOffscreenCards = () => {
+        productCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top > window.innerHeight) {
+                card.style.opacity = '0';
+                card.style.visibility = 'hidden';
+                card.style.clipPath = 'inset(0 0 0 100%)';
+            }
+        });
+    };
 
-    // Queue-based stagger for mobile (Handles multiple cards entry at once)
     let revealQueue = [];
-    let isProcessingQueue = false;
+    let isProcessing = false;
 
     const processQueue = () => {
-        if (revealQueue.length === 0) {
-            isProcessingQueue = false;
-            return;
-        }
-        isProcessingQueue = true;
+        if (revealQueue.length === 0) { isProcessing = false; return; }
+        isProcessing = true;
         const el = revealQueue.shift();
-        if (el) el.classList.add('active');
-        
-        // Wait 600ms on mobile for premium sequence
+        if (el) {
+            el.style.opacity = '1';
+            el.style.visibility = 'visible';
+            el.style.clipPath = 'inset(0 0 0 0)';
+            el.classList.add('active');
+        }
         setTimeout(processQueue, isMobile ? 600 : 250);
     };
 
-    const addToQueue = (el) => {
-        if (el.classList.contains('active') || revealQueue.includes(el)) return;
-        revealQueue.push(el);
-        if (!isProcessingQueue) processQueue();
-    };
-
-    const cardObserver = new IntersectionObserver((entries) => {
+    const mainObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
             if (entry.isIntersecting) {
-                // If it's the grid, trigger staggered cards
-                if (el.classList.contains('category-grid')) {
-                    const cards = el.querySelectorAll('.cat-card');
-                    cards.forEach(card => addToQueue(card));
-                    el.classList.add('active');
-                } else if (el.classList.contains('cat-card')) {
-                    addToQueue(el);
+                if (el.classList.contains('cat-card')) {
+                    if (el.classList.contains('active')) return;
+                    revealQueue.push(el);
+                    if (!isProcessing) processQueue();
                 } else {
                     el.classList.add('active');
                 }
             } else {
-                // Sensitive exit: Remove immediately to allow REPLAY
+                // REPEATABLE: Reset when scrolled away
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
-                    // Remove from queue if it exited before revealing
-                    revealQueue = revealQueue.filter(qEl => qEl !== el);
-                    
-                    if (el.classList.contains('category-grid')) {
-                        const cards = el.querySelectorAll('.cat-card');
-                        cards.forEach(c => c.classList.remove('active'));
+                    if (el.classList.contains('cat-card')) {
+                        el.style.opacity = '0';
+                        el.style.visibility = 'hidden';
+                        el.style.clipPath = 'inset(0 0 0 100%)';
                     }
                 }
             }
         });
     }, { threshold: 0.15 });
 
-    // Start Observation
-    revealElements.forEach(el => cardObserver.observe(el));
-    if (isMobile) {
-        productCards.forEach(card => cardObserver.observe(card));
-    } else if (catGrid) {
-        cardObserver.observe(catGrid);
-    }
+    // Activate
+    hideOffscreenCards();
+    revealElements.forEach(el => mainObserver.observe(el));
+    productCards.forEach(card => mainObserver.observe(card));
 
-    // Fail-safe initial reveal 
+    // Global Fail-Safe: Show everything after 3s if stuck
     setTimeout(() => {
-        const checkList = [...revealElements, ...productCards];
-        checkList.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                el.classList.add('active');
-            }
+        productCards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.visibility = 'visible';
+            card.style.clipPath = 'inset(0 0 0 0)';
         });
-    }, 1000);
+    }, 3000);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
