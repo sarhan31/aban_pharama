@@ -105,13 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add JS indicator for safe CSS reveals
+    document.body.classList.add('js-active');
+
     // 4. Premium Intersection Observer for Scroll Reveal
-    // We observe general reveal elements individually, but the category grid handles its cards as a unit.
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const catGrid = document.querySelector('.category-grid');
     
     const observerOptions = {
-        threshold: 0.1, // Trigger when 10% is visible
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     };
 
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             card.classList.add('active');
                             card.classList.add('show');
                         }
-                    }, index * 600);
+                    }, index * 650); // Premium deliberate stagger (0.65s)
                 });
             }
         }
@@ -139,8 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.remove('active');
         
         if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach(card => card.classList.remove('active'));
+            const gridCards = el.querySelectorAll('.cat-card');
+            gridCards.forEach(card => {
+                card.classList.remove('active');
+                card.classList.remove('show');
+            });
         }
     };
 
@@ -149,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
             } else {
-                // Only deactivate if really scrolling away (to avoid mini-flashes)
                 const rect = entry.target.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     deactivateElement(entry.target);
@@ -161,20 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
     if (catGrid) observer.observe(catGrid);
 
-    // Fallback/Initial check
-    const runFallback = () => {
+    // Initial check (Runs only once on load)
+    const runInitialCheck = () => {
         [...revealElements, catGrid].filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                 activateElement(el);
-            } else {
-                deactivateElement(el);
             }
         });
     };
 
-    window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 300); 
+    window.addEventListener('load', runInitialCheck);
+    setTimeout(runInitialCheck, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
