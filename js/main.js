@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const catGrid = document.querySelector('.category-grid');
     
-    document.body.classList.add('js-active'); // Enable safe CSS reveals
+    document.body.classList.add('js-active');
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
@@ -123,21 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
-                    if (el.classList.contains('active')) {
-                        card.classList.add('active');
-                    }
-                }, index * (isMobile ? 600 : 250)); // Sequential Wave (0.6s on mobile)
+                    card.classList.add('active');
+                }, index * (isMobile ? 600 : 250));
             });
-        }
-    };
-
-    const deactivateElement = (el) => {
-        if (!el.classList.contains('active')) return;
-        el.classList.remove('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach(card => card.classList.remove('active'));
         }
     };
 
@@ -145,12 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateElement(entry.target);
-            } else {
-                const rect = entry.target.getBoundingClientRect();
-                // Sensitive Reset: If scrolled past or above, allow repeat
-                if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    deactivateElement(entry.target);
-                }
             }
         });
     }, { threshold: 0.1 });
@@ -158,18 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
     if (catGrid) observer.observe(catGrid);
 
-    // Fail-safe initial check
-    const runFallback = () => {
-        const checkList = [...revealElements, catGrid].filter(Boolean);
-        checkList.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                activateElement(el);
+    // Fail-safe
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const grid = document.querySelector('.category-grid');
+            if (grid && !grid.classList.contains('active')) {
+                const rect = grid.getBoundingClientRect();
+                if (rect.top < window.innerHeight) activateElement(grid);
             }
-        });
-    };
-    window.addEventListener('load', runFallback);
-    setTimeout(runFallback, 500);
+        }, 2000);
+    });
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
