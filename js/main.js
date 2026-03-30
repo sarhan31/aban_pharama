@@ -120,13 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('active');
         
         if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     if (el.classList.contains('active')) {
                         card.classList.add('active');
                     }
-                }, index * 250); // Slightly faster stagger (0.25s) for better flow
+                }, index * 600); // Increased stagger (0.6s) for a premium one-by-one flow
             });
         }
     };
