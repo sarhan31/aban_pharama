@@ -219,30 +219,18 @@
 
     /* Cards 1, 2, 5, 6: Slide from Right */
     .cat-card:nth-child(1).active,
-    .cat-card:nth-child(1).show,
     .cat-card:nth-child(2).active,
-    .cat-card:nth-child(2).show,
     .cat-card:nth-child(5).active,
-    .cat-card:nth-child(5).show,
-    .cat-card:nth-child(6).active,
-    .cat-card:nth-child(6).show {
+    .cat-card:nth-child(6).active {
         animation-name: mobile-slide-in-right !important;
-        opacity: 1 !important;
-        visibility: visible !important;
     }
 
     /* Cards 3, 4, 7, 8: Slide from Left */
     .cat-card:nth-child(3).active,
-    .cat-card:nth-child(3).show,
     .cat-card:nth-child(4).active,
-    .cat-card:nth-child(4).show,
     .cat-card:nth-child(7).active,
-    .cat-card:nth-child(7).show,
-    .cat-card:nth-child(8).active,
-    .cat-card:nth-child(8).show {
+    .cat-card:nth-child(8).active {
         animation-name: mobile-slide-in-left !important;
-        opacity: 1 !important;
-        visibility: visible !important;
     }
 
     .card {
