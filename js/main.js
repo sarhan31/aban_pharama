@@ -111,77 +111,74 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Premium Intersection Observer for Scroll Reveal
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const productCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
+    const productCards = document.querySelectorAll('.cat-card');
     
-    // Shared Observer logic for non-card reveals
-    const genericObserver = new IntersectionObserver((entries) => {
+    // Desktop Stagger Only
+    const desktopStagger = (grid) => {
+        const cards = grid.querySelectorAll('.cat-card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                if (grid.classList.contains('active')) {
+                    card.classList.add('active');
+                    card.classList.add('show');
+                }
+            }, index * 400);
+        });
+    };
+
+    const mainObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
+            const isCard = el.classList.contains('cat-card');
+
             if (entry.isIntersecting) {
                 if (el.classList.contains('active')) return;
                 el.classList.add('active');
+                el.classList.add('show');
                 
-                // Desktop Stagger
                 if (!isMobile && el.classList.contains('category-grid')) {
-                    const gridCards = el.querySelectorAll('.cat-card');
-                    gridCards.forEach((card, index) => {
-                        setTimeout(() => {
-                            if (el.classList.contains('active')) {
-                                card.classList.add('active');
-                            }
-                        }, index * 450);
-                    });
+                    desktopStagger(el);
                 }
             } else {
+                // Sensitive exit detection
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
-                    // Reset grid on desktop
+                    el.classList.remove('show');
+                    
                     if (!isMobile && el.classList.contains('category-grid')) {
-                        const gridCards = el.querySelectorAll('.cat-card');
-                        gridCards.forEach(card => card.classList.remove('active'));
+                        const cards = el.querySelectorAll('.cat-card');
+                        cards.forEach(c => {
+                            c.classList.remove('active');
+                            c.classList.remove('show');
+                        });
                     }
                 }
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: isMobile ? 0.2 : 0.1 });
 
-    // MOBILE-ONLY: Individual Observers for Repeatable Reveal
-    const mobileObserver = isMobile ? new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            } else {
-                // Remove on exit for REPLAY
-                const rect = entry.target.getBoundingClientRect();
-                if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    entry.target.classList.remove('active');
-                }
-            }
-        });
-    }, { threshold: 0.25 }) : null;
-
-    // Start Observation
-    revealElements.forEach(el => genericObserver.observe(el));
+    // Observe everything
+    revealElements.forEach(el => mainObserver.observe(el));
+    if (catGrid && !isMobile) mainObserver.observe(catGrid);
     if (isMobile) {
-        productCards.forEach(card => mobileObserver.observe(card));
-    } else if (catGrid) {
-        genericObserver.observe(catGrid);
+        productCards.forEach(card => mainObserver.observe(card));
     }
 
-    // Fail-safe initial reveal 
-    const runInitialCheck = () => {
-        const checkList = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
-        checkList.filter(Boolean).forEach(el => {
+    // Fail-safe initial reveal
+    const checkVisibility = () => {
+        const targets = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
+        targets.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                 el.classList.add('active');
+                el.classList.add('show');
             }
         });
     };
-    window.addEventListener('load', runInitialCheck);
-    setTimeout(runInitialCheck, 500);
+    window.addEventListener('load', checkVisibility);
+    setTimeout(checkVisibility, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
