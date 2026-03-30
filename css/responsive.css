@@ -253,15 +253,20 @@
         bottom: -15px !important;
     }
 
-    /* --- FOOTER FIX --- */
+    /* --- FOOTER FIX (REFINED: TALLER FOOTER) --- */
     footer {
         width: 100vw !important;
         max-width: 100vw !important;
         margin-left: calc(-50vw + 50%) !important;
-        padding: 50px 0 20px 0 !important;
+        margin-bottom: 0 !important;
+        padding: 60px 0 150px 0 !important; /* Extremely deep padding to occupy mobile bottom area */
         box-sizing: border-box !important;
         overflow: hidden;
+        background-color: #0f3d3e !important;
+    }
 
+    .premium-footer-bottom {
+        padding-bottom: 100px !important; /* Reserves significant dark space at the bottom */
     }
 
     footer .footer-container {
