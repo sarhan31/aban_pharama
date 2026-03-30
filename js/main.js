@@ -106,27 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Premium Intersection Observer for Scroll Reveal
-    // We observe general reveal elements individually, but the category grid handles its cards as a unit.
+    const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
+    const productCards = document.querySelectorAll('.cat-card');
     const catGrid = document.querySelector('.category-grid');
-    
-    const observerOptions = {
-        threshold: 0.1, // Trigger when 10% is visible
-        rootMargin: '0px 0px -50px 0px'
-    };
 
+    // Desktop/General Reveal Logic
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
+        el.classList.add('show');
         
-        if (el.classList.contains('category-grid')) {
+        // desktop staggering (category grid)
+        if (!isMobile && el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     if (el.classList.contains('active')) {
                         card.classList.add('active');
+                        card.classList.add('show');
                     }
-                }, index * 250); // Slightly faster stagger (0.25s) for better flow
+                }, index * 250);
             });
         }
     };
@@ -134,44 +134,73 @@ document.addEventListener('DOMContentLoaded', () => {
     const deactivateElement = (el) => {
         if (!el.classList.contains('active')) return;
         el.classList.remove('active');
+        el.classList.remove('show');
         
-        if (el.classList.contains('category-grid')) {
+        // desktop grid reset
+        if (!isMobile && el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
-            cards.forEach(card => card.classList.remove('active'));
+            cards.forEach(card => {
+                card.classList.remove('active');
+                card.classList.remove('show');
+            });
         }
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    // Shared Observer
+    const sharedObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const target = entry.target;
+            const isCard = target.classList.contains('cat-card');
+
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                if (isMobile && isCard) {
+                    // Mobile: Individual trigger
+                    target.classList.add('active');
+                    target.classList.add('show');
+                } else if (!isCard) {
+                    // General reveals & Desktop Grid
+                    activateElement(target);
+                }
             } else {
-                // Only deactivate if really scrolling away (to avoid mini-flashes)
-                const rect = entry.target.getBoundingClientRect();
-                if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    deactivateElement(entry.target);
+                // Remove class on exit (Replay support)
+                if (isMobile && isCard) {
+                    target.classList.remove('active');
+                    target.classList.remove('show');
+                } else if (!isCard) {
+                    const rect = target.getBoundingClientRect();
+                    if (rect.top > window.innerHeight || rect.bottom < 0) {
+                        deactivateElement(target);
+                    }
                 }
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    // Initial Observation Setup
+    revealElements.forEach(el => sharedObserver.observe(el));
+    
+    if (isMobile) {
+        // Mobile: Observe cards individually
+        productCards.forEach(card => sharedObserver.observe(card));
+    } else if (catGrid) {
+        // Desktop: Observe only grid for staggering
+        sharedObserver.observe(catGrid);
+    }
 
-    // Fallback/Initial check
-    const runFallback = () => {
-        [...revealElements, catGrid].filter(Boolean).forEach(el => {
+    // Fail-safe: Reveal elements already in view on load
+    const runInitialCheck = () => {
+        const checkList = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
+        checkList.filter(Boolean).forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                activateElement(el);
-            } else {
-                deactivateElement(el);
+                el.classList.add('active');
+                el.classList.add('show');
             }
         });
     };
 
-    window.addEventListener('scroll', runFallback);
-    setTimeout(runFallback, 300); 
+    window.addEventListener('load', runInitialCheck);
+    setTimeout(runInitialCheck, 500); 
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
