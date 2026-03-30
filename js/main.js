@@ -111,68 +111,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Premium Intersection Observer for Scroll Reveal
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const cards = document.querySelectorAll('.cat-card');
+    const catGrid = document.querySelector('.category-grid');
     
-    // Preparation: Pre-hide only if off-screen (Safe)
-    const initCards = () => {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top > window.innerHeight) {
-                card.classList.add('waiting');
-            }
-        });
-    };
+    document.body.classList.add('js-active'); // Enable safe CSS reveals
 
-    let queue = [];
-    let processing = false;
-
-    const runQueue = () => {
-        if (queue.length === 0) { processing = false; return; }
-        processing = true;
-        const el = queue.shift();
-        if (el) {
-            el.classList.remove('waiting');
-            // Force reset for replay
-            el.classList.remove('active');
-            void el.offsetWidth; 
-            el.classList.add('active');
-        }
-        setTimeout(runQueue, isMobile ? 600 : 250);
-    };
-
-    const mainObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const el = entry.target;
-            if (entry.isIntersecting) {
-                if (el.classList.contains('active')) return;
-                
-                if (el.classList.contains('cat-card')) {
-                    queue.push(el);
-                    if (!processing) runQueue();
-                } else {
-                    el.classList.add('active');
-                }
-            } else {
-                // REPEATABLE logic
-                const rect = el.getBoundingClientRect();
-                if (rect.top > window.innerHeight || rect.bottom < 0) {
-                    el.classList.remove('active');
-                    if (el.classList.contains('cat-card')) {
-                        el.classList.add('waiting');
+    const activateElement = (el) => {
+        if (el.classList.contains('active')) return;
+        el.classList.add('active');
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    if (el.classList.contains('active')) {
+                        card.classList.add('active');
                     }
+                }, index * (isMobile ? 600 : 250)); // Sequential Wave (0.6s on mobile)
+            });
+        }
+    };
+
+    const deactivateElement = (el) => {
+        if (!el.classList.contains('active')) return;
+        el.classList.remove('active');
+        
+        if (el.classList.contains('category-grid')) {
+            const cards = el.querySelectorAll('.cat-card');
+            cards.forEach(card => card.classList.remove('active'));
+        }
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                activateElement(entry.target);
+            } else {
+                const rect = entry.target.getBoundingClientRect();
+                // Sensitive Reset: If scrolled past or above, allow repeat
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    deactivateElement(entry.target);
                 }
             }
         });
     }, { threshold: 0.1 });
 
-    initCards();
-    revealElements.forEach(el => mainObserver.observe(el));
-    cards.forEach(el => mainObserver.observe(el));
+    revealElements.forEach(el => observer.observe(el));
+    if (catGrid) observer.observe(catGrid);
 
-    // Global fail-safe
-    setTimeout(() => {
-        cards.forEach(c => { c.classList.remove('waiting'); c.classList.add('active'); });
-    }, 4000);
+    // Fail-safe initial check
+    const runFallback = () => {
+        const checkList = [...revealElements, catGrid].filter(Boolean);
+        checkList.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
+                activateElement(el);
+            }
+        });
+    };
+    window.addEventListener('load', runFallback);
+    setTimeout(runFallback, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');

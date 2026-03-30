@@ -211,30 +211,43 @@
 
     /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        clip-path: none;
-        animation-duration: 1.2s;
-        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        animation-fill-mode: forwards;
+        transform: none !important;
+        animation-duration: 1.2s !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+        clip-path: inset(0 0 0 0); /* Visible by default */
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    /* Surgical reveal states */
-    .cat-card.waiting {
-        opacity: 0;
-        visibility: hidden;
+    /* Secret Sauce: Only hide cards via JS logic for smooth reveal */
+    body.js-active .cat-card:not(.active) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        clip-path: inset(0 0 0 100%);
     }
 
-    /* Directions */
-    .cat-card:nth-child(1).active, .cat-card:nth-child(2).active,
-    .cat-card:nth-child(5).active, .cat-card:nth-child(6).active {
-        animation-name: mobile-slide-in-right;
+    /* Reset opacity/path when active */
+    .cat-card.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip-path: inset(0 0 0 0) !important;
+        transition: opacity 0.4s ease !important;
     }
 
-    .cat-card:nth-child(3).active, .cat-card:nth-child(4).active,
-    .cat-card:nth-child(7).active, .cat-card:nth-child(8).active {
-        animation-name: mobile-slide-in-left;
+    /* Cards 1, 2, 5, 6: Slide from Right */
+    .cat-card:nth-child(1).active,
+    .cat-card:nth-child(2).active,
+    .cat-card:nth-child(5).active,
+    .cat-card:nth-child(6).active {
+        animation-name: mobile-slide-in-right !important;
+    }
+
+    /* Cards 3, 4, 7, 8: Slide from Left */
+    .cat-card:nth-child(3).active,
+    .cat-card:nth-child(4).active,
+    .cat-card:nth-child(7).active,
+    .cat-card:nth-child(8).active {
+        animation-name: mobile-slide-in-left !important;
     }
 
     .card {
