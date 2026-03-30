@@ -109,16 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // MOBILE-ONLY: Product cards trigger independently as they enter the viewport
     if (window.innerWidth < 768) {
         const mobileObserverOptions = {
-            threshold: 0.2, // Trigger when 20% is visible
-            rootMargin: '0px 0px -30px 0px'
+            threshold: 0.2 // Trigger when 20% is visible
         };
 
         const mobileObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // entry.isIntersecting → add "active" and "show" class
                     entry.target.classList.add('active');
+                    entry.target.classList.add('show');
                 } else {
-                    entry.target.classList.remove('active'); // Re-enable replay on scroll-back
+                    // else → remove "active" and "show" class (enables replay on scroll-back)
+                    entry.target.classList.remove('active');
+                    entry.target.classList.remove('show');
                 }
             });
         }, mobileObserverOptions);
@@ -128,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // General reveal elements (non-cards) still follow basic observer
         const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observerOptions = { threshold: 0.1 };
         
         const generalObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
