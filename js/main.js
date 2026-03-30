@@ -114,71 +114,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const catGrid = document.querySelector('.category-grid');
     const productCards = document.querySelectorAll('.cat-card');
     
-    // Desktop Stagger Only
-    const desktopStagger = (grid) => {
-        const cards = grid.querySelectorAll('.cat-card');
-        cards.forEach((card, index) => {
-            setTimeout(() => {
-                if (grid.classList.contains('active')) {
-                    card.classList.add('active');
-                    card.classList.add('show');
-                }
-            }, index * 400);
+    // Preparation: Pre-hide cards that are below the fold (Safe Reveal)
+    const prepareCards = () => {
+        productCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            // If card is below viewport or just at the edge, hide it to prepare for reveal
+            if (rect.top > window.innerHeight - 50) {
+                card.classList.add('waiting');
+            }
         });
     };
 
     const mainObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const el = entry.target;
-            const isCard = el.classList.contains('cat-card');
-
             if (entry.isIntersecting) {
-                if (el.classList.contains('active')) return;
+                el.classList.remove('waiting');
                 el.classList.add('active');
-                el.classList.add('show');
                 
+                // Desktop Grid Stagger
                 if (!isMobile && el.classList.contains('category-grid')) {
-                    desktopStagger(el);
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach((c, i) => {
+                        setTimeout(() => {
+                            if (el.classList.contains('active')) {
+                                c.classList.remove('waiting');
+                                c.classList.add('active');
+                            }
+                        }, i * 400);
+                    });
                 }
             } else {
-                // Sensitive exit detection
+                // Repeatable logic: Reset if scrolled away
                 const rect = el.getBoundingClientRect();
                 if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
-                    el.classList.remove('show');
-                    
+                    if (isMobile && el.classList.contains('cat-card')) {
+                        el.classList.add('waiting');
+                    }
                     if (!isMobile && el.classList.contains('category-grid')) {
                         const cards = el.querySelectorAll('.cat-card');
-                        cards.forEach(c => {
-                            c.classList.remove('active');
-                            c.classList.remove('show');
-                        });
+                        cards.forEach(c => c.classList.remove('active'));
                     }
                 }
             }
         });
-    }, { threshold: isMobile ? 0.2 : 0.1 });
+    }, { threshold: 0.15 });
 
-    // Observe everything
+    // Activate
+    prepareCards();
     revealElements.forEach(el => mainObserver.observe(el));
-    if (catGrid && !isMobile) mainObserver.observe(catGrid);
     if (isMobile) {
         productCards.forEach(card => mainObserver.observe(card));
+    } else if (catGrid) {
+        mainObserver.observe(catGrid);
     }
 
-    // Fail-safe initial reveal
-    const checkVisibility = () => {
-        const targets = isMobile ? [...revealElements, ...productCards] : [...revealElements, catGrid];
-        targets.filter(Boolean).forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-                el.classList.add('active');
-                el.classList.add('show');
+    // Fail-safe Reveal
+    setTimeout(() => {
+        productCards.forEach(card => {
+            if (!card.classList.contains('active')) {
+                card.classList.remove('waiting');
+                card.classList.add('active');
             }
         });
-    };
-    window.addEventListener('load', checkVisibility);
-    setTimeout(checkVisibility, 500);
+    }, 2000); // After 2s, force show everything if JS delayed
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
