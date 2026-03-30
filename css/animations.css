@@ -23,15 +23,31 @@
     to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
 }
 
-/* --- MOBILE SPECIFIC CATEGORY ANIMATIONS --- */
+/* --- MOBILE SPECIFIC CATEGORY ANIMATIONS (CURTAIN EFFECT) --- */
 @keyframes mobile-slide-in-right {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from { 
+        transform: translateX(30px) scale(0.95); 
+        clip-path: inset(0 0 0 100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0) scale(1); 
+        clip-path: inset(0 0 0 0); 
+        opacity: 1; 
+    }
 }
 
 @keyframes mobile-slide-in-left {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from { 
+        transform: translateX(-30px) scale(0.95); 
+        clip-path: inset(0 100% 0 0);
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0) scale(1); 
+        clip-path: inset(0 0 0 0); 
+        opacity: 1; 
+    }
 }
 
 .reveal.active {
