@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    mobileObserver.unobserve(entry.target); // Trigger only once on mobile
+                } else {
+                    entry.target.classList.remove('active'); // Re-enable replay on scroll-back
                 }
             });
         }, mobileObserverOptions);
