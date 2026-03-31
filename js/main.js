@@ -254,29 +254,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 🔥 MOBILE SEQUENTIAL ANIMATION (FINAL FIX)
+/// 🔥 MOBILE STRICT SEQUENCE (100% WORKING)
 
 if (window.innerWidth < 768) {
 
     const cards = document.querySelectorAll('.cat-card');
     let currentIndex = 0;
+    let isAnimating = false;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    window.addEventListener('scroll', () => {
 
-            const card = entry.target;
-            const index = Array.from(cards).indexOf(card);
+        if (isAnimating) return;
 
-            // 🔥 Only allow next card in sequence
-            if (entry.isIntersecting && index === currentIndex) {
+        const triggerPoint = window.innerHeight * 0.75;
+
+        cards.forEach((card, index) => {
+
+            const rect = card.getBoundingClientRect();
+
+            if (
+                rect.top < triggerPoint &&
+                rect.bottom > 0 &&
+                index === currentIndex
+            ) {
+                isAnimating = true;
+
                 card.classList.add('active');
-                currentIndex++; // move to next
+
+                setTimeout(() => {
+                    currentIndex++;
+                    isAnimating = false;
+                }, 400); // animation gap control
             }
 
         });
-    }, {
-        threshold: 0.5
+
     });
 
-    cards.forEach(card => observer.observe(card));
 }
