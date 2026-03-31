@@ -128,36 +128,42 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
 
             const el = entry.target;
+if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
 
-            if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+    // 🔥 ONLY FOR CATEGORY GRID
+    if (el.classList.contains('category-grid')) {
 
-                el.classList.add('active');
+        const cards = Array.from(el.querySelectorAll('.cat-card'));
 
-                if (el.classList.contains('category-grid')) {
-                    const cards = Array.from(el.querySelectorAll('.cat-card'));
+        // Direction-based order
+        const orderedCards = scrollDirection === "down"
+            ? cards
+            : cards.reverse();
 
-                    const orderedCards = scrollDirection === "down"
-                        ? cards
-                        : cards.reverse();
+        orderedCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('active');
+            }, index * 250); // 🔥 stagger back
+        });
 
-                    orderedCards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.classList.add('active');
-                        }, index * 180);
-                    });
-                }
+    } else {
+        // Normal reveal elements
+        el.classList.add('active');
+    }
 
-            } else if (entry.intersectionRatio < 0.1) {
+} else if (entry.intersectionRatio < 0.1) {
 
-                el.classList.remove('active');
+    if (el.classList.contains('category-grid')) {
 
-                if (el.classList.contains('category-grid')) {
-                    const cards = el.querySelectorAll('.cat-card');
-                    cards.forEach(card => {
-                        card.classList.remove('active');
-                    });
-                }
-            }
+        const cards = el.querySelectorAll('.cat-card');
+        cards.forEach(card => {
+            card.classList.remove('active');
+        });
+
+    } else {
+        el.classList.remove('active');
+    }
+}
 
         });
     }, {
