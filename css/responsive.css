@@ -209,34 +209,27 @@
         gap: 25px !important;
     }
 
-    /* --- MOBILE CATEGORY ANIMATIONS --- */
+    /* --- MOBILE CATEGORY ANIMATIONS (Proper Mirrored Pattern) --- */
     .cat-card {
         transform: none !important;
-        animation: none !important; /* Only runs when .active is added */
+        animation: none !important;
         opacity: 1; /* FAIL-SAFE: Visible by default */
         visibility: visible;
     }
 
-    /* Secret Sauce: Reveal logic via JS */
     body.js-active .cat-card.active {
         opacity: 1 !important;
         visibility: visible !important;
-        animation: mobile-slide-in-right 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+        /* Snappier 0.8s speed for "Proper" feel */
+        animation: mobile-slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }
 
-    /* Perfect Alternating Pattern */
+    /* Mirrored Entry: Left card (odd) from Left, Right card (even) from Right */
+    .cat-card:nth-child(odd).active {
+        animation-name: mobile-slide-in-left !important;
+    }
     .cat-card:nth-child(even).active {
-        animation-name: mobile-slide-in-left !important;
-    }
-
-    /* Column-based direction overrides for premium 2-by-2 feel */
-    .cat-card:nth-child(1).active, .cat-card:nth-child(2).active,
-    .cat-card:nth-child(5).active, .cat-card:nth-child(6).active {
         animation-name: mobile-slide-in-right !important;
-    }
-    .cat-card:nth-child(3).active, .cat-card:nth-child(4).active,
-    .cat-card:nth-child(7).active, .cat-card:nth-child(8).active {
-        animation-name: mobile-slide-in-left !important;
     }
 
     .card {
