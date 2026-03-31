@@ -213,7 +213,7 @@
     .cat-card {
         transform: none !important;
         animation: none !important; /* Only runs when .active is added */
-        opacity: 1;
+        opacity: 1; /* FAIL-SAFE: Visible by default */
         visibility: visible;
     }
 
