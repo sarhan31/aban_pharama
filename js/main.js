@@ -254,27 +254,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 🔥 STRICT FULL VISIBILITY SEQUENCE (FINAL)
+// 🔥 FINAL STRICT SEQUENTIAL SYSTEM (NO SKIP)
 
 if (window.innerWidth < 768) {
 
     const cards = document.querySelectorAll('.cat-card');
     let currentIndex = 0;
+    let isAnimating = false;
 
     window.addEventListener('scroll', () => {
 
+        if (isAnimating) return;
         if (currentIndex >= cards.length) return;
 
         const currentCard = cards[currentIndex];
         const rect = currentCard.getBoundingClientRect();
 
-        // 🔥 CHECK FULL VISIBILITY
+        // 🔥 FULL VISIBILITY CHECK
         if (
             rect.top >= 0 &&
             rect.bottom <= window.innerHeight
         ) {
+            isAnimating = true;
+
             currentCard.classList.add('active');
-            currentIndex++; // move to next
+
+            setTimeout(() => {
+                currentIndex++;   // move next
+                isAnimating = false;
+            }, 500); // animation duration lock
         }
 
     });
