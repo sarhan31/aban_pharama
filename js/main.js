@@ -128,43 +128,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        const el = entry.target;
 
-            if (entry.isIntersecting) {
-                // ADD animation
-                entry.target.classList.add('active');
+        if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+            // ENTER VIEW → ANIMATE
+            el.classList.add('active');
 
-                // Category grid special handling
-                if (entry.target.classList.contains('category-grid')) {
-                    const cards = entry.target.querySelectorAll('.cat-card');
-                    cards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.classList.add('active');
-                        }, index * (isMobile ? 600 : 250));
-                    });
-                }
-
-            } else {
-                // 🔥 REMOVE animation when leaving viewport (THIS IS THE FIX)
-                entry.target.classList.remove('active');
-
-                // Also reset child cards
-                if (entry.target.classList.contains('category-grid')) {
-                    const cards = entry.target.querySelectorAll('.cat-card');
-                    cards.forEach(card => {
-                        card.classList.remove('active');
-                    });
-                }
+            if (el.classList.contains('category-grid')) {
+                const cards = el.querySelectorAll('.cat-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('active');
+                    }, index * (isMobile ? 600 : 250));
+                });
             }
 
-        });
-    }, {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50px 0px"
-    });
+        } else if (entry.intersectionRatio < 0.1) {
+            // EXIT VIEW → RESET (only when fully out)
+            el.classList.remove('active');
 
+            if (el.classList.contains('category-grid')) {
+                const cards = el.querySelectorAll('.cat-card');
+                cards.forEach(card => {
+                    card.classList.remove('active');
+                });
+            }
+        }
+
+    });
+}, {
+    threshold: [0, 0.25, 0.5],
+    rootMargin: "0px 0px -80px 0px"
+});
     revealElements.forEach(el => observer.observe(el));
     if (catGrid) observer.observe(catGrid);
 
