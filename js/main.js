@@ -254,40 +254,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-/// 🔥 MOBILE STRICT SEQUENCE (100% WORKING)
+// 🔥 STRICT FULL VISIBILITY SEQUENCE (FINAL)
 
 if (window.innerWidth < 768) {
 
     const cards = document.querySelectorAll('.cat-card');
     let currentIndex = 0;
-    let isAnimating = false;
 
     window.addEventListener('scroll', () => {
 
-        if (isAnimating) return;
+        if (currentIndex >= cards.length) return;
 
-        const triggerPoint = window.innerHeight * 0.75;
+        const currentCard = cards[currentIndex];
+        const rect = currentCard.getBoundingClientRect();
 
-        cards.forEach((card, index) => {
-
-            const rect = card.getBoundingClientRect();
-
-            if (
-                rect.top < triggerPoint &&
-                rect.bottom > 0 &&
-                index === currentIndex
-            ) {
-                isAnimating = true;
-
-                card.classList.add('active');
-
-                setTimeout(() => {
-                    currentIndex++;
-                    isAnimating = false;
-                }, 400); // animation gap control
-            }
-
-        });
+        // 🔥 CHECK FULL VISIBILITY
+        if (
+            rect.top >= 0 &&
+            rect.bottom <= window.innerHeight
+        ) {
+            currentCard.classList.add('active');
+            currentIndex++; // move to next
+        }
 
     });
 
