@@ -254,31 +254,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 🔥 MOBILE ONLY PRODUCT CARD CONTROL
+// 🔥 MOBILE SEQUENTIAL ANIMATION (FINAL FIX)
 
 if (window.innerWidth < 768) {
 
-    const productCards = document.querySelectorAll('.cat-card');
+    const cards = document.querySelectorAll('.cat-card');
+    let currentIndex = 0;
 
-    const mobileCardObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
 
             const card = entry.target;
+            const index = Array.from(cards).indexOf(card);
 
-            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            // 🔥 Only allow next card in sequence
+            if (entry.isIntersecting && index === currentIndex) {
                 card.classList.add('active');
-            } else if (entry.intersectionRatio < 0.1) {
-                card.classList.remove('active');
+                currentIndex++; // move to next
             }
 
         });
     }, {
-        threshold: [0, 0.3],
-        rootMargin: "0px 0px -60px 0px"
+        threshold: 0.5
     });
 
-    productCards.forEach(card => {
-        mobileCardObserver.observe(card);
-    });
-
+    cards.forEach(card => observer.observe(card));
 }
