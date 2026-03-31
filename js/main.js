@@ -128,58 +128,44 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
 
             const el = entry.target;
-if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
 
-    // 🔥 ONLY FOR CATEGORY GRID
-    if (el.classList.contains('category-grid')) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
 
-        const cards = Array.from(el.querySelectorAll('.cat-card'));
+                el.classList.add('active');
 
-        // Direction-based order
-        const orderedCards = scrollDirection === "down"
-            ? cards
-            : cards.reverse();
+                if (el.classList.contains('category-grid')) {
+                    const cards = Array.from(el.querySelectorAll('.cat-card'));
 
-        orderedCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('active');
-            }, index * 250); // 🔥 stagger back
+                    const orderedCards = scrollDirection === "down"
+                        ? cards
+                        : cards.reverse();
+
+                    orderedCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * 180);
+                    });
+                }
+
+            } else if (entry.intersectionRatio < 0.1) {
+
+                el.classList.remove('active');
+
+                if (el.classList.contains('category-grid')) {
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                }
+            }
+
         });
-
-    } else {
-        // Normal reveal elements
-        el.classList.add('active');
-    }
-
-        } else if (entry.intersectionRatio < 0.1) {
-            el.classList.remove('active');
-        }
+    }, {
+        threshold: [0, 0.25, 0.5],
+        rootMargin: "0px 0px -80px 0px"
     });
-}, { threshold: [0, 0.25] });
 
-// 🔥 SELECT ALL CARDS DIRECTLY
-const productCards = document.querySelectorAll('.cat-card');
-
-const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        const card = entry.target;
-        if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
-            card.classList.add('active');
-        } else if (entry.intersectionRatio < 0.1) {
-            card.classList.remove('active');
-        }
-    });
-}, {
-    threshold: [0, 0.25],
-    rootMargin: "0px 0px -50px 0px"
-});
-
-// 🔥 OBSERVE EACH CARD
-productCards.forEach(card => {
-    cardObserver.observe(card);
-});
-
-const activateElement = (el) => {
+    const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
 
