@@ -112,8 +112,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const catGrid = document.querySelector('.category-grid');
+    let lastScrollY = window.scrollY;
+    let scrollDirection = "down";
 
-    document.body.classList.add('js-active');
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > lastScrollY) {
+            scrollDirection = "down";
+        } else {
+            scrollDirection = "up";
+        }
+        lastScrollY = window.scrollY;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+
+            const el = entry.target;
+
+            if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+
+                el.classList.add('active');
+
+                if (el.classList.contains('category-grid')) {
+                    const cards = Array.from(el.querySelectorAll('.cat-card'));
+
+                    const orderedCards = scrollDirection === "down"
+                        ? cards
+                        : cards.reverse();
+
+                    orderedCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * 180);
+                    });
+                }
+
+            } else if (entry.intersectionRatio < 0.1) {
+
+                el.classList.remove('active');
+
+                if (el.classList.contains('category-grid')) {
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                }
+            }
+
+        });
+    }, {
+        threshold: [0, 0.25, 0.5],
+        rootMargin: "0px 0px -80px 0px"
+    });
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
@@ -128,41 +178,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
 
-        const el = entry.target;
+            const el = entry.target;
 
-        if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
-            // ENTER VIEW → ANIMATE
-            el.classList.add('active');
+            if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+                // ENTER VIEW → ANIMATE
+                el.classList.add('active');
 
-            if (el.classList.contains('category-grid')) {
-                const cards = el.querySelectorAll('.cat-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('active');
-                    }, index * (isMobile ? 600 : 250));
-                });
+                if (el.classList.contains('category-grid')) {
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * (isMobile ? 600 : 250));
+                    });
+                }
+
+            } else if (entry.intersectionRatio < 0.1) {
+                // EXIT VIEW → RESET (only when fully out)
+                el.classList.remove('active');
+
+                if (el.classList.contains('category-grid')) {
+                    const cards = el.querySelectorAll('.cat-card');
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                }
             }
 
-        } else if (entry.intersectionRatio < 0.1) {
-            // EXIT VIEW → RESET (only when fully out)
-            el.classList.remove('active');
-
-            if (el.classList.contains('category-grid')) {
-                const cards = el.querySelectorAll('.cat-card');
-                cards.forEach(card => {
-                    card.classList.remove('active');
-                });
-            }
-        }
-
+        });
+    }, {
+        threshold: [0, 0.25, 0.5],
+        rootMargin: "0px 0px -80px 0px"
     });
-}, {
-    threshold: [0, 0.25, 0.5],
-    rootMargin: "0px 0px -80px 0px"
-});
     revealElements.forEach(el => observer.observe(el));
     if (catGrid) observer.observe(catGrid);
 
