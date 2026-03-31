@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.innerHTML = '';
         element.style.opacity = '1';
         element.style.visibility = 'visible';
-        
+
         function type() {
             if (i < text.length) {
                 element.innerHTML += text.charAt(i);
@@ -21,19 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
-            
+
             if (hero) hero.classList.add('hero-revealed');
             if (heroContent) {
                 setTimeout(() => {
                     heroContent.classList.add('hero-revealed');
-                    
+
                     // Trigger typing animation for paragraph
                     const heroP = document.getElementById('typing-para');
                     if (heroP) {
                         const textToType = heroP.getAttribute('data-type-text') || heroP.innerText.trim();
                         if (textToType) {
                             heroP.classList.add('typing-idle'); // Hide briefly for setup
-                            heroP.innerText = ''; 
+                            heroP.innerText = '';
                             setTimeout(() => {
                                 typeWriter(heroP, textToType, 35);
                                 heroP.classList.remove('typing-idle');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             heroP.style.visibility = 'visible';
                         }
                     }
-                }, 400); 
+                }, 400);
             }
         } catch (err) {
             console.error('Hero Reveal Error:', err);
@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (splashScreen) {
         // Prevent scrolling while splash is active
         document.body.style.overflow = 'hidden';
-        
+
         setTimeout(() => {
             splashScreen.classList.add('fade-out');
             document.body.style.overflow = 'auto';
-            
+
             triggerHeroReveal();
-            
+
             // Optional: Remove from DOM after transition
             setTimeout(() => {
                 splashScreen.remove();
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-        
+
         // 2. Back to Top Button Visibility
         const backToTop = document.getElementById('back-to-top');
         if (window.scrollY > 500) {
@@ -112,13 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
     const catGrid = document.querySelector('.category-grid');
-    
+
     document.body.classList.add('js-active');
 
     const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
-        
+
         if (el.classList.contains('category-grid')) {
             const cards = el.querySelectorAll('.cat-card');
             cards.forEach((card, index) => {
@@ -131,11 +131,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                // ADD animation
+                entry.target.classList.add('active');
+
+                // Category grid special handling
+                if (entry.target.classList.contains('category-grid')) {
+                    const cards = entry.target.querySelectorAll('.cat-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('active');
+                        }, index * (isMobile ? 600 : 250));
+                    });
+                }
+
+            } else {
+                // 🔥 REMOVE animation when leaving viewport (THIS IS THE FIX)
+                entry.target.classList.remove('active');
+
+                // Also reset child cards
+                if (entry.target.classList.contains('category-grid')) {
+                    const cards = entry.target.querySelectorAll('.cat-card');
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                }
             }
+
         });
-    }, { threshold: 0.1 });
+    }, {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+    });
 
     revealElements.forEach(el => observer.observe(el));
     if (catGrid) observer.observe(catGrid);
@@ -153,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
-    
+
     // Create mobile menu header (logo + text + close)
     const mobileHeader = document.createElement('div');
     mobileHeader.className = 'mobile-menu-header';
@@ -190,20 +218,20 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return; // Skip if just "#"
-            
+
             const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault(); // Only prevent if target exists
-                
+
                 // Use scrollIntoView for better results with Flexbox layouts
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
+
                 // fallback offset correction (since fixed header exists)
                 // We'll use a small timeout to adjust if needed, but scrollIntoView is usually enough
-                
+
                 // Close mobile menu if open
                 if (navLinks.classList.contains('mobile-active')) {
                     closeMenu();
