@@ -254,45 +254,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 🔥 STRICT ONE-BY-ONE SYSTEM (FINAL)
-
 if (window.innerWidth < 768) {
 
     const cards = document.querySelectorAll('.cat-card');
-    let currentIndex = 0;
-    let isAnimating = false;
 
-    window.addEventListener('scroll', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
 
-        if (isAnimating) return;
-        if (currentIndex >= cards.length) return;
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
 
-        const card = cards[currentIndex];
-        const rect = card.getBoundingClientRect();
-
-        // Trigger when card center reaches screen center
-        const cardCenter = rect.top + rect.height / 2;
-        const screenCenter = window.innerHeight / 2;
-
-        if (cardCenter < screenCenter + 50) {
-
-            isAnimating = true;
-
-            card.classList.add('active');
-
-            // 🔥 SCROLL LOCK (IMPORTANT)
-            window.scrollTo({
-                top: window.scrollY + 1,
-                behavior: "smooth"
-            });
-
-            setTimeout(() => {
-                currentIndex++;
-                isAnimating = false;
-            }, 600);
-
-        }
-
+        });
+    }, {
+        threshold: 0.6
     });
 
+    cards.forEach(card => observer.observe(card));
 }
