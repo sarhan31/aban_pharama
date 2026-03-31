@@ -151,23 +151,22 @@ if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
         el.classList.add('active');
     }
 
-        } else if (entry.intersectionRatio < 0.1) {
-            el.classList.remove('active');
-        }
-    });
-}, { threshold: [0, 0.25] });
+} else if (entry.intersectionRatio < 0.1) {
 
-// 🔥 SELECT ALL CARDS DIRECTLY
+    // 🔥 SELECT ALL CARDS DIRECTLY
 const productCards = document.querySelectorAll('.cat-card');
 
 const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+
         const card = entry.target;
+
         if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
             card.classList.add('active');
         } else if (entry.intersectionRatio < 0.1) {
             card.classList.remove('active');
         }
+
     });
 }, {
     threshold: [0, 0.25],
@@ -179,7 +178,7 @@ productCards.forEach(card => {
     cardObserver.observe(card);
 });
 
-const activateElement = (el) => {
+    const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
 
