@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 🔥 STRICT ONE-BY-ONE SYSTEM (FINAL)
+// 🔥 FINAL STRICT SEQUENTIAL SYSTEM (NO SKIP)
 
 if (window.innerWidth < 768) {
 
@@ -267,30 +267,22 @@ if (window.innerWidth < 768) {
         if (isAnimating) return;
         if (currentIndex >= cards.length) return;
 
-        const card = cards[currentIndex];
-        const rect = card.getBoundingClientRect();
+        const currentCard = cards[currentIndex];
+        const rect = currentCard.getBoundingClientRect();
 
-        // Trigger when card center reaches screen center
-        const cardCenter = rect.top + rect.height / 2;
-        const screenCenter = window.innerHeight / 2;
-
-        if (cardCenter < screenCenter + 50) {
-
+        // 🔥 FULL VISIBILITY CHECK
+        if (
+            rect.top >= 0 &&
+            rect.bottom <= window.innerHeight
+        ) {
             isAnimating = true;
 
-            card.classList.add('active');
-
-            // 🔥 SCROLL LOCK (IMPORTANT)
-            window.scrollTo({
-                top: window.scrollY + 1,
-                behavior: "smooth"
-            });
+            currentCard.classList.add('active');
 
             setTimeout(() => {
-                currentIndex++;
+                currentIndex++;   // move next
                 isAnimating = false;
-            }, 600);
-
+            }, 500); // animation duration lock
         }
 
     });
