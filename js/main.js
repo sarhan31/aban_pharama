@@ -151,27 +151,35 @@ if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
         el.classList.add('active');
     }
 
-} else if (entry.intersectionRatio < 0.1) {
-
-    if (el.classList.contains('category-grid')) {
-
-        const cards = el.querySelectorAll('.cat-card');
-        cards.forEach(card => {
-            card.classList.remove('active');
-        });
-
-    } else {
-        el.classList.remove('active');
-    }
-}
-
-        });
-    }, {
-        threshold: [0, 0.25, 0.5],
-        rootMargin: "0px 0px -80px 0px"
+        } else if (entry.intersectionRatio < 0.1) {
+            el.classList.remove('active');
+        }
     });
+}, { threshold: [0, 0.25] });
 
-    const activateElement = (el) => {
+// 🔥 SELECT ALL CARDS DIRECTLY
+const productCards = document.querySelectorAll('.cat-card');
+
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const card = entry.target;
+        if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+            card.classList.add('active');
+        } else if (entry.intersectionRatio < 0.1) {
+            card.classList.remove('active');
+        }
+    });
+}, {
+    threshold: [0, 0.25],
+    rootMargin: "0px 0px -50px 0px"
+});
+
+// 🔥 OBSERVE EACH CARD
+productCards.forEach(card => {
+    cardObserver.observe(card);
+});
+
+const activateElement = (el) => {
         if (el.classList.contains('active')) return;
         el.classList.add('active');
 
