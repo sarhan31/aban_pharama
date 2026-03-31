@@ -108,48 +108,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add JS indicator for safe CSS reveals
     document.body.classList.add('js-active');
 
-    // 4. Premium Intersection Observer for Scroll Reveal
+    // 4. Universal Repeatable Reveal System
     const isMobile = window.innerWidth < 768;
     const revealElements = document.querySelectorAll('.reveal:not(.cat-card)');
-    const catGrid = document.querySelector('.category-grid');
+    const productCards = document.querySelectorAll('.cat-card');
     
     document.body.classList.add('js-active');
 
-    const activateElement = (el) => {
-        if (el.classList.contains('active')) return;
-        el.classList.add('active');
-        
-        if (el.classList.contains('category-grid')) {
-            const cards = el.querySelectorAll('.cat-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('active');
-                }, index * (isMobile ? 600 : 250));
-            });
-        }
-    };
-
-    const observer = new IntersectionObserver((entries) => {
+    const repeatableObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const el = entry.target;
             if (entry.isIntersecting) {
-                activateElement(entry.target);
+                // If it's already active, don't re-trigger unless it's a fresh entry
+                if (el.classList.contains('active')) return;
+
+                // FORCE REPEAT: Surgical reset using Reflow
+                void el.offsetWidth; 
+                el.classList.add('active');
+            } else {
+                // RESET ON EXIT: Remove active class so it can animate again
+                // Only for product cards to ensure high-performance repeating
+                if (el.classList.contains('cat-card')) {
+                    el.classList.remove('active');
+                }
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: isMobile ? 0.2 : 0.1 });
 
-    revealElements.forEach(el => observer.observe(el));
-    if (catGrid) observer.observe(catGrid);
+    revealElements.forEach(el => repeatableObserver.observe(el));
+    productCards.forEach(el => repeatableObserver.observe(el));
 
-    // Fail-safe
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const grid = document.querySelector('.category-grid');
-            if (grid && !grid.classList.contains('active')) {
-                const rect = grid.getBoundingClientRect();
-                if (rect.top < window.innerHeight) activateElement(grid);
+    // Fail-safe initial check for elements already in view
+    setTimeout(() => {
+        productCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                card.classList.add('active');
             }
-        }, 2000);
-    });
+        });
+    }, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
