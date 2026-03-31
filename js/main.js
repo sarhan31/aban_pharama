@@ -254,3 +254,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// 🔥 MOBILE ONLY PRODUCT CARD CONTROL
+
+if (window.innerWidth < 768) {
+
+    const productCards = document.querySelectorAll('.cat-card');
+
+    const mobileCardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+
+            const card = entry.target;
+
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                card.classList.add('active');
+            } else if (entry.intersectionRatio < 0.1) {
+                card.classList.remove('active');
+            }
+
+        });
+    }, {
+        threshold: [0, 0.3],
+        rootMargin: "0px 0px -60px 0px"
+    });
+
+    productCards.forEach(card => {
+        mobileCardObserver.observe(card);
+    });
+
+}
