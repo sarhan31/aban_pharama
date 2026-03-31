@@ -213,8 +213,8 @@
     .cat-card {
         transform: none !important;
         animation: none !important; /* Only runs when .active is added */
-        opacity: 0;
-        visibility: hidden;
+        opacity: 1;
+        visibility: visible;
     }
 
     /* Secret Sauce: Reveal logic via JS */

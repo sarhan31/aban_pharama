@@ -119,16 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             const el = entry.target;
             if (entry.isIntersecting) {
-                // If it's already active, don't re-trigger unless it's a fresh entry
-                if (el.classList.contains('active')) return;
-
-                // FORCE REPEAT: Surgical reset using Reflow
-                void el.offsetWidth; 
-                el.classList.add('active');
+                // Trigger reveal
+                if (!el.classList.contains('active')) {
+                    void el.offsetWidth; // Force Reflow to restart CSS animation
+                    el.classList.add('active');
+                }
             } else {
-                // RESET ON EXIT: Remove active class so it can animate again
-                // Only for product cards to ensure high-performance repeating
-                if (el.classList.contains('cat-card')) {
+                // Reset when off-screen (scrolled above or below)
+                const rect = el.getBoundingClientRect();
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
                     el.classList.remove('active');
                 }
             }
@@ -137,16 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => repeatableObserver.observe(el));
     productCards.forEach(el => repeatableObserver.observe(el));
-
-    // Fail-safe initial check for elements already in view
-    setTimeout(() => {
-        productCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                card.classList.add('active');
-            }
-        });
-    }, 500);
     // 5. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
