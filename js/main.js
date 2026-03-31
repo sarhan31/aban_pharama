@@ -93,28 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
 
     // ================= 🔥 PRODUCT CARD ANIMATION (FINAL FIX) =================
-const productCards = document.querySelectorAll('.cat-card');
+    const productCards = document.querySelectorAll('.cat-card');
 
-const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
 
-        const card = entry.target;
+            const card = entry.target;
 
-        if (entry.isIntersecting) {
-            card.classList.add('active');
-        } else {
-            card.classList.remove('active');
-        }
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                card.classList.add('active');
+            } else if (entry.intersectionRatio < 0.1) {
+                card.classList.remove('active');
+            }
 
+        });
+    }, {
+        threshold: [0, 0.3],
+        rootMargin: "0px 0px -80px 0px"
     });
-}, {
-    threshold: 0.15,
-    rootMargin: "0px 0px -60px 0px"
-});
 
-productCards.forEach(card => {
-    cardObserver.observe(card);
-});
+    productCards.forEach(card => {
+        cardObserver.observe(card);
+    });
 
     // ================= MOBILE MENU =================
     const mobileToggle = document.getElementById('mobile-toggle');
