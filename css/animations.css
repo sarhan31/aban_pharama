@@ -238,19 +238,3 @@
     left: 100%;
     top: 100%;
 }
-/* 🔥 EACH CARD FULL SCREEN */
-.cat-card {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.6s ease;
-}
-
-.cat-card.active {
-  opacity: 1;
-  transform: translateY(0);
-}
