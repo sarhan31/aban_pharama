@@ -58,6 +58,44 @@
     animation-fill-mode: forwards !important;
 }
 
+/* --- PREMIUM Reveal Variations --- */
+
+/* 1. Slide from Top (Elegant) */
+@keyframes slideFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-down.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: slideFromTop 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Scale Up + Fade In (Premium) */
+@keyframes scaleFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.reveal-scale.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: scaleFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Initial Off-screen States */
 .reveal-tr { transform: translate3d(100vw, -100vh, 0) scale(0.8); }
 .reveal-br { transform: translate3d(100vw, 100vh, 0) scale(0.8); }

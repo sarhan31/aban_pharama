@@ -244,8 +244,51 @@
     }
 
     .md-grid {
-        padding: 30px 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 40px 20px !important;
+        gap: 35px !important;
+        background: #fff !important;
+        border-radius: 24px !important;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08) !important;
         text-align: center;
+    }
+
+    .md-grid .md-content-col {
+        display: contents !important;
+    }
+
+    .md-grid .section-header {
+        order: 1 !important;
+        margin-bottom: 5px !important;
+        text-align: center !important;
+    }
+
+    .md-grid .section-header h2 {
+        font-size: 28px !important;
+        margin-top: 5px !important;
+    }
+
+    .md-grid .md-image-col {
+        order: 2 !important;
+        margin: 0 auto !important;
+    }
+
+    .md-grid .md-photo {
+        max-width: 250px !important; /* Slightly smaller for mobile premium look */
+        border-radius: 20px !important;
+    }
+
+    .md-grid .md-body {
+        order: 3 !important;
+        text-align: left !important; /* Kept text left for readability within centered layout */
+        padding: 0 10px !important;
+    }
+
+    .md-grid .md-body p {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 15px !important;
     }
 
     .about-img,
