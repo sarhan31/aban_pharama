@@ -209,6 +209,14 @@
         gap: 25px !important;
     }
 
+    .md-contact-wrapper {
+        gap: 0 !important;
+    }
+
+    .md-contact-name {
+        white-space: normal !important;
+    }
+
     /* --- MOBILE CATEGORY ANIMATIONS --- */
     .cat-card {
         transform: none !important;

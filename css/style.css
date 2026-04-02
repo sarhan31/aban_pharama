@@ -474,6 +474,14 @@ ul {
     flex-shrink: 0;
 }
 
+.md-contact-wrapper {
+    gap: 20px;
+}
+
+.md-contact-name {
+    white-space: nowrap;
+}
+
 /* --- MANAGING DIRECTOR SECTION --- */
 .md-grid {
     display: grid;
