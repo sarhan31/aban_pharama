@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- ✅ FIXED: Font Awesome (IMPORTANT) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,9 +47,9 @@
     <link rel="preload" href="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=format&cs=tinysrgb&w=1600" as="image">
     
     <!-- CSS Files -->
-    <link rel="stylesheet" href="css/style.css?v=25">
-    <link rel="stylesheet" href="css/animations.css?v=25">
-    <link rel="stylesheet" href="css/responsive.css?v=25">
+    <link rel="stylesheet" href="css/style.css?v=62">
+    <link rel="stylesheet" href="css/animations.css?v=62">
+    <link rel="stylesheet" href="css/responsive.css?v=62">
 </head>
 <body>
 
@@ -98,8 +98,8 @@
                 <h1 style="text-align: center;">Trusted Pharmaceutical <span>Partner Since 1981</span></h1>
                 <p id="typing-para" data-type-text="Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity." style="font-size: 19px; line-height: 1.8; margin-bottom: 20px; max-width: 650px; opacity: 0; visibility: hidden; margin-left: auto; margin-right: auto;">Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity.</p>
                 <div class="hero-btns" style="justify-content: center;">
-                    <a href="#products" class="btn btn-primary">Explore Products</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                    <a href="#products" class="btn btn-primary">Explore Products <i class="fas fa-arrow-right icon-arrow"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Contact Us <i class="fas fa-paper-plane icon-plane"></i></a>
                 </div>
             </div>
         </div>
@@ -234,12 +234,29 @@
                 <input type="text" id="product-search" placeholder="Search medicines (e.g. Paracetamol, Cefixime)...">
             </div>
 
+            <!-- QUICK SUGGESTIONS -->
+            <div class="search-tags">
+                <span class="search-tag-label">Popular search:</span>
+                <button type="button" class="quick-search-tag" data-search="Paracetamol"><i class="fas fa-capsules"></i> Paracetamol</button>
+                <button type="button" class="quick-search-tag" data-search="Aceclofenac"><i class="fas fa-pills"></i> Aceclofenac</button>
+                <button type="button" class="quick-search-tag" data-search="Pantoprazole"><i class="fas fa-prescription-bottle"></i> Pantoprazole</button>
+                <button type="button" class="quick-search-tag" data-search="Syrup"><i class="fas fa-flask-vial"></i> Syrups</button>
+                <button type="button" class="quick-search-tag" data-search="Protein"><i class="fas fa-leaf"></i> Protein</button>
+            </div>
+
             <div class="accordion-container reveal" id="accordion-container">
                 <!-- ANALGESIC -->
                 <div class="accordion-item" data-category="Analgesic">
                     <div class="accordion-header">
-                        <span>Analgesic Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-analgesic">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <span>Analgesic Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -277,8 +294,15 @@
                 <!-- ANTACID -->
                 <div class="accordion-item" data-category="Antacid">
                     <div class="accordion-header">
-                        <span>Antacid Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-antacid">
+                                <i class="fas fa-prescription-bottle"></i>
+                            </div>
+                            <span>Antacid Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -300,8 +324,15 @@
                 <!-- ANTI COLD -->
                 <div class="accordion-item" data-category="Anti Cold">
                     <div class="accordion-header">
-                        <span>Anti Cold & Anti Allergic</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-anticold">
+                                <i class="fas fa-head-side-mask"></i>
+                            </div>
+                            <span>Anti Cold & Anti Allergic</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -331,8 +362,15 @@
                 <!-- ANTI-BIOTIC -->
                 <div class="accordion-item" data-category="Antibiotic">
                     <div class="accordion-header">
-                        <span>Anti-Biotic Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-antibiotic">
+                                <i class="fas fa-capsules"></i>
+                            </div>
+                            <span>Anti-Biotic Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -362,8 +400,15 @@
                 <!-- ANTI FUNGAL -->
                 <div class="accordion-item" data-category="Anti Fungal">
                     <div class="accordion-header">
-                        <span>Anti Fungal Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-antifungal">
+                                <i class="fas fa-bacteria"></i>
+                            </div>
+                            <span>Anti Fungal Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -378,8 +423,15 @@
                 <!-- GENERAL -->
                 <div class="accordion-item" data-category="General Range">
                     <div class="accordion-header">
-                        <span>General Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-general">
+                                <i class="fas fa-heart-pulse"></i>
+                            </div>
+                            <span>General Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -401,8 +453,15 @@
                 <!-- LOOSE PACKING -->
                 <div class="accordion-item" data-category="Loose Packing">
                     <div class="accordion-header">
-                        <span>Loose Packing Products</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-loose">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <span>Loose Packing Products</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -440,8 +499,15 @@
                 <!-- NUTRACEUTICALS -->
                 <div class="accordion-item" data-category="Nutraceuticals">
                     <div class="accordion-header">
-                        <span>Nutraceuticals</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-nutra">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span>Nutraceuticals</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -462,8 +528,15 @@
                 <!-- LIQUID -->
                 <div class="accordion-item" data-category="Liquid Range">
                     <div class="accordion-header">
-                        <span>Liquid Range</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <div class="accordion-title-wrapper">
+                            <div class="category-icon-wrapper icon-liquid">
+                                <i class="fas fa-flask-vial"></i>
+                            </div>
+                            <span>Liquid Range</span>
+                        </div>
+                        <div class="chevron-wrapper">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
                     <div class="accordion-content">
                         <div class="product-list">
@@ -503,17 +576,22 @@
                 <span>Infrastructure</span>
                 <h2>World-Class Facilities</h2>
             </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="card reveal">
-                    <img src="assets/images/facility.png" alt="Manufacturing" style="width: 100%; height: auto; border-radius: 20px; object-fit: cover; display: block;" loading="lazy">
-                    <h3 style="margin-bottom: 10px; margin-top: 15px;">Modern Manufacturing Unit</h3>
-                    <p style="color: var(--light-text); font-size: 14px;">State-of-the-art production lines following WHO-GMP guidelines for maximum safety and efficacy.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <div class="facility-card reveal">
+                    <div class="facility-img-wrapper">
+                        <img src="assets/images/facility.png" alt="Manufacturing" loading="lazy">
+                        <div class="facility-img-overlay"></div>
+                    </div>
+                    <h3>Modern Manufacturing Unit</h3>
+                    <p>State-of-the-art production lines following WHO-GMP guidelines for maximum safety, precision, and medical efficacy.</p>
                 </div>
-                <div class="card reveal">
-                    <img src="assets/images/quality.png" alt="QC" style="width: 100%; height: auto; border-radius: 20px; object-fit: cover; display: block;" loading="lazy">
-                    <h3 style="margin-bottom: 10px; margin-top: 15px;">Quality Control Systems</h3>
-                    <p style="color: var(--light-text); font-size: 14px;">Advanced laboratory equipment for rigorous testing of raw materials and finished products.</p>
+                <div class="facility-card reveal">
+                    <div class="facility-img-wrapper">
+                        <img src="assets/images/quality.png" alt="QC" loading="lazy">
+                        <div class="facility-img-overlay"></div>
+                    </div>
+                    <h3>Quality Control Systems</h3>
+                    <p>Advanced analytical testing laboratory and systems for rigorous inspection of raw materials and finished products.</p>
                 </div>
             </div>
         </div>
@@ -741,8 +819,8 @@
     </div>
 
     <!-- JS Files -->
-    <script src="js/main.js"></script>
-    <script src="js/accordion.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/main.js?v=62"></script>
+    <script src="js/accordion.js?v=62"></script>
+    <script src="js/search.js?v=62"></script>
 </body>
 </html>

@@ -54,4 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyMsg.remove();
         }
     });
+
+    // Wire up the quick-search suggestion tags
+    const quickTags = document.querySelectorAll('.quick-search-tag');
+    quickTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const searchTerm = tag.getAttribute('data-search');
+            searchInput.value = searchTerm;
+            searchInput.focus();
+            searchInput.dispatchEvent(new Event('input'));
+        });
+    });
 });

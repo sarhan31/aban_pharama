@@ -280,11 +280,18 @@
     .md-grid .md-image-col {
         order: 2 !important;
         margin: 0 auto !important;
+        padding: 15px !important;
+    }
+
+    .md-grid .md-image-col::before {
+        width: 240px !important;
+        height: 240px !important;
     }
 
     .md-grid .md-photo {
-        max-width: 250px !important; /* Slightly smaller for mobile premium look */
-        border-radius: 20px !important;
+        width: 220px !important;
+        height: 220px !important;
+        border-radius: 50% !important;
     }
 
     .md-grid .md-body {
