@@ -362,23 +362,28 @@ ul {
 
 .mobile-logo-text span {
     font-family: 'Montserrat', 'Inter', sans-serif !important;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 1px;
 }
 
 .mobile-close {
-    font-size: 24px;
+    font-size: 22px;
     color: var(--primary);
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--white);
+    border-radius: 50%;
+    box-shadow: -2px 0 10px rgba(255, 255, 255, 0.95);
+    position: relative;
+    z-index: 10;
     margin-right: -10px;
 }
 
