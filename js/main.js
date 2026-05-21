@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Premium Smooth Scroll (Lenis) Dynamic Loader ---
+    const initLenisSmoothScroll = () => {
+        // Only load on non-touch devices for native-like feel
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/lenis@1.1.9/dist/lenis.min.js';
+        script.onload = () => {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                wheelMultiplier: 1.0,
+                touchMultiplier: 1.5,
+                smoothTouch: false
+            });
+
+            window.lenisInstance = lenis;
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        };
+        document.head.appendChild(script);
+    };
+
+    initLenisSmoothScroll();
+
     // --- Typing Animation Utility ---
     const typeWriter = (element, text, speed = 30) => {
         let i = 0;
@@ -17,34 +47,45 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Trigger cinematic hero reveal
-    const triggerHeroReveal = () => {
+    const triggerHeroReveal = (isInstant = false) => {
         try {
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
 
             if (hero) hero.classList.add('hero-revealed');
             if (heroContent) {
-                setTimeout(() => {
+                if (isInstant) {
                     heroContent.classList.add('hero-revealed');
-
-                    // Trigger typing animation for paragraph
                     const heroP = document.getElementById('typing-para');
                     if (heroP) {
                         const textToType = heroP.getAttribute('data-type-text') || heroP.innerText.trim();
-                        if (textToType) {
-                            heroP.classList.add('typing-idle'); // Hide briefly for setup
-                            heroP.innerText = '';
-                            setTimeout(() => {
-                                typeWriter(heroP, textToType, 35);
-                                heroP.classList.remove('typing-idle');
-                            }, 500);
-                        } else {
-                            // Fallback: If no text, just show it
-                            heroP.style.opacity = '1';
-                            heroP.style.visibility = 'visible';
-                        }
+                        heroP.innerText = textToType;
+                        heroP.style.opacity = '1';
+                        heroP.style.visibility = 'visible';
                     }
-                }, 400);
+                } else {
+                    setTimeout(() => {
+                        heroContent.classList.add('hero-revealed');
+
+                        // Trigger typing animation for paragraph
+                        const heroP = document.getElementById('typing-para');
+                        if (heroP) {
+                            const textToType = heroP.getAttribute('data-type-text') || heroP.innerText.trim();
+                            if (textToType) {
+                                heroP.classList.add('typing-idle'); // Hide briefly for setup
+                                heroP.innerText = '';
+                                setTimeout(() => {
+                                    typeWriter(heroP, textToType, 35);
+                                    heroP.classList.remove('typing-idle');
+                                }, 500);
+                            } else {
+                                // Fallback: If no text, just show it
+                                heroP.style.opacity = '1';
+                                heroP.style.visibility = 'visible';
+                            }
+                        }
+                    }, 400);
+                }
             }
         } catch (err) {
             console.error('Hero Reveal Error:', err);
@@ -60,23 +101,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // 0. Splash Screen Logic
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
-        // Prevent scrolling while splash is active
-        document.body.style.overflow = 'hidden';
-
-        setTimeout(() => {
-            splashScreen.classList.add('fade-out');
+        if (sessionStorage.getItem('splashShown')) {
+            // Already shown, remove splash instantly
+            splashScreen.style.display = 'none';
+            splashScreen.remove();
             document.body.style.overflow = 'auto';
+            triggerHeroReveal(true); // reveal instantly
+        } else {
+            // Prevent scrolling while splash is active
+            document.body.style.overflow = 'hidden';
 
-            triggerHeroReveal();
-
-            // Optional: Remove from DOM after transition
             setTimeout(() => {
-                splashScreen.remove();
-            }, 800);
-        }, 2500); // Show splash for 2.5 seconds
+                splashScreen.classList.add('fade-out');
+                document.body.style.overflow = 'auto';
+
+                triggerHeroReveal();
+                
+                // Mark splash as shown
+                sessionStorage.setItem('splashShown', 'true');
+
+                // Optional: Remove from DOM after transition
+                setTimeout(() => {
+                    splashScreen.remove();
+                }, 800);
+            }, 2500); // Show splash for 2.5 seconds
+        }
     } else {
         // Fallback: If no splash, trigger immediately
-        triggerHeroReveal();
+        triggerHeroReveal(true);
     }
 
     // 1. Navbar Scrolled Effect
@@ -227,7 +279,39 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', closeMenu);
     if (navOverlay) navOverlay.addEventListener('click', closeMenu);
 
-    // 6. Smooth Scroll for Anchor Links (Robust Fix)
+    // 6. Smooth Scroll for Anchor Links & Magic Sliding Indicator
+    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+    
+    // Create Indicator
+    const indicator = document.createElement('div');
+    indicator.className = 'nav-indicator';
+    navLinks.appendChild(indicator);
+
+    function updateIndicator(targetAnchor) {
+        if (!targetAnchor || window.innerWidth < 768) return;
+        const containerRect = navLinks.getBoundingClientRect();
+        const linkRect = targetAnchor.getBoundingClientRect();
+        
+        indicator.style.width = `${linkRect.width}px`;
+        indicator.style.left = `${linkRect.left - containerRect.left}px`;
+        indicator.style.top = `${linkRect.top - containerRect.top}px`;
+        indicator.style.height = `${linkRect.height}px`;
+    }
+
+    // Initialize
+    setTimeout(() => {
+        const activeLink = document.querySelector('.nav-links a.active');
+        if (activeLink) updateIndicator(activeLink);
+    }, 100);
+
+    window.addEventListener('resize', () => {
+        const activeLink = document.querySelector('.nav-links a.active');
+        if (activeLink) updateIndicator(activeLink);
+    });
+
+    let isScrolling = false;
+    let scrollTimeout;
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -237,18 +321,63 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 e.preventDefault(); // Only prevent if target exists
 
-                // Use scrollIntoView for better results with Flexbox layouts
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                // LOCK SCROLLSPY
+                isScrolling = true;
+                clearTimeout(scrollTimeout);
 
-                // fallback offset correction (since fixed header exists)
-                // We'll use a small timeout to adjust if needed, but scrollIntoView is usually enough
+                // Update active state immediately on click
+                if (this.closest('.nav-links')) {
+                    navAnchors.forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    updateIndicator(this);
+                }
+
+                // Use scrollIntoView or Lenis smooth scroll
+                if (window.lenisInstance) {
+                    window.lenisInstance.scrollTo(target, {
+                        offset: 0,
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                } else {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // UNLOCK SCROLLSPY AFTER ANIMATION
+                scrollTimeout = setTimeout(() => {
+                    isScrolling = false;
+                }, 800);
 
                 // Close mobile menu if open
                 if (navLinks.classList.contains('mobile-active')) {
                     closeMenu();
+                }
+            }
+        });
+    });
+
+    // 7. ScrollSpy Logic for Navbar
+    const sections = document.querySelectorAll("section[id]");
+    window.addEventListener("scroll", () => {
+        if (isScrolling) return; // Skip updating active class if user clicked a link
+        
+        let current = "";
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 150) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navAnchors.forEach((a) => {
+            if (a.getAttribute("href") === `#${current}`) {
+                if (!a.classList.contains("active")) {
+                    navAnchors.forEach(n => n.classList.remove("active"));
+                    a.classList.add("active");
+                    updateIndicator(a);
                 }
             }
         });
