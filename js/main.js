@@ -101,31 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 0. Splash Screen Logic
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
-        if (sessionStorage.getItem('splashShown')) {
-            // Already shown, remove splash instantly
-            splashScreen.style.display = 'none';
-            splashScreen.remove();
+        // Prevent scrolling while splash is active
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
             document.body.style.overflow = 'auto';
-            triggerHeroReveal(true); // reveal instantly
-        } else {
-            // Prevent scrolling while splash is active
-            document.body.style.overflow = 'hidden';
-
+            triggerHeroReveal(); // reveal normally after splash
+            // Remove splash after transition
             setTimeout(() => {
-                splashScreen.classList.add('fade-out');
-                document.body.style.overflow = 'auto';
-
-                triggerHeroReveal();
-                
-                // Mark splash as shown
-                sessionStorage.setItem('splashShown', 'true');
-
-                // Optional: Remove from DOM after transition
-                setTimeout(() => {
-                    splashScreen.remove();
-                }, 800);
-            }, 2500); // Show splash for 2.5 seconds
-        }
+                splashScreen.remove();
+            }, 800);
+        }, 2500); // Show splash for 2.5 seconds
     } else {
         // Fallback: If no splash, trigger immediately
         triggerHeroReveal(true);
