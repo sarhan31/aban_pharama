@@ -816,10 +816,7 @@ ul {
 .hero-btns {
     margin-top: -30px; /* Moves buttons upward */
 }
-    min-width: 200px;
-    justify-content: center;
-}
-
+   
 .why-grid .reveal>div>div {
     transition: all 0.3s ease;
     padding: 15px;
