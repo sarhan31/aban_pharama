@@ -425,3 +425,478 @@ body {
     position: relative;
     z-index: 5; /* Place above hidden overlays but below nav (1000) */
 }
+
+/* --- MOBILE POLISH OVERRIDES --- */
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 112px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-size: 16px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    #main-content,
+    section,
+    .container {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #navbar,
+    #navbar.scrolled {
+        padding: 16px 0 10px;
+    }
+
+    #navbar .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 54px;
+        gap: 8px;
+        align-items: center;
+        justify-content: stretch;
+        padding: 0 12px;
+    }
+
+    .logo {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        min-height: 58px;
+        padding: 8px 18px 8px 12px;
+        gap: 10px;
+        overflow: hidden;
+    }
+
+    .logo img {
+        height: 42px;
+        margin-right: 2px;
+    }
+
+    .logo span {
+        display: inline-block;
+        font-size: clamp(11px, 3.1vw, 15px);
+        letter-spacing: clamp(1px, 0.45vw, 2.2px);
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mobile-toggle {
+        display: flex !important;
+        flex: 0 0 54px;
+        width: 54px;
+        height: 54px;
+        margin: 0;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .nav-links.mobile-active {
+        width: min(84vw, 320px);
+        padding: 96px 20px 28px;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .nav-links.mobile-active li {
+        width: 100%;
+    }
+
+    .nav-links.mobile-active a {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+        padding: 12px 18px !important;
+        border-radius: 14px;
+        color: var(--dark-text) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .nav-links.mobile-active a.active,
+    .nav-links.mobile-active a:hover {
+        color: var(--primary) !important;
+        background: rgba(15, 118, 110, 0.1) !important;
+        box-shadow: inset 4px 0 0 var(--primary) !important;
+    }
+
+    section,
+    section:not(.hero) {
+        padding: 56px 0 !important;
+        overflow: hidden;
+    }
+
+    .hero {
+        min-height: 100svh;
+        padding: 128px 0 72px !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: visible !important;
+    }
+
+    .hero .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        overflow: hidden;
+    }
+
+    .hero h1,
+    .hero h1[style] {
+        font-size: clamp(31px, 8.4vw, 40px) !important;
+        line-height: 1.18 !important;
+        letter-spacing: 0 !important;
+        text-align: left !important;
+        margin-bottom: 22px !important;
+        max-width: 100% !important;
+        overflow-wrap: break-word;
+    }
+
+    .hero p,
+    #typing-para {
+        min-height: 0 !important;
+        max-width: 100% !important;
+        font-size: clamp(17px, 4.8vw, 21px) !important;
+        line-height: 1.68 !important;
+        text-align: left !important;
+        margin-bottom: 32px !important;
+        white-space: normal !important;
+        overflow: hidden !important;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .hero-btns,
+    .hero-btns[style] {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 16px !important;
+        justify-items: stretch !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-btns .btn {
+        max-width: none;
+        width: 100%;
+        min-height: 58px;
+    }
+
+    .section-header {
+        max-width: 100%;
+        margin-bottom: 38px !important;
+        padding: 0 4px;
+    }
+
+    .section-header span {
+        font-size: 12px !important;
+        line-height: 1.4;
+        letter-spacing: 2.4px !important;
+        overflow-wrap: anywhere;
+    }
+
+    .section-header h2 {
+        max-width: 100%;
+        font-size: clamp(28px, 8.2vw, 36px) !important;
+        line-height: 1.22 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .about-wrapper {
+        gap: 42px !important;
+    }
+
+    .about-image {
+        width: 100%;
+        flex: none;
+    }
+
+    .about-image img {
+        max-width: 100%;
+        border-radius: 18px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .experience-badge {
+        bottom: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 150px;
+        padding: 14px 18px;
+        border-radius: 14px;
+    }
+
+    .about-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .about-content p,
+    .facility-card p,
+    .quality-item p,
+    .premium-quality-content p,
+    .md-content-col p,
+    .md-grid .md-body p,
+    .premium-contact-card p {
+        font-size: 16px !important;
+        line-height: 1.72 !important;
+        text-align: left;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+    }
+
+    .about-content p {
+        text-align: center;
+        max-width: 34rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-features {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        width: 100%;
+    }
+
+    .feature-card {
+        justify-content: center;
+        min-height: 58px;
+        padding: 12px 10px;
+        white-space: normal;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr !important;
+        gap: 22px !important;
+    }
+
+    .card,
+    .cat-card {
+        width: 100%;
+        min-height: 0;
+        padding: 28px 24px !important;
+        border-radius: 18px !important;
+    }
+
+    .cat-card i,
+    .cat-card svg {
+        margin-bottom: 22px !important;
+    }
+
+    .cat-card h3,
+    .facility-card h3,
+    .quality-item h4 {
+        font-size: clamp(22px, 6.2vw, 28px) !important;
+        line-height: 1.22 !important;
+        margin-bottom: 14px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .cat-card p {
+        font-size: 16px !important;
+        line-height: 1.7 !important;
+        max-width: 100%;
+    }
+
+    .search-container {
+        border-radius: 22px;
+    }
+
+    .search-container input {
+        height: 58px;
+        padding-right: 18px;
+        font-size: 15px;
+        text-overflow: ellipsis;
+    }
+
+    .search-tags {
+        justify-content: flex-start;
+        margin-bottom: 34px;
+    }
+
+    .accordion-header {
+        padding: 16px 14px;
+        gap: 12px;
+    }
+
+    .accordion-title-wrapper {
+        min-width: 0;
+        gap: 14px;
+    }
+
+    .accordion-title-wrapper span {
+        font-size: 18px !important;
+        line-height: 1.28;
+        overflow-wrap: anywhere;
+    }
+
+    .category-icon-wrapper {
+        width: 54px;
+        height: 54px;
+        flex: 0 0 54px;
+    }
+
+    .chevron-wrapper {
+        flex: 0 0 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+
+    .product-item {
+        align-items: flex-start;
+        line-height: 1.55;
+    }
+
+    .facility-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .facility-img-wrapper {
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 16px;
+    }
+
+    .quality-item {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        gap: 18px;
+        padding: 24px 20px;
+        align-items: start;
+    }
+
+    .quality-icon {
+        width: 62px;
+        height: 62px;
+    }
+
+    .md-grid {
+        padding: 32px 18px !important;
+        border-radius: 20px !important;
+        gap: 28px !important;
+    }
+
+    .md-grid .section-header h2,
+    .md-name {
+        font-size: clamp(28px, 8vw, 36px) !important;
+        text-align: center !important;
+    }
+
+    .md-grid .section-header h2::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .md-grid .md-body {
+        padding: 0 !important;
+    }
+
+    .md-grid .md-body p {
+        max-width: 100%;
+        margin-bottom: 18px !important;
+    }
+
+    .premium-contact-card {
+        padding: 32px 24px 32px 30px !important;
+        border-radius: 20px;
+    }
+
+    .md-contact-wrapper {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 18px !important;
+    }
+
+    .md-contact-name {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+    }
+
+    .md-contact-wrapper p {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+    }
+
+    .md-contact-wrapper > div:last-child {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .premium-contact-card a[href^="mailto:"] {
+        display: inline-block;
+        max-width: 100%;
+        font-size: clamp(18px, 5.4vw, 22px) !important;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    #location .reveal {
+        height: 420px !important;
+        border-radius: 18px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .container {
+        padding: 0 18px;
+    }
+
+    .logo {
+        padding-right: 14px;
+        gap: 8px;
+    }
+
+    .logo img {
+        height: 38px;
+    }
+
+    .mobile-toggle {
+        flex-basis: 50px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .quality-item {
+        grid-template-columns: 1fr;
+    }
+
+    .quality-icon {
+        width: 58px;
+        height: 58px;
+    }
+}
