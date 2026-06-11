@@ -311,16 +311,21 @@ ul {
     top: 0;
     right: 0;
     left: auto;
-    width: 280px;
+    width: 300px;
     height: 100vh;
     background: var(--white);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
     z-index: 2000;
-    gap: 30px;
+    gap: 0;
+    padding-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    overflow-y: auto;
     box-shadow: -10px 0 25px rgba(0, 0, 0, 0.1);
-    border-radius: 0; /* Reset border radius for mobile */
+    border-radius: 0;
     transform: translateX(100%);
     animation: slideInRight 0.4s ease forwards;
 }
@@ -333,13 +338,32 @@ ul {
     opacity: 0;
     transform: translateY(30px);
     animation: slideUp 0.5s ease forwards;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-links.mobile-active li + li {
+    margin-top: 4px;
+}
+
+/* Add spacing before non-switcher links */
+.nav-links.mobile-active .lang-switcher-li {
+    margin-bottom: 16px;
 }
 
 .nav-links.mobile-active a {
     color: var(--primary) !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    padding: 10px 0;
+    padding: 12px 0;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.nav-links.mobile-active a:hover {
+    background: rgba(13, 148, 136, 0.07);
 }
 
 .nav-links.mobile-active li:nth-child(1) {
@@ -2867,34 +2891,69 @@ html.lenis, html.lenis body {
 @media (max-width: 768px) {
     .lang-switcher-li {
         order: -1;
-        margin-bottom: 20px;
         width: 100%;
         justify-content: center;
         padding: 0 18px;
+        margin-bottom: 0;
     }
     
     .lang-switcher {
         width: 100%;
+        /* Force static flow so dropdown does NOT overlap nav links */
+        position: static;
     }
     
     .lang-switcher-btn {
         width: 100%;
         justify-content: center;
-        padding: 12px;
+        padding: 14px;
         font-size: 15px;
-        background: rgba(15, 118, 110, 0.05);
-        border-color: rgba(15, 118, 110, 0.1);
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+    }
+
+    .lang-switcher-btn:hover {
+        background: var(--primary-dark, #0b7a73);
     }
     
+    /* Inline dropdown — expands in flow, never overlaps nav links */
     .lang-dropdown {
-        left: 0;
-        right: 0;
-        transform-origin: top center;
-        top: calc(100% + 6px);
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
         width: 100%;
-        background: rgba(255, 255, 255, 0.98);
-        border: 1px solid rgba(15, 118, 110, 0.1);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        margin-top: 8px;
+        background: #fff;
+        border: 1px solid rgba(15, 118, 110, 0.15);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+        /* Hidden by default via max-height */
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    padding 0.3s ease,
+                    box-shadow 0.3s ease;
+    }
+
+    /* When open — expand inline */
+    .lang-switcher.open .lang-dropdown {
+        max-height: 200px;
+        padding: 6px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .lang-option {
+        font-size: 15px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        /* Ensure tappable on touch screens */
+        -webkit-tap-highlight-color: rgba(15, 118, 110, 0.15);
+        touch-action: manipulation;
     }
 }
 
