@@ -81,8 +81,8 @@
             <div class="splash-logo">
                 <img src="assets/images/Logo_page-0001.jpg" alt="abanpharmaceuticals">
             </div>
-            <h1 class="splash-name">Aban <span>Pharmaceuticals</span></h1>
-            <p class="splash-tagline">Trusted Pharmaceutical Partner Since 1981</p>
+            <h1 class="splash-name" data-i18n="splash.title">Aban <span>Pharmaceuticals</span></h1>
+            <p class="splash-tagline" data-i18n="splash.tagline">Trusted Pharmaceutical Partner Since 1981</p>
             <div class="splash-loader"></div>
         </div>
     </div>
@@ -95,15 +95,28 @@
         <div class="container nav-content">
             <a href="#" class="logo">
                 <img src="assets/images/Logo_page-0001.jpg" alt="abanpharmaceuticals" loading="lazy">
-                Aban<span>Pharmaceuticals</span>
+                <span data-i18n="nav.logo">Aban<span>Pharmaceuticals</span></span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#facilities">Facilities</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#products" data-i18n="nav.products">Products</a></li>
+                <li><a href="#facilities" data-i18n="nav.facilities">Facilities</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                <li class="lang-switcher-li">
+                    <div class="lang-switcher">
+                        <button class="lang-switcher-btn" aria-label="Select Language">
+                            <i class="fas fa-globe"></i>
+                            <span class="current-lang">English</span>
+                            <i class="fas fa-chevron-down lang-chevron"></i>
+                        </button>
+                        <ul class="lang-dropdown">
+                            <li data-lang="en" class="lang-option active">🌐 English</li>
+                            <li data-lang="fr" class="lang-option">🌐 Français</li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
             
             <div class="mobile-toggle" id="mobile-toggle">
@@ -117,13 +130,13 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge reveal">
-                    <i class="fas fa-shield-virus"></i> ESTABLISHED SINCE 1981
+                    <i class="fas fa-shield-virus"></i> <span data-i18n="hero.badge">ESTABLISHED SINCE 1981</span>
                 </div>
-                <h1 class="reveal" style="text-align: left; animation-delay: 0.1s;">Trusted Pharmaceutical <span>Partner Since 1981</span></h1>
-                <p id="typing-para" class="reveal" data-type-text="Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity." style="text-align: left; font-size: 20px; line-height: 1.8; margin-bottom: 40px; max-width: 600px; opacity: 0; visibility: hidden; animation-delay: 0.2s;">Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity.</p>
+                <h1 class="reveal" style="text-align: left; animation-delay: 0.1s;" data-i18n="hero.title">Trusted Pharmaceutical <span>Partner Since 1981</span></h1>
+                <p id="typing-para" class="reveal" data-type-text="Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity." style="text-align: left; font-size: 20px; line-height: 1.8; margin-bottom: 40px; max-width: 600px; opacity: 0; visibility: hidden; animation-delay: 0.2s;" data-i18n="hero.typing_para">Dedicated to Advance Care in Healthcare. Delivering quality medicines and healthcare solutions to millions worldwide through innovation and integrity.</p>
                 <div class="hero-btns reveal" style="display: flex; justify-content: flex-start; gap: 20px; animation-delay: 0.3s;">
-                    <a href="#products" class="btn btn-primary">Explore Products <i class="fas fa-arrow-right icon-arrow"></i></a>
-                    <a href="#contact" class="btn btn-secondary">Contact Us <i class="fas fa-paper-plane icon-plane"></i></a>
+                    <a href="#products" class="btn btn-primary"><span data-i18n="hero.btn_explore">Explore Products</span> <i class="fas fa-arrow-right icon-arrow"></i></a>
+                    <a href="#contact" class="btn btn-secondary"><span data-i18n="hero.btn_contact">Contact Us</span> <i class="fas fa-paper-plane icon-plane"></i></a>
                 </div>
             </div>
         </div>
@@ -141,23 +154,23 @@
 
         <!-- 🔥 EXPERIENCE BADGE ON IMAGE -->
         <div class="experience-badge">
-            <h3>40+</h3>
-            <p>Years Experience</p>
+            <h3 data-i18n="about.exp_years">40+</h3>
+            <p data-i18n="about.exp_label">Years Experience</p>
         </div>
     </div>
 
     <!-- CONTENT -->
     <div class="about-content reveal">
         <div class="section-header">
-            <span>About Aban Pharmaceuticals</span>
-            <h2>Dedicated to Advancing Healthcare Through Quality & Innovation</h2>
+            <span data-i18n="about.span_header">About Aban Pharmaceuticals</span>
+            <h2 data-i18n="about.h2_header">Dedicated to Advancing Healthcare Through Quality & Innovation</h2>
         </div>
 
-        <p>
+        <p data-i18n="about.p1">
             Aban Pharmaceuticals in the pharmaceutical industry, committed to delivering high-quality healthcare products.
         </p>
 
-        <p>
+        <p data-i18n="about.p2">
             Our expertise includes tablets, capsules, syrups, and nutraceutical products.
         </p>
 
@@ -165,12 +178,12 @@
         <div class="about-features">
             <div class="feature-card">
                 <i class="fas fa-globe"></i>
-                <span>Global Reach</span>
+                <span data-i18n="about.feat_global">Global Reach</span>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-check-circle"></i>
-                <span>Quality Assurance</span>
+                <span data-i18n="about.feat_quality">Quality Assurance</span>
             </div>
         </div>
     </div>
@@ -183,25 +196,25 @@
     <section id="products" style="padding: 60px 0; background-color: var(--secondary);">
         <div class="container">
             <div class="section-header">
-                <span>Our Expertise</span>
-                <h2>Product Categories</h2>
+                <span data-i18n="products.span_header">Our Expertise</span>
+                <h2 data-i18n="products.h2_header">Product Categories</h2>
             </div>
             
             <div class="category-grid">
                 <div class="card cat-card reveal reveal-tl">
                     <i class="fas fa-pills"></i>
-                    <h3>Analgesic</h3>
-                    <p>Effective pain relief solutions for various conditions.</p>
+                    <h3 data-i18n="products.cat_analgesic_title">Analgesic</h3>
+                    <p data-i18n="products.cat_analgesic_desc">Effective pain relief solutions for various conditions.</p>
                 </div>
                 <div class="card cat-card reveal reveal-tl">
                     <i class="fas fa-bacteria"></i>
-                    <h3>Antibiotic</h3>
-                    <p>Advanced formulations to combat bacterial infections.</p>
+                    <h3 data-i18n="products.cat_antibiotic_title">Antibiotic</h3>
+                    <p data-i18n="products.cat_antibiotic_desc">Advanced formulations to combat bacterial infections.</p>
                 </div>
                 <div class="card cat-card reveal reveal-tr">
                     <i class="fas fa-head-side-mask"></i>
-                    <h3>Anti Cold</h3>
-                    <p>Fast-acting relief for cold and allergic symptoms.</p>
+                    <h3 data-i18n="products.cat_anticold_title">Anti Cold</h3>
+                    <p data-i18n="products.cat_anticold_desc">Fast-acting relief for cold and allergic symptoms.</p>
                 </div>
                 <div class="card cat-card reveal reveal-tr">
                     <i class="fas fa-prescription-bottle" style="display: none;"></i> <!-- Placeholder for antacid icon -->
@@ -218,28 +231,28 @@
                         <path d="M 53 58 L 57 58 M 55 56 L 55 60" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
                         <path d="M 47 70 L 51 70 M 49 68 L 49 72" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
                     </svg>
-                    <h3>Antacid</h3>
-                    <p>Specialized care for digestive and gastric health.</p>
+                    <h3 data-i18n="products.cat_antacid_title">Antacid</h3>
+                    <p data-i18n="products.cat_antacid_desc">Specialized care for digestive and gastric health.</p>
                 </div>
                 <div class="card cat-card reveal reveal-bl">
                     <i class="fas fa-virus"></i>
-                    <h3>Anti Fungal</h3>
-                    <p>Targeted treatments for various fungal infections.</p>
+                    <h3 data-i18n="products.cat_antifungal_title">Anti Fungal</h3>
+                    <p data-i18n="products.cat_antifungal_desc">Targeted treatments for various fungal infections.</p>
                 </div>
                 <div class="card cat-card reveal reveal-bl">
                     <i class="fas fa-medkit"></i>
-                    <h3>General Range</h3>
-                    <p>Comprehensive health solutions for daily wellness.</p>
+                    <h3 data-i18n="products.cat_general_title">General Range</h3>
+                    <p data-i18n="products.cat_general_desc">Comprehensive health solutions for daily wellness.</p>
                 </div>
                 <div class="card cat-card reveal reveal-br">
                     <i class="fas fa-prescription-bottle"></i>
-                    <h3>Liquid Syrups</h3>
-                    <p>High-quality liquid formulations for all ages.</p>
+                    <h3 data-i18n="products.cat_liquid_title">Liquid Syrups</h3>
+                    <p data-i18n="products.cat_liquid_desc">High-quality liquid formulations for all ages.</p>
                 </div>
                 <div class="card cat-card reveal reveal-br">
                     <i class="fas fa-apple-whole"></i>
-                    <h3>Nutraceuticals</h3>
-                    <p>Advanced nutritional supplements for a healthy life.</p>
+                    <h3 data-i18n="products.cat_nutra_title">Nutraceuticals</h3>
+                    <p data-i18n="products.cat_nutra_desc">Advanced nutritional supplements for a healthy life.</p>
                 </div>
             </div>
         </div>
@@ -249,23 +262,23 @@
     <section style="padding: 60px 0;">
         <div class="container">
             <div class="section-header text-center">
-                <h2>Detailed Product Range</h2>
+                <h2 data-i18n="range.h2_header">Detailed Product Range</h2>
             </div>
 
             <!-- SEARCH BAR -->
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="product-search" placeholder="Search medicines (e.g. Paracetamol, Cefixime)...">
+                <input type="text" id="product-search" placeholder="Search medicines (e.g. Paracetamol, Cefixime)..." data-i18n="range.search_placeholder">
             </div>
 
             <!-- QUICK SUGGESTIONS -->
             <div class="search-tags">
-                <span class="search-tag-label">Popular search:</span>
-                <button type="button" class="quick-search-tag" data-search="Paracetamol"><i class="fas fa-capsules"></i> Paracetamol</button>
-                <button type="button" class="quick-search-tag" data-search="Aceclofenac"><i class="fas fa-pills"></i> Aceclofenac</button>
-                <button type="button" class="quick-search-tag" data-search="Pantoprazole"><i class="fas fa-prescription-bottle"></i> Pantoprazole</button>
-                <button type="button" class="quick-search-tag" data-search="Syrup"><i class="fas fa-flask-vial"></i> Syrups</button>
-                <button type="button" class="quick-search-tag" data-search="Protein"><i class="fas fa-leaf"></i> Protein</button>
+                <span class="search-tag-label" data-i18n="range.popular_search">Popular search:</span>
+                <button type="button" class="quick-search-tag" data-search="Paracetamol"><i class="fas fa-capsules"></i> <span data-i18n="range.tag_paracetamol">Paracetamol</span></button>
+                <button type="button" class="quick-search-tag" data-search="Aceclofenac"><i class="fas fa-pills"></i> <span data-i18n="range.tag_aceclofenac">Aceclofenac</span></button>
+                <button type="button" class="quick-search-tag" data-search="Pantoprazole"><i class="fas fa-prescription-bottle"></i> <span data-i18n="range.tag_pantoprazole">Pantoprazole</span></button>
+                <button type="button" class="quick-search-tag" data-search="Syrup"><i class="fas fa-flask-vial"></i> <span data-i18n="range.tag_syrup">Syrups</span></button>
+                <button type="button" class="quick-search-tag" data-search="Protein"><i class="fas fa-leaf"></i> <span data-i18n="range.tag_protein">Protein</span></button>
             </div>
 
             <div class="accordion-container reveal" id="accordion-container">
@@ -276,7 +289,7 @@
                             <div class="category-icon-wrapper icon-analgesic">
                                 <i class="fas fa-pills"></i>
                             </div>
-                            <span>Analgesic Range</span>
+                            <span data-i18n="accordion.analgesic">Analgesic Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -322,7 +335,7 @@
                             <div class="category-icon-wrapper icon-antacid">
                                 <i class="fas fa-prescription-bottle"></i>
                             </div>
-                            <span>Antacid Range</span>
+                            <span data-i18n="accordion.antacid">Antacid Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -352,7 +365,7 @@
                             <div class="category-icon-wrapper icon-anticold">
                                 <i class="fas fa-head-side-mask"></i>
                             </div>
-                            <span>Anti Cold & Anti Allergic</span>
+                            <span data-i18n="accordion.anticold">Anti Cold & Anti Allergic</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -390,7 +403,7 @@
                             <div class="category-icon-wrapper icon-antibiotic">
                                 <i class="fas fa-capsules"></i>
                             </div>
-                            <span>Anti-Biotic Range</span>
+                            <span data-i18n="accordion.antibiotic">Anti-Biotic Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -428,7 +441,7 @@
                             <div class="category-icon-wrapper icon-antifungal">
                                 <i class="fas fa-bacteria"></i>
                             </div>
-                            <span>Anti Fungal Range</span>
+                            <span data-i18n="accordion.antifungal">Anti Fungal Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -451,7 +464,7 @@
                             <div class="category-icon-wrapper icon-general">
                                 <i class="fas fa-heart-pulse"></i>
                             </div>
-                            <span>General Range</span>
+                            <span data-i18n="accordion.general">General Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -481,7 +494,7 @@
                             <div class="category-icon-wrapper icon-loose">
                                 <i class="fas fa-cubes"></i>
                             </div>
-                            <span>Loose Packing Products</span>
+                            <span data-i18n="accordion.loose">Loose Packing Products</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -527,7 +540,7 @@
                             <div class="category-icon-wrapper icon-nutra">
                                 <i class="fas fa-leaf"></i>
                             </div>
-                            <span>Nutraceuticals</span>
+                            <span data-i18n="accordion.nutra">Nutraceuticals</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -556,7 +569,7 @@
                             <div class="category-icon-wrapper icon-liquid">
                                 <i class="fas fa-flask-vial"></i>
                             </div>
-                            <span>Liquid Range</span>
+                            <span data-i18n="accordion.liquid">Liquid Range</span>
                         </div>
                         <div class="chevron-wrapper">
                             <i class="fas fa-chevron-down"></i>
@@ -597,8 +610,8 @@
     <section id="facilities" style="padding: 60px 0; background-color: var(--secondary);">
         <div class="container">
             <div class="section-header">
-                <span>Infrastructure</span>
-                <h2>World-Class Facilities</h2>
+                <span data-i18n="facilities.span_header">Infrastructure</span>
+                <h2 data-i18n="facilities.h2_header">World-Class Facilities</h2>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
                 <div class="facility-card reveal">
@@ -606,16 +619,16 @@
                         <img src="assets/images/facility.png" alt="Manufacturing" loading="lazy">
                         <div class="facility-img-overlay"></div>
                     </div>
-                    <h3>Modern Manufacturing Unit</h3>
-                    <p>State-of-the-art production lines following WHO-GMP guidelines for maximum safety, precision, and medical efficacy.</p>
+                    <h3 data-i18n="facilities.mfg_title">Modern Manufacturing Unit</h3>
+                    <p data-i18n="facilities.mfg_desc">State-of-the-art production lines following WHO-GMP guidelines for maximum safety, precision, and medical efficacy.</p>
                 </div>
                 <div class="facility-card reveal">
                     <div class="facility-img-wrapper">
                         <img src="assets/images/quality.png" alt="QC" loading="lazy">
                         <div class="facility-img-overlay"></div>
                     </div>
-                    <h3>Quality Control Systems</h3>
-                    <p>Advanced analytical testing laboratory and systems for rigorous inspection of raw materials and finished products.</p>
+                    <h3 data-i18n="facilities.qc_title">Quality Control Systems</h3>
+                    <p data-i18n="facilities.qc_desc">Advanced analytical testing laboratory and systems for rigorous inspection of raw materials and finished products.</p>
                 </div>
             </div>
         </div>
@@ -626,37 +639,37 @@
         <div class="container">
             <div class="reveal">
                 <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-                    <span>Why Choose abanpharmaceuticals</span>
-                    <h2>Committed to Quality, Driven by Integrity</h2>
+                    <span data-i18n="why.span_header">Why Choose abanpharmaceuticals</span>
+                    <h2 data-i18n="why.h2_header">Committed to Quality, Driven by Integrity</h2>
                 </div>
                 
                 <div class="quality-grid">
                     <div class="quality-item">
                         <div class="quality-icon"><i class="fas fa-shield-halved"></i></div>
                         <div>
-                            <h4>Quality Assurance</h4>
-                            <p>Rigorous quality checks at every stage of the manufacturing process to ensure patient safety.</p>
+                            <h4 data-i18n="why.qa_title">Quality Assurance</h4>
+                            <p data-i18n="why.qa_desc">Rigorous quality checks at every stage of the manufacturing process to ensure patient safety.</p>
                         </div>
                     </div>
                     <div class="quality-item">
                         <div class="quality-icon"><i class="fas fa-award"></i></div>
                         <div>
-                            <h4>Trusted Since 1981</h4>
-                            <p>Over four decades of heritage and trust in the global pharmaceutical market.</p>
+                            <h4 data-i18n="why.trust_title">Trusted Since 1981</h4>
+                            <p data-i18n="why.trust_desc">Over four decades of heritage and trust in the global pharmaceutical market.</p>
                         </div>
                     </div>
                     <div class="quality-item">
                         <div class="quality-icon"><i class="fas fa-boxes-stacked"></i></div>
                         <div>
-                            <h4>Wide Product Range</h4>
-                            <p>Extensive portfolio covering multiple therapeutic segments and dosage forms.</p>
+                            <h4 data-i18n="why.range_title">Wide Product Range</h4>
+                            <p data-i18n="why.range_desc">Extensive portfolio covering multiple therapeutic segments and dosage forms.</p>
                         </div>
                     </div>
                     <div class="quality-item">
                         <div class="quality-icon"><i class="fas fa-user-doctor"></i></div>
                         <div>
-                            <h4>Professional Team</h4>
-                            <p>A dedicated team of experts driven by innovation and pharmaceutical excellence.</p>
+                            <h4 data-i18n="why.team_title">Professional Team</h4>
+                            <p data-i18n="why.team_desc">A dedicated team of experts driven by innovation and pharmaceutical excellence.</p>
                         </div>
                     </div>
                 </div>
@@ -675,12 +688,12 @@
                 <!-- Content Column -->
                 <div class="md-content-col">
                     <div class="section-header reveal reveal-down" style="margin-bottom: 25px; text-align: left;">
-                        <span>Managing Director</span>
-                        <h2 class="md-name" style="font-size: 32px; color: var(--primary);">Mr. Hasil Navliwala</h2>
+                        <span data-i18n="md.span_header">Managing Director</span>
+                        <h2 class="md-name" style="font-size: 32px; color: var(--primary);" data-i18n="md.h2_header">Mr. Hasil Navliwala</h2>
                     </div>
                     <div class="md-body reveal reveal-scale">
-                        <p><strong>Mr. Hasil Navliwala</strong> is a visionary Managing Director with expertise in pharmaceutical quality assurance, known for his strong leadership, strategic mindset, and focus on quality systems and regulatory compliance. With a background in M.Pharm (Quality Assurance), he brings a detail-oriented and results-driven approach to ensuring consistent product quality and adherence to global standards. Carrying forward the legacy of his grandfather, <strong>Mr. Karim Navliwala</strong>, he is committed to upholding the values of integrity, quality, and trust. His dedication to excellence, innovation, and continuous improvement drives organizational growth and operational efficiency.</p>
-                        <p>As the Managing Director of Aban Pharmaceuticals, he plays a pivotal role in shaping the company’s vision and strengthening its presence in the pharmaceutical sector. He focuses on implementing robust quality systems, ensuring GMP compliance, and fostering a culture of excellence. Under his leadership, Aban Pharmaceuticals continues to deliver reliable, high-quality pharmaceutical solutions while building long-term trust and sustainable growth.</p>
+                        <p data-i18n="md.p1"><strong>Mr. Hasil Navliwala</strong> is a visionary Managing Director with expertise in pharmaceutical quality assurance, known for his strong leadership, strategic mindset, and focus on quality systems and regulatory compliance. With a background in M.Pharm (Quality Assurance), he brings a detail-oriented and results-driven approach to ensuring consistent product quality and adherence to global standards. Carrying forward the legacy of his grandfather, <strong>Mr. Karim Navliwala</strong>, he is committed to upholding the values of integrity, quality, and trust. His dedication to excellence, innovation, and continuous improvement drives organizational growth and operational efficiency.</p>
+                        <p data-i18n="md.p2">As the Managing Director of Aban Pharmaceuticals, he plays a pivotal role in shaping the company’s vision and strengthening its presence in the pharmaceutical sector. He focuses on implementing robust quality systems, ensuring GMP compliance, and fostering a culture of excellence. Under his leadership, Aban Pharmaceuticals continues to deliver reliable, high-quality pharmaceutical solutions while building long-term trust and sustainable growth.</p>
                     </div>
                 </div>
             </div>
@@ -691,8 +704,8 @@
     <section id="contact" style="padding: 60px 0; background-color: var(--secondary);">
         <div class="container">
             <div class="section-header">
-                <span>Get In Touch</span>
-                <h2>Contact Details</h2>
+                <span data-i18n="contact.span_header">Get In Touch</span>
+                <h2 data-i18n="contact.h2_header">Contact Details</h2>
             </div>
 
             <div class="contact-grid">
@@ -700,7 +713,7 @@
                 <div class="reveal">
                     <div class="premium-contact-card">
                         <div class="contact-header">
-                            <i class="fas fa-user-tie"></i> Managing Director
+                            <i class="fas fa-user-tie"></i> <span data-i18n="contact.md_title">Managing Director</span>
                         </div>
                         <div class="md-contact-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
@@ -708,10 +721,10 @@
                                 <p style="color: var(--primary); font-weight: 700; font-family: 'Inter', sans-serif; font-size: 20px; letter-spacing: 0.5px; margin: 0;">+91 97272 57765</p>
                             </div>
                             <div style="display: flex; gap: 15px;">
-                                <a href="tel:+919727257765" class="btn-icon" title="Call Now" style="box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);">
+                                <a href="tel:+919727257765" class="btn-icon" data-i18n="[title]contact.tel_title" title="Call Now" style="box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);">
                                     <i class="fas fa-phone"></i>
                                 </a>
-                                <a href="https://wa.me/919727257765" class="btn-icon btn-whatsapp" title="WhatsApp Us" style="box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);">
+                                <a href="https://wa.me/919727257765" class="btn-icon btn-whatsapp" data-i18n="[title]contact.wa_title" title="WhatsApp Us" style="box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                             </div>
@@ -723,15 +736,15 @@
                 <div class="reveal">
                     <div class="premium-contact-card">
                         <div class="contact-header">
-                            <i class="fas fa-location-dot"></i> Factory Address
+                            <i class="fas fa-location-dot"></i> <span data-i18n="contact.addr_title">Factory Address</span>
                         </div>
                         <p style="font-weight: 600; font-size: 16px; line-height: 1.8; margin-bottom: 25px; color: var(--dark-text);">
-                            <a href="https://maps.app.goo.gl/i4x51pqpa6Y9CbXEA" target="_blank" style="color: inherit; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='inherit';">
+                            <a href="https://maps.app.goo.gl/i4x51pqpa6Y9CbXEA" target="_blank" style="color: inherit; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='inherit';" data-i18n="contact.addr_detail">
                                 Bavla GIDC, Ahmedabad<br>Gujarat, India
                             </a>
                         </p>
                         <div style="padding-top: 25px; border-top: 1px solid rgba(0,0,0,0.06);">
-                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 8px; letter-spacing: 1px; font-weight: 700;">Email Support</h5>
+                            <h5 style="color: var(--primary); text-transform: uppercase; font-size: 12px; margin-bottom: 8px; letter-spacing: 1px; font-weight: 700;" data-i18n="contact.email_title">Email Support</h5>
                             <a href="mailto:abanph786@gmail.com" style="font-weight: 800; color: var(--accent); font-size: 20px; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)';" onmouseout="this.style.color='var(--accent)';">abanph786@gmail.com</a>
                         </div>
                     </div>
@@ -743,7 +756,7 @@
             <div class="reveal" style="height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--secondary); position: relative; ">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14715.442270734029!2d72.33155935470886!3d22.770555219492344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83cb0b5982e3%3A0x1fa94110b8360243!2sAban%20Pharmaceuticals!5e0!3m2!1sen!2sin!4v1774604864621!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 <a href="https://maps.app.goo.gl/i4x51pqpa6Y9CbXEA" target="_blank" style="position: absolute; top: 20px; right: 20px; background: white; padding: 12px 20px; border-radius: 12px; color: var(--primary); font-weight: 800; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; font-size: 14px; transition: 0.3s; z-index: 10;">
-                    <i class="fas fa-location-dot"></i> Open in Google Maps
+                    <i class="fas fa-location-dot"></i> <span data-i18n="location.open_maps">Open in Google Maps</span>
                 </a>
             </div>
         </div>
@@ -759,9 +772,9 @@
                 <div class="footer-column brand-col">
                      <a href="#" class="logo footer-logo">
                      <i class="fas fa-flask"></i> 
-                      Aban<span>Pharmaceuticals</span>
+                      <span data-i18n="nav.logo">Aban<span>Pharmaceuticals</span></span>
                      </a>
-                    <p class="brand-desc">
+                    <p class="brand-desc" data-i18n="footer.desc">
                         Dedicated to Advance Care in Healthcare Since 1981. A trusted name in pharmaceutical manufacturing and distribution.
                     </p>
                     <div class="social-icons">
@@ -773,35 +786,35 @@
 
                 <!-- Column 2: Quick Links -->
                 <div class="footer-column">
-                    <h4>Quick Links</h4>
+                    <h4 data-i18n="footer.quick_links">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#facilities">Facilities</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                        <li><a href="#about" data-i18n="nav.about">About Us</a></li>
+                        <li><a href="#products" data-i18n="nav.products">Products</a></li>
+                        <li><a href="#facilities" data-i18n="nav.facilities">Facilities</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 3: Products -->
                 <div class="footer-column">
-                    <h4>Products</h4>
+                    <h4 data-i18n="footer.products">Products</h4>
                     <ul class="footer-links">
-                        <li><a href="#products">Analgesics</a></li>
-                        <li><a href="#products">Antibiotics</a></li>
-                        <li><a href="#products">Antacids</a></li>
-                        <li><a href="#products">Nutraceuticals</a></li>
-                        <li><a href="#products">General Range</a></li>
+                        <li><a href="#products" data-i18n="products.cat_analgesic_title">Analgesics</a></li>
+                        <li><a href="#products" data-i18n="products.cat_antibiotic_title">Antibiotics</a></li>
+                        <li><a href="#products" data-i18n="products.cat_antacid_title">Antacids</a></li>
+                        <li><a href="#products" data-i18n="products.cat_nutra_title">Nutraceuticals</a></li>
+                        <li><a href="#products" data-i18n="products.cat_general_title">General Range</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 4: Contact Info -->
                 <div class="footer-column">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact_info">Contact Info</h4>
                     <ul class="footer-contact">
                         <li style="display: flex; align-items: flex-start; gap: 10px;">
                             <i class="fas fa-location-dot" style="margin-top: 4px;"></i>
-                            <a href="https://maps.app.goo.gl/i4x51pqpa6Y9CbXEA" target="_blank" style="color: inherit; text-decoration: none; transition: 0.3s; display: inline-block; line-height: 1.7; font-size: 14px;" onmouseover="this.style.textDecoration='underline'; this.style.color='#f59e0b';" onmouseout="this.style.textDecoration='none'; this.style.color='inherit';">
+                            <a href="https://maps.app.goo.gl/i4x51pqpa6Y9CbXEA" target="_blank" style="color: inherit; text-decoration: none; transition: 0.3s; display: inline-block; line-height: 1.7; font-size: 14px;" onmouseover="this.style.textDecoration='underline'; this.style.color='#f59e0b';" onmouseout="this.style.textDecoration='none'; this.style.color='inherit';" data-i18n="contact.addr_detail">
                                 Bavla GIDC, Ahmedabad<br>Gujarat, India
                             </a>
                         </li>
@@ -822,11 +835,11 @@
         <!-- Bottom Bar -->
         <div class="premium-footer-bottom">
             <div class="footer-container bottom-flex">
-                <p>&copy; 2026 abanpharmaceuticals. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 abanpharmaceuticals. All rights reserved.</p>
                 <div class="bottom-links">
-                    <a href="pages/privacy.html">Privacy Policy</a>
+                    <a href="pages/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
                     <span class="divider">|</span>
-                    <a href="#">Terms of Service</a>
+                    <a href="#" data-i18n="footer.terms">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -834,15 +847,16 @@
 
     <!-- FLOATING BUTTONS -->
     <div class="floating-btns">
-        <a href="https://wa.me/919727257765" target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
+        <a href="https://wa.me/919727257765" target="_blank" class="float-btn whatsapp-btn" data-i18n="[title]float.whatsapp" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <div class="float-btn back-to-top" id="back-to-top" title="Scroll to Top">
+        <div class="float-btn back-to-top" id="back-to-top" data-i18n="[title]float.top" title="Scroll to Top">
             <i class="fas fa-arrow-up"></i>
         </div>
     </div>
 
     <!-- JS Files -->
+    <script src="js/i18n.js"></script>
     <script src="js/main.js?v=81"></script>
     <script src="js/accordion.js?v=81"></script>
     <script src="js/search.js?v=81"></script>
