@@ -911,6 +911,90 @@ ul {
 }
 
 
+/* =====================================================
+   MULTILINGUAL TEXT RESPONSIVENESS FIX
+   Prevents long French/Spanish/etc text from breaking
+   the layout or causing overflow on any screen size
+   ===================================================== */
+
+/* 1. Global word-wrap safety net */
+[data-i18n],
+.nav-links a,
+.hero h1,
+.hero p,
+.section-header h2,
+.section-header span,
+.about-content h2,
+.about-content p,
+.btn,
+.cat-card h3,
+.cat-card p,
+.quality-item h4,
+.quality-item p,
+.facility-card h3,
+.facility-card p,
+.footer-col p,
+.footer-col li {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 2. Nav links — prevent overflow on translated long words */
+.nav-links a {
+    white-space: nowrap;
+    font-size: clamp(11px, 1.1vw, 14px);
+}
+
+/* 3. Hero title — allow wrapping without breaking layout */
+.hero h1 {
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 4. Buttons — scale font slightly on small screens when text is long */
+@media (max-width: 480px) {
+    .btn {
+        font-size: 13px;
+        padding: 12px 18px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    /* Hero buttons stack vertically on very small screens */
+    .hero-btns {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: flex-start !important;
+    }
+
+    /* Section headers scale down */
+    .section-header h2 {
+        font-size: clamp(22px, 6vw, 32px);
+    }
+
+    /* Nav logo text wraps gracefully */
+    .logo span {
+        font-size: 13px;
+    }
+}
+
+/* 5. Lang switcher button — shrink font if label is long (Español/Français) */
+.lang-switcher-btn .current-lang {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90px;
+}
+
+/* 6. Desktop nav — prevent lang-switcher from pushing nav too wide */
+@media (min-width: 769px) {
+    .lang-switcher-btn {
+        max-width: 160px;
+        overflow: hidden;
+    }
+}
 .section-header span {
     color: var(--accent);
     font-weight: 800;
@@ -2942,7 +3026,7 @@ html.lenis, html.lenis body {
 
     /* When open — expand inline */
     .lang-switcher.open .lang-dropdown {
-        max-height: 200px;
+        max-height: 280px;
         padding: 6px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }

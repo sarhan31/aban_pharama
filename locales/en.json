@@ -107,5 +107,31 @@
   "footer.terms": "Terms of Service",
   
   "float.whatsapp": "Chat on WhatsApp",
-  "float.top": "Scroll to Top"
+  "float.top": "Scroll to Top",
+
+  "privacy.badge": "LEGAL DOCUMENTS",
+  "privacy.title": "Privacy <span style=\"color: var(--accent);\">Policy</span>",
+  "privacy.sidebar_title": "Sections",
+  "privacy.nav_info": "Information",
+  "privacy.nav_usage": "Usage Data",
+  "privacy.nav_cookies": "Cookies",
+  "privacy.nav_third": "Third-Party",
+  "privacy.nav_security": "Data Security",
+  "privacy.nav_changes": "Policy Changes",
+  "privacy.nav_contact": "Contact Us",
+  "privacy.intro": "At Aban Pharmaceuticals, we value your privacy and are committed to protecting your information.",
+  "privacy.info_title": "Information We Collect",
+  "privacy.info_body": "We do not collect any personal information directly through this website, as there are no forms or user input features.",
+  "privacy.usage_title": "Usage Data",
+  "privacy.usage_body": "We may collect basic non-personal information such as browser type, device information, and pages visited for analytics and website improvement purposes.",
+  "privacy.cookies_title": "Cookies",
+  "privacy.cookies_body": "Our website may use cookies to enhance user experience and analyze website traffic. You can disable cookies through your browser settings if you prefer.",
+  "privacy.third_title": "Third-Party Services",
+  "privacy.third_body": "We may use third-party tools (such as analytics services) that collect and process non-personal usage data.",
+  "privacy.security_title": "Data Security",
+  "privacy.security_body": "We take reasonable measures to protect the website and ensure a secure browsing experience.",
+  "privacy.changes_title": "Changes to This Policy",
+  "privacy.changes_body": "We may update this Privacy Policy from time to time. Any changes will be reflected on this page.",
+  "privacy.contact_title": "Contact Us",
+  "privacy.contact_body": "If you have any questions regarding this Privacy Policy, you may contact us through available communication channels on our <a href=\"contact.html\" style=\"color: var(--primary); font-weight: 700; text-decoration: underline;\">Contact Page</a>."
 }

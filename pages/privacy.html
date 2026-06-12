@@ -263,6 +263,7 @@
                         <ul class="lang-dropdown">
                             <li data-lang="en" class="lang-option active">🌐 English</li>
                             <li data-lang="fr" class="lang-option">🌐 Français</li>
+                            <li data-lang="es" class="lang-option">🌐 Español</li>
                         </ul>
                     </div>
                 </li>
@@ -279,9 +280,9 @@
         <section class="legal-header">
             <div class="container" style="position: relative; z-index: 2;">
                 <div class="hero-badge" style="margin-bottom: 20px; display: inline-flex;">
-                    <i class="fas fa-shield-halved"></i> LEGAL DOCUMENTS
+                    <i class="fas fa-shield-halved"></i> <span data-i18n="privacy.badge">LEGAL DOCUMENTS</span>
                 </div>
-                <h1 style="font-size: 56px; font-weight: 900; margin-top: 15px; line-height: 1.1;">Privacy <span style="color: var(--accent);">Policy</span></h1>
+                <h1 style="font-size: 56px; font-weight: 900; margin-top: 15px; line-height: 1.1;" data-i18n="privacy.title">Privacy <span style="color: var(--accent);">Policy</span></h1>
             </div>
         </section>
 
@@ -292,15 +293,15 @@
                     
                     <!-- Sticky Sidebar -->
                     <div class="legal-sidebar">
-                        <h4><i class="fas fa-list-ul"></i> Sections</h4>
+                        <h4><i class="fas fa-list-ul"></i> <span data-i18n="privacy.sidebar_title">Sections</span></h4>
                         <div class="sidebar-links">
-                            <a href="#collect" class="sidebar-link"><i class="fas fa-database"></i> Information</a>
-                            <a href="#usage" class="sidebar-link"><i class="fas fa-chart-line"></i> Usage Data</a>
-                            <a href="#cookies" class="sidebar-link"><i class="fas fa-cookie-bite"></i> Cookies</a>
-                            <a href="#third-party" class="sidebar-link"><i class="fas fa-plug"></i> Third-Party</a>
-                            <a href="#security" class="sidebar-link"><i class="fas fa-shield-halved"></i> Data Security</a>
-                            <a href="#changes" class="sidebar-link"><i class="fas fa-pen-to-square"></i> Policy Changes</a>
-                            <a href="#contact-policy" class="sidebar-link"><i class="fas fa-envelope"></i> Contact Us</a>
+                            <a href="#collect" class="sidebar-link"><i class="fas fa-database"></i> <span data-i18n="privacy.nav_info">Information</span></a>
+                            <a href="#usage" class="sidebar-link"><i class="fas fa-chart-line"></i> <span data-i18n="privacy.nav_usage">Usage Data</span></a>
+                            <a href="#cookies" class="sidebar-link"><i class="fas fa-cookie-bite"></i> <span data-i18n="privacy.nav_cookies">Cookies</span></a>
+                            <a href="#third-party" class="sidebar-link"><i class="fas fa-plug"></i> <span data-i18n="privacy.nav_third">Third-Party</span></a>
+                            <a href="#security" class="sidebar-link"><i class="fas fa-shield-halved"></i> <span data-i18n="privacy.nav_security">Data Security</span></a>
+                            <a href="#changes" class="sidebar-link"><i class="fas fa-pen-to-square"></i> <span data-i18n="privacy.nav_changes">Policy Changes</span></a>
+                            <a href="#contact-policy" class="sidebar-link"><i class="fas fa-envelope"></i> <span data-i18n="privacy.nav_contact">Contact Us</span></a>
                         </div>
                     </div>
 
@@ -308,63 +309,63 @@
                     <div class="legal-content">
                         <!-- Intro Card -->
                         <div class="legal-card">
-                            <p class="intro-p">
+                            <p class="intro-p" data-i18n="privacy.intro">
                                 At Aban Pharmaceuticals, we value your privacy and are committed to protecting your information.
                             </p>
                         </div>
 
                         <!-- Card 1 -->
                         <div class="legal-card" id="collect">
-                            <h3><i class="fas fa-database"></i> Information We Collect</h3>
-                            <p>
+                            <h3><i class="fas fa-database"></i> <span data-i18n="privacy.info_title">Information We Collect</span></h3>
+                            <p data-i18n="privacy.info_body">
                                 We do not collect any personal information directly through this website, as there are no forms or user input features.
                             </p>
                         </div>
 
                         <!-- Card 2 -->
                         <div class="legal-card" id="usage">
-                            <h3><i class="fas fa-chart-line"></i> Usage Data</h3>
-                            <p>
+                            <h3><i class="fas fa-chart-line"></i> <span data-i18n="privacy.usage_title">Usage Data</span></h3>
+                            <p data-i18n="privacy.usage_body">
                                 We may collect basic non-personal information such as browser type, device information, and pages visited for analytics and website improvement purposes.
                             </p>
                         </div>
 
                         <!-- Card 3 -->
                         <div class="legal-card" id="cookies">
-                            <h3><i class="fas fa-cookie-bite"></i> Cookies</h3>
-                            <p>
+                            <h3><i class="fas fa-cookie-bite"></i> <span data-i18n="privacy.cookies_title">Cookies</span></h3>
+                            <p data-i18n="privacy.cookies_body">
                                 Our website may use cookies to enhance user experience and analyze website traffic. You can disable cookies through your browser settings if you prefer.
                             </p>
                         </div>
 
                         <!-- Card 4 -->
                         <div class="legal-card" id="third-party">
-                            <h3><i class="fas fa-plug"></i> Third-Party Services</h3>
-                            <p>
+                            <h3><i class="fas fa-plug"></i> <span data-i18n="privacy.third_title">Third-Party Services</span></h3>
+                            <p data-i18n="privacy.third_body">
                                 We may use third-party tools (such as analytics services) that collect and process non-personal usage data.
                             </p>
                         </div>
 
                         <!-- Card 5 -->
                         <div class="legal-card" id="security">
-                            <h3><i class="fas fa-shield-halved"></i> Data Security</h3>
-                            <p>
+                            <h3><i class="fas fa-shield-halved"></i> <span data-i18n="privacy.security_title">Data Security</span></h3>
+                            <p data-i18n="privacy.security_body">
                                 We take reasonable measures to protect the website and ensure a secure browsing experience.
                             </p>
                         </div>
 
                         <!-- Card 6 -->
                         <div class="legal-card" id="changes">
-                            <h3><i class="fas fa-pen-to-square"></i> Changes to This Policy</h3>
-                            <p>
+                            <h3><i class="fas fa-pen-to-square"></i> <span data-i18n="privacy.changes_title">Changes to This Policy</span></h3>
+                            <p data-i18n="privacy.changes_body">
                                 We may update this Privacy Policy from time to time. Any changes will be reflected on this page.
                             </p>
                         </div>
 
                         <!-- Card 7 -->
                         <div class="legal-card" id="contact-policy">
-                            <h3><i class="fas fa-envelope"></i> Contact Us</h3>
-                            <p>
+                            <h3><i class="fas fa-envelope"></i> <span data-i18n="privacy.contact_title">Contact Us</span></h3>
+                            <p data-i18n="privacy.contact_body">
                                 If you have any questions regarding this Privacy Policy, you may contact us through available communication channels on our <a href="contact.html" style="color: var(--primary); font-weight: 700; text-decoration: underline;">Contact Page</a>.
                             </p>
                         </div>

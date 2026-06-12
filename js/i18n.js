@@ -112,7 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update the current language text shown in buttons
         const currentLangTexts = document.querySelectorAll('.current-lang');
         currentLangTexts.forEach(txt => {
-            txt.textContent = currentLang === 'en' ? 'English' : 'Français';
+            // Look up the label from the active lang-option in the DOM
+            const activeLangOption = document.querySelector(`.lang-option[data-lang="${currentLang}"]`);
+            if (activeLangOption) {
+                // Strip the emoji flag prefix (first 2 chars + space)
+                const raw = activeLangOption.textContent.trim();
+                txt.textContent = raw.replace(/^[\uD83C][\uDF10-\uDFFF]\s*/, '').trim();
+            } else {
+                txt.textContent = currentLang.toUpperCase();
+            }
         });
     };
 
