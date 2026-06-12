@@ -3026,7 +3026,7 @@ html.lenis, html.lenis body {
 
     /* When open — expand inline */
     .lang-switcher.open .lang-dropdown {
-        max-height: 280px;
+        max-height: 360px;
         padding: 6px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
@@ -3040,4 +3040,168 @@ html.lenis, html.lenis body {
         touch-action: manipulation;
     }
 }
+
+/* ==========================================================================
+   ARABIC LANGUAGE & RTL LAYOUT SUPPORT
+   ========================================================================== */
+[lang="ar"] {
+    direction: rtl;
+    unicode-bidi: embed;
+    font-family: 'Cairo', 'Poppins', 'Montserrat', 'Inter', sans-serif !important;
+}
+
+/* Default alignment for general text tags under RTL */
+[lang="ar"] body,
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6,
+[lang="ar"] p,
+[lang="ar"] span,
+[lang="ar"] a,
+[lang="ar"] li,
+[lang="ar"] input,
+[lang="ar"] textarea {
+    text-align: right;
+}
+
+/* Override inline left text-align style rules */
+[lang="ar"] [style*="text-align: left"],
+[lang="ar"] [style*="text-align:left"],
+[lang="ar"] .section-header {
+    text-align: right !important;
+}
+
+/* Ensure centered elements are preserved */
+[lang="ar"] [style*="text-align: center"],
+[lang="ar"] [style*="text-align:center"],
+[lang="ar"] .section-header[style*="text-align: center"],
+[lang="ar"] .section-header[style*="text-align:center"],
+[lang="ar"] .section-header[style*="margin: 0 auto"],
+[lang="ar"] .section-header[style*="margin:0 auto"],
+[lang="ar"] .contact-card-premium,
+[lang="ar"] .legal-header,
+[lang="ar"] .contact-header {
+    text-align: center !important;
+}
+
+/* RTL spacing mirrors */
+[lang="ar"] .hero-badge i {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+[lang="ar"] .btn i {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+[lang="ar"] .feature-card i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+[lang="ar"] .quality-item .quality-icon {
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+[lang="ar"] .premium-quality-icon {
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+[lang="ar"] .footer-contact li i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+[lang="ar"] .nav-links li a::after {
+    left: auto;
+    right: 0;
+}
+
+[lang="ar"] .about-features .feature-card i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+[lang="ar"] .product-item i {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+[lang="ar"] .category-icon-wrapper {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+[lang="ar"] .logo img {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+/* Reverse arrow icons */
+[lang="ar"] .icon-arrow,
+[lang="ar"] .fa-arrow-right,
+[lang="ar"] .fa-paper-plane {
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+/* Accordion layout adjustments */
+[lang="ar"] .chevron-wrapper {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* Language Switcher Dropdown positioning in RTL */
+[lang="ar"] .lang-switcher-btn {
+    flex-direction: row-reverse;
+}
+
+[lang="ar"] .lang-dropdown {
+    right: auto;
+    left: 0;
+    transform-origin: top left;
+}
+
+[lang="ar"] .lang-switcher.open .lang-dropdown {
+    transform: translateY(0) scale(1);
+}
+
+/* Floating Actions position flip to bottom-left */
+[lang="ar"] .floating-btns {
+    right: auto;
+    left: 30px;
+}
+
+/* Location map Open-in-Maps button flip */
+[lang="ar"] #location a[href*="maps.app.goo.gl"] {
+    right: auto;
+    left: 20px;
+}
+
+/* Mobile responsive navigation overrides for RTL */
+@media (max-width: 768px) {
+    [lang="ar"] .nav-links.mobile-active {
+        right: auto;
+        left: 0;
+        transform: translateX(-100%);
+        animation: slideInLeft 0.4s ease forwards;
+        box-shadow: 10px 0 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    [lang="ar"] .lang-dropdown {
+        left: 0;
+        right: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    to { transform: translateX(0); }
+}
+
 
