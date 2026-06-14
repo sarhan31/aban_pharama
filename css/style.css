@@ -3067,24 +3067,79 @@ html.lenis, html.lenis body {
     text-align: right;
 }
 
-/* Override inline left text-align style rules */
-[lang="ar"] [style*="text-align: left"],
-[lang="ar"] [style*="text-align:left"],
-[lang="ar"] .section-header {
-    text-align: right !important;
+/* Center section headings in Arabic as requested */
+[lang="ar"] .section-header,
+[lang="ar"] .section-header h2,
+[lang="ar"] .section-header span,
+[lang="ar"] .about-content .section-header,
+[lang="ar"] .about-content .section-header h2,
+[lang="ar"] .about-content .section-header span,
+[lang="ar"] .md-content-col .section-header,
+[lang="ar"] .md-content-col .section-header h2,
+[lang="ar"] .md-content-col .section-header span {
+    text-align: center !important; 
 }
 
-/* Ensure centered elements are preserved */
+/* Force underlines of headings to center properly with the text in Arabic */
+[lang="ar"] .section-header h2::after,
+[lang="ar"] .about-content .section-header h2::after,
+[lang="ar"] .md-content-col .section-header h2::after {
+    left: auto !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+}
+
+/* KEEP HERO ELEMENTS LEFT IN ARABIC */
+[lang="ar"] .hero-content {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    text-align: left !important;
+}
+
+[lang="ar"] .hero h1 {
+    text-align: left !important;
+}
+
+[lang="ar"] #typing-para {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+[lang="ar"] .hero-btns {
+    justify-content: flex-start !important;
+}
+
+/* Ensure centered elements and standard layouts are handled cleanly */
 [lang="ar"] [style*="text-align: center"],
-[lang="ar"] [style*="text-align:center"],
-[lang="ar"] .section-header[style*="text-align: center"],
-[lang="ar"] .section-header[style*="text-align:center"],
-[lang="ar"] .section-header[style*="margin: 0 auto"],
-[lang="ar"] .section-header[style*="margin:0 auto"],
-[lang="ar"] .contact-card-premium,
-[lang="ar"] .legal-header,
-[lang="ar"] .contact-header {
+[lang="ar"] [style*="text-align:center"] {
     text-align: center !important;
+}
+
+[lang="ar"] [style*="text-align: center"] h2::after,
+[lang="ar"] [style*="text-align:center"] h2::after {
+    left: auto !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+}
+
+/* Eased reveal animations tailored for the curves of Arabic typography */
+@keyframes fadeInUpArabic {
+    from { transform: translateY(20px) scale(0.98); opacity: 0; filter: blur(3px); }
+    to { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+
+[lang="ar"] .reveal.active:not([class*="reveal-"]) {
+    animation-name: fadeInUpArabic !important;
+    animation-duration: 1.8s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[lang="ar"] .hero-content.hero-revealed h1 {
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                filter 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                clip-path 1.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* RTL spacing mirrors */
@@ -3096,6 +3151,12 @@ html.lenis, html.lenis body {
 [lang="ar"] .btn i {
     margin-right: 8px;
     margin-left: 0;
+}
+
+[lang="ar"] .btn {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    padding: 16px 36px !important;
 }
 
 [lang="ar"] .feature-card i {
@@ -3203,5 +3264,153 @@ html.lenis, html.lenis body {
 @keyframes slideInLeft {
     to { transform: translateX(0); }
 }
+
+/* ==========================================================================
+   ARABIC — DESKTOP OVERRIDES  (992px+)
+   These must sit AFTER all other blocks to beat the !important rules above.
+   ========================================================================== */
+@media (min-width: 992px) {
+
+    /* Hero: flip gradient direction so the strong teal is on the right (RTL) */
+    [lang="ar"] .hero {
+        justify-content: flex-start !important;
+        text-align: left !important;
+        background: linear-gradient(270deg,
+            rgba(15, 118, 110, 0.98) 0%,
+            rgba(15, 118, 110, 0.85) 45%,
+            rgba(15, 118, 110, 0.4) 100%),
+            url('https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1600') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+    }
+
+    [lang="ar"] .hero .container {
+        margin: 0 !important;
+        padding: 0 8% !important;
+        max-width: 900px !important;
+        text-align: left !important;
+    }
+
+    [lang="ar"] .hero-content {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        text-align: left !important;
+    }
+
+    [lang="ar"] .hero-badge {
+        text-align: left !important;
+        display: inline-block !important;
+    }
+
+    [lang="ar"] .hero h1 {
+        text-align: left !important;
+        letter-spacing: 0 !important;
+        line-height: 1.35 !important;
+    }
+
+    [lang="ar"] .hero p {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        max-width: 700px !important;
+    }
+
+    [lang="ar"] .hero-btns {
+        justify-content: flex-start !important;
+        flex-direction: row-reverse !important;
+    }
+
+    /* About section: flip column order for RTL */
+    [lang="ar"] .about-wrapper {
+        flex-direction: row-reverse !important;
+        text-align: right !important;
+    }
+
+    [lang="ar"] .about-content {
+        text-align: right !important;
+    }
+
+    [lang="ar"] .about-content h2,
+    [lang="ar"] .about-content .section-header h2 {
+        text-align: center !important;
+    }
+
+    [lang="ar"] .about-content p {
+        text-align: right !important;
+    }
+
+    [lang="ar"] .about-features {
+        justify-content: flex-start !important;
+        flex-direction: row-reverse !important;
+    }
+
+    [lang="ar"] .experience-badge {
+        left: auto !important;
+        right: 20px !important;
+    }
+
+    /* MD section stays RTL-right aligned */
+    [lang="ar"] .md-content-col h2,
+    [lang="ar"] .md-content-col p,
+    [lang="ar"] .md-content-col .section-header {
+        text-align: right !important;
+    }
+
+    [lang="ar"] .md-content-col .section-header h2::after {
+        left: auto !important;
+        right: 0 !important;
+        transform: none !important;
+    }
+}
+
+/* ==========================================================================
+   ARABIC — CONTENT CARDS & FOOTER TEXT (all breakpoints)
+   ========================================================================== */
+
+/* Cards & accordion bodies: right-aligned for natural RTL reading */
+[lang="ar"] .cat-card h3,
+[lang="ar"] .cat-card p,
+[lang="ar"] .quality-item h4,
+[lang="ar"] .quality-item p,
+[lang="ar"] .facility-card h3,
+[lang="ar"] .facility-card p,
+[lang="ar"] .accordion-header,
+[lang="ar"] .accordion-body p,
+[lang="ar"] .premium-quality-content h4,
+[lang="ar"] .premium-quality-content p {
+    text-align: right !important;
+}
+
+/* Footer: center-aligned headings and lines */
+[lang="ar"] .footer-col h4,
+[lang="ar"] .footer-column h4,
+[lang="ar"] .footer-col p,
+[lang="ar"] .footer-column p,
+[lang="ar"] .footer-col li,
+[lang="ar"] .footer-column li {
+    text-align: center !important;
+}
+
+[lang="ar"] .footer-col h4::after,
+[lang="ar"] .footer-column h4::after {
+    left: auto !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+}
+
+/* Search bar: RTL input */
+[lang="ar"] .search-input {
+    text-align: right !important;
+    padding-right: 50px !important;
+    padding-left: 20px !important;
+}
+
+[lang="ar"] .search-icon {
+    right: 20px !important;
+    left: auto !important;
+}
+
 
 

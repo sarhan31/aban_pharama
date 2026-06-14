@@ -109,6 +109,18 @@
 .reveal-tl.active { animation-name: dramatic-tl !important; }
 .reveal-bl.active { animation-name: dramatic-bl !important; }
 
+/* --- ARABIC (RTL) ANIMATION OVERRIDES --- */
+/* In RTL, elements visually swap sides. Left boxes become Right boxes, so their entry directions must flip. */
+[lang="ar"] .reveal-tl { transform: translate3d(100vw, -100vh, 0) scale(0.8); }
+[lang="ar"] .reveal-tr { transform: translate3d(-100vw, -100vh, 0) scale(0.8); }
+[lang="ar"] .reveal-bl { transform: translate3d(100vw, 100vh, 0) scale(0.8); }
+[lang="ar"] .reveal-br { transform: translate3d(-100vw, 100vh, 0) scale(0.8); }
+
+[lang="ar"] .reveal-tl.active { animation-name: dramatic-tr !important; }
+[lang="ar"] .reveal-tr.active { animation-name: dramatic-tl !important; }
+[lang="ar"] .reveal-bl.active { animation-name: dramatic-br !important; }
+[lang="ar"] .reveal-br.active { animation-name: dramatic-bl !important; }
+
 /* Default reveal if no direction class */
 @keyframes fadeInUpDramatic {
     from { transform: translateY(50px) scale(0.9); opacity: 0; }
