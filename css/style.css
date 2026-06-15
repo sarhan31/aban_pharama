@@ -3412,5 +3412,66 @@ html.lenis, html.lenis body {
     left: auto !important;
 }
 
+/* --- HINDI LANGUAGE SUPPORT --- */
+[lang="hi"] body,
+[lang="hi"] h1,
+[lang="hi"] h2,
+[lang="hi"] h3,
+[lang="hi"] h4,
+[lang="hi"] h5,
+[lang="hi"] h6,
+[lang="hi"] p,
+[lang="hi"] span,
+[lang="hi"] a,
+[lang="hi"] li,
+[lang="hi"] input,
+[lang="hi"] textarea,
+[lang="hi"] button,
+[lang="hi"] .btn {
+    font-family: 'Hind', sans-serif !important;
+}
 
+[lang="hi"] .splash-name {
+    font-size: 2.5rem;
+}
 
+[lang="hi"] .splash-name span {
+    font-size: 2.5rem;
+}
+
+[lang="hi"] h1.reveal {
+    font-size: 2.8rem;
+    line-height: 1.3;
+}
+
+[lang="hi"] .nav-links li a {
+    font-size: 1.05rem;
+}
+
+[lang="hi"] p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+[lang="hi"] .cat-card h3,
+[lang="hi"] .quality-item h4,
+[lang="hi"] .facility-card h3 {
+    font-size: 1.3rem;
+}
+
+[lang="hi"] .about-content h2,
+[lang="hi"] .section-header h2 {
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    [lang="hi"] h1.reveal {
+        font-size: 2.2rem;
+    }
+    [lang="hi"] .splash-name {
+        font-size: 2rem;
+    }
+    [lang="hi"] .splash-name span {
+        font-size: 2rem;
+    }
+}
