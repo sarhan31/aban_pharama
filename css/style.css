@@ -3199,9 +3199,19 @@ html.lenis, html.lenis body {
     margin-right: 0;
 }
 
+[lang="ar"] .logo {
+    flex-direction: row-reverse;
+}
+
 [lang="ar"] .logo img {
-    margin-left: 12px;
-    margin-right: 0;
+    margin-right: 12px;
+    margin-left: 0;
+}
+
+[lang="ar"] .logo span {
+    letter-spacing: 0 !important;
+    font-size: clamp(15px, 4vw, 22px) !important;
+    white-space: nowrap !important;
 }
 
 /* Reverse arrow icons */
