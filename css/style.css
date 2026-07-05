@@ -3067,7 +3067,7 @@ html.lenis, html.lenis body {
     text-align: right;
 }
 
-/* Center section headings in Arabic as requested */
+/* Right-align section headings in Arabic */
 [lang="ar"] .section-header,
 [lang="ar"] .section-header h2,
 [lang="ar"] .section-header span,
@@ -3077,37 +3077,37 @@ html.lenis, html.lenis body {
 [lang="ar"] .md-content-col .section-header,
 [lang="ar"] .md-content-col .section-header h2,
 [lang="ar"] .md-content-col .section-header span {
-    text-align: center !important; 
+    text-align: right !important; 
 }
 
-/* Force underlines of headings to center properly with the text in Arabic */
+/* Force underlines of headings to align right in Arabic */
 [lang="ar"] .section-header h2::after,
 [lang="ar"] .about-content .section-header h2::after,
 [lang="ar"] .md-content-col .section-header h2::after {
     left: auto !important;
-    right: 50% !important;
-    transform: translateX(50%) !important;
+    right: 0 !important;
+    transform: none !important;
 }
 
-/* KEEP HERO ELEMENTS LEFT IN ARABIC */
+/* KEEP HERO ELEMENTS RIGHT IN ARABIC */
 [lang="ar"] .hero-content {
-    margin-left: 0 !important;
-    margin-right: auto !important;
-    text-align: left !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    text-align: right !important;
 }
 
 [lang="ar"] .hero h1 {
-    text-align: left !important;
+    text-align: right !important;
 }
 
 [lang="ar"] #typing-para {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
+    text-align: right !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 
 [lang="ar"] .hero-btns {
-    justify-content: flex-start !important;
+    justify-content: flex-start !important; /* Start is right in RTL */
 }
 
 /* Ensure centered elements and standard layouts are handled cleanly */
@@ -3209,6 +3209,7 @@ html.lenis, html.lenis body {
 }
 
 [lang="ar"] .logo span {
+    margin: 0 !important;
     letter-spacing: 0 !important;
     font-size: clamp(15px, 4vw, 22px) !important;
     white-space: nowrap !important;
@@ -3299,31 +3300,31 @@ html.lenis, html.lenis body {
         margin: 0 !important;
         padding: 0 8% !important;
         max-width: 900px !important;
-        text-align: left !important;
+        text-align: right !important;
     }
 
     [lang="ar"] .hero-content {
         max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: auto !important;
-        text-align: left !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
+        text-align: right !important;
     }
 
     [lang="ar"] .hero-badge {
-        text-align: left !important;
+        text-align: right !important;
         display: inline-block !important;
     }
 
     [lang="ar"] .hero h1 {
-        text-align: left !important;
+        text-align: right !important;
         letter-spacing: 0 !important;
         line-height: 1.35 !important;
     }
 
     [lang="ar"] .hero p {
-        text-align: left !important;
-        margin-left: 0 !important;
-        margin-right: auto !important;
+        text-align: right !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
         max-width: 700px !important;
     }
 
@@ -3485,3 +3486,5 @@ html.lenis, html.lenis body {
         font-size: 2rem;
     }
 }
+@ m e d i a   ( m a x - w i d t h :   4 2 0 p x )   {   [ l a n g = " a r " ]   . a b o u t - f e a t u r e s   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 2 ,   m i n m a x ( 0 ,   1 f r ) )   ! i m p o r t a n t ;   g a p :   8 p x   ! i m p o r t a n t ;   }   }  
+ 
