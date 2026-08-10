@@ -3486,3 +3486,138 @@ html.lenis, html.lenis body {
         font-size: 2rem;
     }
 }
+
+/* ==========================================================================
+   CUSTOM CURSOR INTERACTION (DESKTOP ONLY)
+   Strictly utilizes existing site design tokens: --primary, --accent, --white, --dark-text
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    /* Hide native OS cursor site-wide on desktop */
+    *, *::before, *::after {
+        cursor: none;
+    }
+
+    /* Accessibility Exception: Never hide native cursor inside text inputs, textareas, or editable fields */
+    input, textarea, [contenteditable="true"], [contenteditable=""] {
+        cursor: text !important;
+    }
+
+    /* Button inputs stay hidden native cursor */
+    input[type="button"], input[type="submit"], input[type="reset"] {
+        cursor: none !important;
+    }
+
+    /* 1:1 Precise Pointer Dot (9px diameter with universal contrast halo) */
+    .custom-cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        border: 1.5px solid var(--white);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.35);
+        pointer-events: none;
+        z-index: 999999;
+        transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+        transition: opacity 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.15s ease-out;
+        will-change: transform;
+    }
+
+    .custom-cursor-dot.is-hovering {
+        background-color: var(--accent);
+        border-color: var(--white);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 0 10px rgba(245, 158, 11, 0.8);
+        transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1.2);
+    }
+
+    .custom-cursor-dot.is-active {
+        transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.8);
+    }
+
+    .custom-cursor-dot.is-hidden,
+    .custom-cursor-dot.is-input {
+        opacity: 0;
+    }
+
+    /* Soft Ring / Circle Outline Trailing Dot (~34px rest, ~58px on hover with dual-contour contrast) */
+    .custom-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.85), 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+        background-color: rgba(15, 118, 110, 0.06);
+        pointer-events: none;
+        z-index: 999998;
+        transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+        transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
+        will-change: transform, width, height, border-color, background-color, box-shadow;
+    }
+
+    .custom-cursor-ring.is-hovering {
+        width: 58px;
+        height: 58px;
+        border-color: var(--accent);
+        background-color: rgba(245, 158, 11, 0.12);
+        box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.95), 0 0 16px rgba(245, 158, 11, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .custom-cursor-ring.is-active {
+        border-color: var(--accent);
+        transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.92);
+    }
+
+    .custom-cursor-ring.is-hidden,
+    .custom-cursor-ring.is-input {
+        opacity: 0;
+    }
+
+    /* Small Pill-Shaped Contextual Navigation Label */
+    .custom-cursor-label {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 999999;
+        background-color: var(--primary);
+        color: var(--white);
+        font-family: 'Inter', sans-serif;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        line-height: 1;
+        padding: 5px 12px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        opacity: 0;
+        transform: translate3d(-100px, -100px, 0) translate(24px, -50%) scale(0.9);
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        will-change: transform, opacity;
+    }
+
+    .custom-cursor-label.is-visible {
+        opacity: 1;
+        transform: translate3d(-100px, -100px, 0) translate(24px, -50%) scale(1);
+    }
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        cursor: auto !important;
+    }
+    .custom-cursor-dot,
+    .custom-cursor-ring,
+    .custom-cursor-label {
+        display: none !important;
+    }
+}
+
